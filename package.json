@@ -1,0 +1,20 @@
+{
+  "name": "theianex-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Theianex marketing site. Static pages built from partials, plus one serverless function for the contact form.",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && node serve.mjs",
+    "build:strict": "STRICT=1 node build.mjs",
+    "bundle:world": "node scripts/bundle-world.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "three": "^0.186.1"
+  }
+}

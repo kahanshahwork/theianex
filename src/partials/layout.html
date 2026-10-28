@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en-AU" data-theme="dark">
+<head>
+{{> head}}
+</head>
+<body class="{{bodyClass}}" data-page="{{page}}">
+{{> logo-symbol}}
+<canvas id="world" aria-hidden="true"></canvas>
+<div class="chap" id="chap" aria-hidden="true"><b id="chapN">00</b><span><small>Chapter</small><i id="chapT">Welcome</i></span></div>
+<a class="skip" href="#main">Skip to content</a>
+{{> header}}
+<main id="main">
+{{main}}
+</main>
+{{> footer}}
+<script defer src="/js/site.js"></script>
+<script type="module" src="/js/world.js"></script>
+{{pageScripts}}
+</body>
+</html>

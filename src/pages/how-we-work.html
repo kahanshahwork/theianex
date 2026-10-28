@@ -1,0 +1,175 @@
+<!--meta
+title: How we work | Theianex
+description: Four checkpoints on every document: Brief, Prepare, Diligence, Deliver. Where our technology helps at each step, and what you get.
+page: how-we-work
+scripts: how-hero.js, how-path.js
+-->
+<!-- ============ HERO: mess in, advice document out. One screen: the four checkpoints beside the animation, scroll plays it ============ -->
+<section class="pin how-hero" id="how-hero" data-pin="4" style="--steps:4;--sl:30vh" data-chapter="How we work" data-form="none" data-glow="3" data-grid="1">
+  <div class="pin-stick">
+    <div class="wrap hw-grid">
+      <div class="hw-copy">
+        <span class="kick rv">How we work</span>
+        <h1 class="h1 rv">Four checkpoints. <em>Every document.</em></h1>
+        <p class="lead rv">Technology does the groundwork. Paraplanners do the thinking. You sign off.</p>
+        <div class="hw-steps" role="tablist" aria-label="The four checkpoints">
+          <button class="hw-step" data-tab="0"><b>01</b><span>Brief</span><em>Client file in</em></button>
+          <button class="hw-step" data-tab="1"><b>02</b><span>Prepare</span><em>Draft built</em></button>
+          <button class="hw-step" data-tab="2"><b>03</b><span>Diligence</span><em>Checked twice</em></button>
+          <button class="hw-step" data-tab="3"><b>04</b><span>Deliver</span><em>Ready for sign-off</em></button>
+        </div>
+      </div>
+      <div class="conv" id="conv" aria-hidden="true">
+        <canvas id="convCv"></canvas>
+        <div class="conv-core" id="convCore"><svg viewBox="0 0 120 64"><use href="#mark"/></svg></div>
+        <span class="conv-lab l-in">Client file</span>
+        <span class="conv-lab l-out">Advice document</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1. WHO DOES WHAT ============ -->
+<section class="sec wd" data-chapter="Who does what" data-form="orbit" data-n="5" data-r=".96" data-glow="5" data-grid="3">
+  <div class="wrap">
+    <span class="kick rv">Who does what</span>
+    <h2 class="h2 rv">One document. <em>Three roles.</em></h2>
+    <div class="wd-grid">
+      <article class="wd-item rv">
+        <svg class="wd-art" viewBox="0 0 240 170" aria-hidden="true">
+          <g class="wd-lines"><path d="M24 40C80 40 90 85 150 85"/><path d="M24 85H150"/><path d="M24 130C80 130 90 85 150 85"/></g>
+          <g class="wd-src"><circle cx="24" cy="40" r="7"/><circle cx="24" cy="85" r="7"/><circle cx="24" cy="130" r="7"/></g>
+          <rect class="wd-doc" x="150" y="38" width="66" height="94" rx="10"/>
+          <g class="wd-dl"><path d="M162 58h42M162 72h42M162 86h30M162 100h42M162 114h24"/></g>
+          <circle class="wd-dot" r="4.5"><animateMotion dur="3.4s" repeatCount="indefinite" path="M24 40C80 40 90 85 150 85"/></circle>
+          <circle class="wd-dot" r="4.5"><animateMotion dur="3.4s" begin="-1.1s" repeatCount="indefinite" path="M24 85H150"/></circle>
+          <circle class="wd-dot" r="4.5"><animateMotion dur="3.4s" begin="-2.2s" repeatCount="indefinite" path="M24 130C80 130 90 85 150 85"/></circle>
+        </svg>
+        <h3 class="h3">Technology does the groundwork.</h3>
+        <p class="copy">Reads the client file, pulls out the facts, drafts, and checks the draft against the file.</p>
+      </article>
+      <article class="wd-item rv" style="--d:1">
+        <svg class="wd-art" viewBox="0 0 240 170" aria-hidden="true">
+          <rect class="wd-doc" x="52" y="22" width="136" height="126" rx="12"/>
+          <g class="wd-dl"><path d="M72 48h96M72 68h96M72 88h70M72 108h96M72 128h56"/></g>
+          <g class="wd-glass"><circle cx="0" cy="0" r="25"/><path d="M18 18l22 22"/><path class="wd-hit" d="M-14 0h28"/></g>
+        </svg>
+        <h3 class="h3">Paraplanners do the thinking.</h3>
+        <p class="copy">Analysis, review and diligence on every document. Every flag the technology raises is reviewed by a person.</p>
+      </article>
+      <article class="wd-item rv" style="--d:2">
+        <svg class="wd-art" viewBox="0 0 240 170" aria-hidden="true">
+          <rect class="wd-doc" x="52" y="22" width="136" height="126" rx="12"/>
+          <g class="wd-dl"><path d="M72 48h96M72 68h96M72 88h60"/></g>
+          <path class="wd-sig" d="M74 124c10-22 18-22 14-4s4 14 14-4 8-8 14 0 10-6 18-12 6 6 14 4 12-8 20-10"/>
+          <circle class="wd-ok" cx="176" cy="116" r="16"/><path class="wd-okp" d="m168 116 6 6 11-12"/>
+        </svg>
+        <h3 class="h3">You sign off.</h3>
+        <p class="copy">Advice decisions stay with the adviser.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. DOCUMENT CHECKPOINTS: one checkpoint per scroll step, the scene changes with it ============ -->
+<section class="pin cps" id="checkpoints" data-pin="4" style="--steps:4;--sl:56vh" data-chapter="Checkpoints" data-form="none" data-glow="1" data-grid="2" data-scenes="h0,h1,h2,h3" data-doc="how">
+  <div class="pin-stick">
+    <div class="wrap">
+      <span class="kick rv">Document checkpoints</span>
+      <h2 class="h2 pin-h2 rv">Where AI helps, <em>and what you get.</em></h2>
+      <div class="pin-grid">
+        <div class="pin-card">
+          <div class="pin-tabs" role="tablist" aria-label="Checkpoints">
+            <button class="pin-tab" data-tab="0"><b>01</b>Brief</button>
+            <button class="pin-tab" data-tab="1"><b>02</b>Prepare</button>
+            <button class="pin-tab" data-tab="2"><b>03</b>Diligence</button>
+            <button class="pin-tab" data-tab="3"><b>04</b>Deliver</button>
+          </div>
+          <div class="pin-panel is-active" data-panel="0">
+            <span class="pin-chip"><i></i>Step 01 of 04 &middot; Client file in</span>
+            <h3 class="pin-title">Brief</h3>
+            <p class="pin-p">You send the client file and instructions. We confirm scope and deadline in writing.</p>
+            <p class="pin-type" data-type="&gt; Client file received: fact-find, statements, existing advice" data-t0=".02" data-t1=".26" aria-hidden="true"></p>
+            <div class="cl ai" data-at="0.3"><i class="av">AI</i><p>Read six documents. Client goals, income, super and insurance details extracted.</p></div>
+            <div class="cl ai" data-at="0.46"><i class="av">AI</i><p>Three gaps flagged: partner&rsquo;s super balance, intended retirement age, risk profile date.</p></div>
+            <div class="cl pp" data-at="0.62"><i class="av pp">P</i><p>Questions sent to the adviser in one message.</p></div>
+            <div class="pin-get" data-at=".8"><span class="pin-gl">What you get</span><p>One list of questions at the start, not scattered queries halfway through.</p></div>
+          </div>
+          <div class="pin-panel" data-panel="1">
+            <span class="pin-chip"><i></i>Step 02 of 04 &middot; Draft built</span>
+            <h3 class="pin-title">Prepare</h3>
+            <p class="pin-p">The first draft is built from the file.</p>
+            <p class="pin-type" data-type="&gt; Draft started from the client file" data-t0=".02" data-t1=".26" aria-hidden="true"></p>
+            <div class="cl ai" data-at="0.3"><i class="av">AI</i><p>Scope, current position and strategy sections drafted from the file.</p></div>
+            <div class="cl ai" data-at="0.46"><i class="av">AI</i><p>Figures and research pulled in. Nothing retyped by hand.</p></div>
+            <div class="cl pp" data-at="0.62"><i class="av pp">P</i><p>Draft picked up. Starting the analysis.</p></div>
+            <div class="pin-get" data-at=".8"><span class="pin-gl">What you get</span><p>A draft in front of the paraplanner sooner, with fewer transcription errors.</p></div>
+          </div>
+          <div class="pin-panel" data-panel="2">
+            <span class="pin-chip"><i></i>Step 03 of 04 &middot; Checked twice</span>
+            <h3 class="pin-title">Diligence</h3>
+            <p class="pin-p">Where our paraplanners spend the time the technology saves.</p>
+            <p class="pin-type" data-type="&gt; Draft checked against the client file" data-t0=".02" data-t1=".26" aria-hidden="true"></p>
+            <div class="cl ai" data-at="0.3"><i class="av">AI</i><p>Figures agree with the file except one: the super balance differs from the statement.</p></div>
+            <div class="cl ai" data-at="0.46"><i class="av">AI</i><p>Recommendation 2 doesn&rsquo;t yet refer to the client&rsquo;s retirement goal. Required disclosures are present.</p></div>
+            <div class="cl pp" data-at="0.62"><i class="av pp">P</i><p>Reviewed. Super balance corrected, recommendation 2 linked to the goal.</p></div>
+            <div class="pin-get" data-at=".8"><span class="pin-gl">What you get</span><p>Fewer revisions, and a document that stands up on file review.</p></div>
+          </div>
+          <div class="pin-panel" data-panel="3">
+            <span class="pin-chip"><i></i>Step 04 of 04 &middot; Ready for sign-off</span>
+            <h3 class="pin-title">Deliver</h3>
+            <p class="pin-p">The finished document goes out with a short handover note.</p>
+            <p class="pin-type" data-type="&gt; Final consistency check complete" data-t0=".02" data-t1=".26" aria-hidden="true"></p>
+            <div class="cl ai" data-at="0.3"><i class="av">AI</i><p>Document assembled. Open points and assumptions listed.</p></div>
+            <div class="cl pp" data-at="0.46"><i class="av pp">P</i><p>Handover note: assumes retirement at 65. Please confirm the insurance premium before sign-off.</p></div>
+            <div class="cl pp" data-at="0.62"><i class="av pp">P</i><p>Ready for adviser review and sign-off.</p></div>
+            <div class="pin-get" data-at=".8"><span class="pin-gl">What you get</span><p>A document ready for your review and sign-off, with the assumptions stated.</p></div>
+          </div>
+        </div>
+        <div class="pin-space" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. GETTING STARTED ============ -->
+<section class="sec gs" id="getting-started" data-chapter="Getting started" data-form="none" data-glow="2" data-grid="4">
+  <div class="wrap">
+    <span class="kick rv">Getting started</span>
+    <h2 class="h2 rv">From first call <em>to first document.</em></h2>
+    <p class="lead rv">How an engagement begins, in six steps.</p>
+    <ol class="gs-list" id="gsList">
+      <li class="gs-step"><i class="gs-dot"></i><span class="gs-n">1</span><div><h3 class="h3">Discovery call</h3><p class="copy">A conversation about your practice: the documents you prepare, how you work today, and what you look for in a paraplanning partner.</p></div></li>
+      <li class="gs-step"><i class="gs-dot"></i><span class="gs-n">2</span><div><h3 class="h3">Understanding your needs</h3><p class="copy">We turn what we heard into a clear picture of your document types, volumes, deadlines and preferences, and follow up in writing on anything that needs more detail.</p></div></li>
+      <li class="gs-step"><i class="gs-dot"></i><span class="gs-n">3</span><div><h3 class="h3">Choosing the right fit</h3><p class="copy">We recommend the setup that suits your practice best, and we say plainly if we are not the right fit.</p></div></li>
+      <li class="gs-step"><i class="gs-dot"></i><span class="gs-n">4</span><div><h3 class="h3">Agreeing how we work together</h3><p class="copy">Scope, ways of working and your preferences are confirmed in writing, and access is arranged. <mark class="tbc">what is agreed at this stage</mark></p></div></li>
+      <li class="gs-step"><i class="gs-dot"></i><span class="gs-n">5</span><div><h3 class="h3">Getting started</h3><p class="copy">Your paraplanner begins on your first document, moving through the four checkpoints above.</p></div></li>
+      <li class="gs-step"><i class="gs-dot"></i><span class="gs-n">6</span><div><h3 class="h3">Refining as we go</h3><p class="copy">We take your feedback on board and adjust, so the work keeps fitting your practice.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 4. WORKING WITH US ============ -->
+<section class="sec wwu" data-chapter="Working with us" data-form="cluster" data-n="4" data-pos=".68,.05" data-glow="0" data-grid="0">
+  <div class="wwu-blob" aria-hidden="true"></div>
+  <div class="wrap wwu-in">
+    <span class="kick rv">Working with us</span>
+    <h2 class="h2 rv">Built around <mark class="hl">your practice.</mark></h2>
+    <div class="wwu-list">
+      <p data-scrub>From the first document, your paraplanner works the way your practice works. Your preferences are learned once and carried through every file, so the work feels like an extension of your own team.</p>
+      <p data-scrub>Whatever your document types and deadlines look like, we adapt around them, so the work fits how your practice runs.</p>
+      <p data-scrub>Always within reach, and ready to adapt as your needs grow and change.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="sec close close--center" data-chapter="Talk to us" data-form="stream" data-n="4" data-path="1" data-glow="3" data-grid="1">
+  <div class="wrap close-in">
+    <h2 class="h1 rv">Your needs change. <em>We change with them.</em></h2>
+    <div class="close-cta rv">
+      <a class="btn btn-lg" href="/contact">Book a discovery call</a>
+      <a class="link" href="/paraiq">ParaIQ and data privacy</a>
+    </div>
+  </div>
+</section>

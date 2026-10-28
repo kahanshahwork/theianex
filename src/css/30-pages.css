@@ -1,0 +1,7 @@
+/* shared by the inner pages */
+.page-hero{position:relative;padding-top:calc(var(--nav-h) + clamp(28px,5vw,76px));padding-bottom:clamp(44px,6vw,90px);overflow:hidden;background:radial-gradient(80% 60% at 85% 0%,var(--acc-soft),transparent 70%)}
+.ph-text{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);column-gap:clamp(24px,5vw,90px);align-items:end}
+.ph-text .kick{grid-column:1/-1}
+.ph-text .lead{padding-bottom:.5em;max-width:24em}
+@media (max-width:900px){.ph-text{display:block}.ph-text .h1{margin-bottom:clamp(18px,3vw,28px)}}
+.page-hero .kick{margin-bottom:clamp(20px,3vw,34px)}

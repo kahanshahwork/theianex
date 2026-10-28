@@ -1,0 +1,68 @@
+/* =========================================================
+   THE WORLD: 3D scene, transparent sections, glass panels, text that reacts
+   ========================================================= */
+#world{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:none}
+.has-world #world{display:block}
+main,.foot{position:relative;z-index:1}
+/* with the scene present, sections let it show through */
+.has-world .tech,.has-world .cps,.has-world .wwu,.has-world .disc,.has-world .ct-ways,.has-world .why-sec{background:transparent}
+.has-world .foot{background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.has-world .page-hero{background:none}
+/* the scene replaces the page background; the body keeps the token as a fallback */
+.no-world .page-hero{background:radial-gradient(80% 60% at 85% 0%,var(--acc-soft),transparent 70%)}
+
+/* glass panels so tiles and light pass behind the windows */
+.has-world .pin-card,.has-world .pq-win,.has-world .call-tiles,.has-world .call-agenda,.has-world .way,.has-world .dp-a,.has-world .conv{
+  background:color-mix(in srgb,var(--surf) 74%,transparent);backdrop-filter:blur(18px) saturate(1.25);-webkit-backdrop-filter:blur(18px) saturate(1.25)}
+
+/* headlines come into focus as they reach the middle of the screen */
+[data-fx="focus"]{opacity:var(--fx-o,1);filter:blur(var(--fx-b,0px));transform:translateY(var(--fx-y,0px));will-change:opacity,filter,transform}
+/* highlight bars on key words */
+mark.hl{background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 55%/calc(var(--p,0) * 100%) 92%;color:inherit;padding:0 .14em;margin:0 -.04em;border-radius:.1em;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:color .5s}
+mark.hl{--p:0}
+:root[data-theme="light"] mark.hl{color:var(--ink)}
+:root[data-theme="light"] mark.hl.full{color:#fff}
+@media (prefers-reduced-motion:reduce){[data-fx="focus"]{opacity:1;filter:none;transform:none} mark.hl{--p:1!important}}
+
+/* chapter marker */
+.chap{position:fixed;right:var(--gut);bottom:22px;z-index:60;display:flex;align-items:stretch;font-family:var(--mono);pointer-events:none;opacity:0;transition:opacity .6s}
+.has-world .chap{opacity:1}
+body.is-home:not(.past-hero) .chap{opacity:0}
+.chap b{display:grid;place-items:center;min-width:34px;padding:0 8px;background:var(--acc);color:var(--on-ink);font-weight:500;font-size:.8rem}
+.chap span{display:flex;flex-direction:column;justify-content:center;padding:6px 14px 6px 12px;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line)}
+.chap small{font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.chap i{font-style:normal;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+.chap.swap i,.chap.swap b{animation:chapIn .6s var(--ease)}
+@keyframes chapIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (max-width:700px){.chap{bottom:14px}.chap small{display:none}.chap i{font-size:.68rem}}
+
+/* keep copy readable when tiles pass behind it */
+.has-world main :is(h1,h2,h3,p,li,.lead,.copy,.kick){text-shadow:0 1px 22px color-mix(in srgb,var(--bg) 75%,transparent),0 0 2px color-mix(in srgb,var(--bg) 35%,transparent)}
+.has-world .hero :is(h1,p,.kick){text-shadow:none}
+
+/* ---- each page gets its own composition: no repeated hero or closing layout ---- */
+.close-mark{display:none}
+.close--center .close-in{text-align:center}
+.close--center .h1{margin-inline:auto;max-width:13em}
+.close--center .close-cta{justify-content:center}
+.close--split .close-in{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(28px,6vw,100px);align-items:end}
+.close--split .h1{margin-bottom:0}
+.close--split .close-cta{flex-direction:column;align-items:flex-start;margin-top:0;padding-bottom:.6em}
+@media (max-width:900px){.close--split .close-in{display:block}.close--split .close-cta{flex-direction:row;margin-top:clamp(28px,4vw,40px)}}
+/* ParaIQ: centred opening over the product window */
+.pq-hero .ph-text{display:block;text-align:center;max-width:1040px;margin-inline:auto}
+.pq-hero .lead{margin-inline:auto}
+.pq-hero .h1 em{display:block}
+/* Contact: words on the left, the call on the right, side by side */
+.ct-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center;column-gap:clamp(8px,3vw,40px)}
+.ct-hero .ph-text{display:block}
+.ct-hero .ph-text .lead{max-width:22em;padding-bottom:0}
+@media (max-width:980px){.ct-hero{display:block}}
+.pq-hero .ph-text .h1{margin-bottom:clamp(18px,2.4vw,30px)}
+.ct-hero{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+.ct-hero .h1{font-size:clamp(2.4rem,5vw,4.8rem)}
+.ct-hero .call{margin-top:0;grid-template-columns:1fr}
+.ct-hero .call-tile{aspect-ratio:16/10}
+.ct-hero .call-agenda{padding:clamp(18px,2vw,26px)}
+.ct-hero .call-agenda ul{flex-direction:row;flex-wrap:wrap;gap:12px 24px}
+.ct-hero .ph-text .h1{margin-bottom:clamp(18px,2.4vw,30px)}.ct-hero .call-tiles .pq-ill{bottom:auto;top:18px;right:20px}

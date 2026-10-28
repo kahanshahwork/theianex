@@ -1,0 +1,57 @@
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:clamp(1rem,.96rem + .2vw,1.14rem);line-height:1.62;font-weight:380;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s var(--ease),color .5s var(--ease)}
+h1,h2,h3,h4,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+img,svg,canvas{display:block;max-width:100%}
+em{font-style:normal;color:var(--acc)}
+h1 em,h2 em,h3 em,.h1 em,.h2 em,.h3 em,.hero-title em,.foot-line em{font-style:normal;color:var(--acc2)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:6px}
+::selection{background:var(--acc);color:var(--bg)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:fixed;left:12px;top:-60px;z-index:400;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:99px;transition:top .2s}
+.skip:focus{top:12px}
+
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.sec{padding-block:var(--sec);position:relative}
+.wm{font-family:var(--wm);font-weight:600;letter-spacing:.16em}
+
+/* ---------- Type scale: big, clear, hierarchy first ---------- */
+.kick{display:inline-flex;align-items:center;gap:.8em;font-family:var(--mono);font-weight:500;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--acc2);margin-bottom:clamp(20px,3vw,36px)}
+.kick::before{content:"";width:8px;height:8px;background:var(--acc)}
+.h1{font-weight:300;font-size:clamp(2.7rem,7.6vw,7.4rem);line-height:.98;letter-spacing:-.05em;text-wrap:balance}
+.h2{font-weight:300;font-size:clamp(2.3rem,5.8vw,5.6rem);line-height:1;letter-spacing:-.045em;text-wrap:balance}
+.h3{font-weight:380;font-size:clamp(1.55rem,2.8vw,2.5rem);line-height:1.1;letter-spacing:-.028em;text-wrap:balance}
+.lead{font-size:clamp(1.16rem,1.9vw,1.7rem);line-height:1.42;font-weight:340;color:var(--ink2);text-wrap:pretty;max-width:34em;letter-spacing:-.012em}
+.copy{color:var(--ink2);max-width:36em;text-wrap:pretty}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.7em;padding:.95em 1.6em;border-radius:12px;background:var(--acc);color:var(--on-ink);font-weight:560;font-size:.98rem;letter-spacing:-.005em;white-space:nowrap;transition:transform .4s var(--ease),background .3s,color .3s,box-shadow .4s}
+.btn::after{content:"";width:.8em;height:.8em;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 8h11M9 3.5 13.5 8 9 12.5' fill='none' stroke='%23000' stroke-width='1.8'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 8h11M9 3.5 13.5 8 9 12.5' fill='none' stroke='%23000' stroke-width='1.8'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .4s var(--ease)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px -12px var(--glow)}
+.btn:hover::after{transform:translateX(4px)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line2)}
+.btn-ghost:hover{background:var(--ink);color:var(--bg)}
+.btn-sm{padding:.7em 1.15em;font-size:.88rem}
+.btn-lg{padding:1.1em 2em;font-size:1.05rem}
+.link{display:inline-flex;align-items:center;gap:.6em;font-weight:520;font-size:1rem;letter-spacing:-.005em;border-bottom:1px solid var(--line2);padding-bottom:6px;transition:border-color .3s,color .3s}
+.link:hover{border-color:var(--acc);color:var(--acc)}
+
+/* ---------- Reveal ---------- */
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.js .rv.in{opacity:1;transform:none}
+
+/* ---------- Items still to confirm: visible on purpose until resolved ---------- */
+mark.tbc{background:var(--warn-soft);color:var(--warn);border-radius:6px;padding:.05em .45em;font-size:.88em;font-weight:500;box-decoration-break:clone;-webkit-box-decoration-break:clone;outline:1px dashed color-mix(in srgb,var(--warn) 60%,transparent)}
+mark.tbc::before{content:"To confirm:";margin-right:.4em;opacity:.75;font-weight:600}
+/* a draft line inside display type or lit text: keeps its size, shows the dashed "to confirm" underline only */
+mark.tbc.q{background:none;color:inherit;font-size:inherit;font-weight:inherit;padding:0;outline:none;border-radius:0;border-bottom:1px dashed color-mix(in srgb,var(--warn) 55%,transparent);box-decoration-break:clone;-webkit-box-decoration-break:clone}
+mark.tbc.q::before{content:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .js .rv{opacity:1;transform:none}
+}

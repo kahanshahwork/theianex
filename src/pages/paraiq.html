@@ -1,0 +1,119 @@
+<!--meta
+title: ParaIQ | Theianex
+description: The technology behind our paraplanning, and how it handles your data. Data privacy answers and disclosures.
+page: paraiq
+scripts: paraiq-chat.js
+-->
+<section class="page-hero pq-hero" data-chapter="ParaIQ" data-form="none" data-glow="3" data-grid="0">
+  <div class="wrap ph-text">
+    <span class="kick rv">ParaIQ</span>
+    <h1 class="h1 rv">ParaIQ.<br><em>The technology behind the work.</em></h1>
+    <p class="lead rv">How it handles your data, and what we disclose.</p>
+  </div>
+  <div class="wrap">
+    <div class="pq-win rv" id="pqWin" aria-hidden="true">
+      <div class="pq-bar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span class="pq-t"><svg viewBox="0 0 120 64"><use href="#mark"/></svg>ParaIQ</span>
+        <span class="pq-pill"><i></i>Reviewed by a paraplanner before it reaches you</span>
+      </div>
+      <div class="pq-body">
+        <aside class="pq-side">
+          <span class="b-h">Client file 0142</span>
+          <ul>
+            <li data-f="0"><i></i>Fact-find</li>
+            <li data-f="1"><i></i>Bank statements</li>
+            <li data-f="2"><i></i>Super statement</li>
+            <li data-f="3"><i></i>Adviser notes</li>
+          </ul>
+        </aside>
+        <div class="pq-chat" id="pqChat"></div>
+      </div>
+      <div class="pq-input"><span>Ask ParaIQ&hellip;</span><em class="pq-ill">Illustrative</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1. DATA PRIVACY ============ -->
+<section class="sec dp-sec" id="privacy" data-chapter="Data privacy" data-form="none" data-glow="1" data-grid="3">
+  <div class="wrap">
+    <span class="kick rv">Data privacy</span>
+    <h2 class="h2 rv">Plain answers <em>about your data.</em></h2>
+    <p class="dp-note rv"><mark class="tbc">all answers below are drafts: confirm against the product, then have a lawyer review them against the Australian Privacy Act</mark></p>
+
+    <div class="dp" data-tabs>
+      <div class="dp-q rv" role="tablist" aria-label="Data privacy questions">
+        <button data-tab="0" class="dp-qb"><span>01</span>What is ParaIQ?</button>
+        <button data-tab="1" class="dp-qb"><span>02</span>Where is data stored?</button>
+        <button data-tab="2" class="dp-qb"><span>03</span>Is client data used to train AI models?</button>
+        <button data-tab="3" class="dp-qb"><span>04</span>Which outside providers touch the data?</button>
+        <button data-tab="4" class="dp-qb"><span>05</span>Who can see your files?</button>
+        <button data-tab="5" class="dp-qb"><span>06</span>How long is data kept, and can it be deleted?</button>
+        <button data-tab="6" class="dp-qb"><span>07</span>What happens if there is a breach?</button>
+      </div>
+
+      <div class="dp-a rv">
+        <svg class="dflow" viewBox="0 0 520 150" aria-hidden="true">
+          <g class="df-link"><path d="M96 75H214"/><path d="M306 75H424"/></g>
+          <circle class="df-dot" r="4.5"><animateMotion dur="2.6s" repeatCount="indefinite" path="M96 75H214"/></circle>
+          <circle class="df-dot" r="4.5"><animateMotion dur="2.6s" begin="-1.3s" repeatCount="indefinite" path="M96 75H214"/></circle>
+          <circle class="df-dot d2" r="4.5"><animateMotion dur="2.6s" begin="-.6s" repeatCount="indefinite" path="M306 75H424"/></circle>
+          <circle class="df-dot d2" r="4.5"><animateMotion dur="2.6s" begin="-1.9s" repeatCount="indefinite" path="M306 75H424"/></circle>
+          <g class="df-n n1"><circle cx="60" cy="75" r="36"/><path d="M44 66h32M44 76h32M44 86h20"/></g>
+          <g class="df-n n2"><circle cx="260" cy="75" r="46"/><svg x="228" y="58" width="64" height="34" viewBox="0 0 120 64" style="--mkw:5"><use href="#mark"/></svg></g>
+          <g class="df-n n3"><circle cx="460" cy="75" r="36"/><circle cx="460" cy="68" r="9"/><path d="M444 94a16 13 0 0 1 32 0"/></g>
+          <g class="df-lock"><rect x="148" y="52" width="16" height="13" rx="3"/><path d="M151 52v-4a5 5 0 0 1 10 0v4"/></g>
+          <g class="df-lock"><rect x="348" y="52" width="16" height="13" rx="3"/><path d="M351 52v-4a5 5 0 0 1 10 0v4"/></g>
+          <text x="60" y="136">Your firm</text><text x="260" y="140">ParaIQ</text><text x="460" y="136">Paraplanner</text>
+        </svg>
+        <div class="dp-panels">
+          <div class="dp-p" data-panel="0"><h3 class="h3">What is ParaIQ?</h3><p class="lead">Our in-house AI stack for paraplanning. It reads client files, drafts documents and checks them. A paraplanner reviews every output before it reaches you. It does not give advice. <mark class="tbc">confirm against the product</mark></p></div>
+          <div class="dp-p" data-panel="1"><h3 class="h3">Where is data stored?</h3><p class="lead">In <mark class="tbc">region</mark>. <mark class="tbc">hosting location</mark></p></div>
+          <div class="dp-p" data-panel="2"><h3 class="h3">Is client data used to train AI models?</h3><p class="lead"><mark class="tbc">No, if true. Confirm for ParaIQ and for any outside AI provider</mark></p></div>
+          <div class="dp-p" data-panel="3"><h3 class="h3">Which outside providers touch the data?</h3><p class="lead"><mark class="tbc">Name each provider and say what it receives</mark></p></div>
+          <div class="dp-p" data-panel="4"><h3 class="h3">Who can see your files?</h3><p class="lead">Only the paraplanners working on your account. Access is logged. <mark class="tbc">confirm</mark></p></div>
+          <div class="dp-p" data-panel="5"><h3 class="h3">How long is data kept, and can it be deleted?</h3><p class="lead"><mark class="tbc">retention period</mark> You can ask for deletion at any time. <mark class="tbc">confirm</mark></p></div>
+          <div class="dp-p" data-panel="6"><h3 class="h3">What happens if there is a breach?</h3><p class="lead">We notify you and follow the Notifiable Data Breaches scheme. <mark class="tbc">confirm with a lawyer</mark></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. DISCLOSURES ============ -->
+<section class="sec disc" id="disclosures" data-chapter="Disclosures" data-form="none" data-glow="2" data-grid="4">
+  <div class="wrap">
+    <span class="kick rv">Disclosures</span>
+    <h2 class="h2 rv">What we <em>disclose.</em></h2>
+    <div class="disc-grid">
+      <article class="disc-i rv">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="24" cy="30" r="9"/><path d="M8 58a16 14 0 0 1 32 0"/><rect x="44" y="20" width="22" height="30" rx="4"/><path d="M49 28h12M49 34h12M49 40h7"/></svg>
+        <p>AI assists with drafting and checking. A paraplanner reviews every document.</p>
+      </article>
+      <article class="disc-i rv" style="--d:1">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><rect x="12" y="10" width="42" height="52" rx="6"/><path d="M20 24h26M20 32h26M20 40h14"/><path d="M26 54c4-8 7-8 5-1s3 6 8-2" /><circle cx="54" cy="52" r="10"/><path d="m49.5 52 3.2 3.2 6-6.4"/></svg>
+        <p>The adviser remains responsible for the advice and for signing off.</p>
+      </article>
+      <article class="disc-i rv" style="--d:2">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><path d="M36 8 14 17v17c0 14 9 24 22 30 13-6 22-16 22-30V17z"/><path d="M26 36h20" /></svg>
+        <p>ParaIQ and Theianex do not provide personal advice to your clients.</p>
+      </article>
+      <article class="disc-i rv" style="--d:3">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><rect x="14" y="8" width="38" height="50" rx="5"/><path d="M22 22h22M22 30h22M22 38h12"/><path d="M44 52h18M56 46l6 6-6 6"/></svg>
+        <div><p>Our full terms and Privacy Policy are linked here.</p><div class="disc-links"><a class="link" href="/terms">Terms</a><a class="link" href="/privacy">Privacy Policy</a></div></div>
+      </article>
+    </div>
+    <p class="disc-note rv"><mark class="tbc">exact wording, and whether advisers need to tell their licensee or clients that AI assisted the work (lawyer)</mark></p>
+  </div>
+</section>
+
+<section class="sec close close--split" data-chapter="Ask us" data-form="cluster" data-n="3" data-pos=".64,0" data-glow="4" data-grid="2">
+  <div class="wrap close-in">
+    <h2 class="h1 rv">Questions about your data? <em>Ask us before the call.</em></h2>
+    <div class="close-cta rv">
+      <a class="btn btn-lg" href="/contact">Contact us</a>
+      <a class="link" href="/how-we-work">How we work</a>
+      <mark class="tbc">link to a separate ParaIQ site?</mark>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+/* ---------- Fonts ---------- */
+@font-face{font-family:'Geist';font-style:normal;font-weight:100 900;font-display:swap;src:url(/assets/fonts/geist.woff2) format('woff2')}
+@font-face{font-family:'Geist Mono';font-style:normal;font-weight:100 900;font-display:swap;src:url(/assets/fonts/geist-mono.woff2) format('woff2')}
+
+/* ---------- Design tokens ---------- */
+:root{
+  --sans:'Geist','Helvetica Neue',Arial,sans-serif;
+  --mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --wm:var(--sans);
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --max:1440px;
+  --gut:clamp(20px,4.6vw,68px);
+  --sec:clamp(88px,12vw,190px);
+  --r:20px;
+  --nav-h:76px;
+}
+/* Dark: near-black with one vivid electric blue, glossy and lit */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#03060f; --bg2:#060b18; --surf:#0a1226; --surf2:#101a36; --surf3:#172447;
+  --ink:#f5f8ff; --ink2:#bcc7e2; --mute:#7f8cab;
+  --line:rgba(220,230,255,.12); --line2:rgba(220,230,255,.26);
+  --acc:#2f6bff; --acc2:#7fa4ff; --acc-soft:rgba(47,107,255,.16); --on-ink:#ffffff; --hl:#2f6bff;
+  --warn:#f2b24d; --warn-soft:rgba(242,178,77,.16); --ok:#54d6a0; --ok-soft:rgba(84,214,160,.16);
+  --glow:rgba(47,107,255,.38); --shadow:0 30px 80px -20px rgba(0,0,0,.7);
+  /* hero keeps its original look */
+  --hero-bg:radial-gradient(120% 80% at 72% 18%,#0a1224 0%,#050914 48%,#04060b 82%);
+  --hero-vig:rgba(1,2,6,.6);
+  --limb-bg:radial-gradient(closest-side at 50% 0%,#0a1020 0%,#04060d 40%,#010208 72%);
+  --limb-edge:rgba(214,228,250,.8); --limb-g1:rgba(130,170,240,.30); --limb-g2:rgba(90,130,220,.16); --limb-g3:rgba(110,150,230,.07);
+  --dot1:#eaf0fa; --dot2:#9db4d3; --dot3:#c4d2e8; --star:#dfe8ff; --halo:220,234,255;
+  /* the 3D world */
+  --w-grid:rgba(220,232,255,.16); --w-cross:rgba(230,238,255,.42); --w-paper:#eef3ff; --w-ink:#0b1430;
+  --g1:47,107,255; --g2:96,152,255; --g3:30,140,255; --g-a:.9;
+}
+/* Light: crisp white with the same blue */
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f5f7fd; --bg2:#ebeff9; --surf:#ffffff; --surf2:#f3f6fd; --surf3:#e6ecf9;
+  --ink:#08122e; --ink2:#2c3a5c; --mute:#5d6b8c;
+  --line:rgba(8,18,46,.12); --line2:rgba(8,18,46,.28);
+  --acc:#1d5bf2; --acc2:#0f3fc4; --acc-soft:rgba(29,91,242,.10); --on-ink:#ffffff; --hl:#1d5bf2;
+  --warn:#9a5b00; --warn-soft:rgba(190,120,10,.14); --ok:#16774d; --ok-soft:rgba(22,119,77,.12);
+  --glow:rgba(29,91,242,.26); --shadow:0 30px 70px -24px rgba(20,40,100,.3);
+  --hero-bg:radial-gradient(120% 80% at 72% 18%,#ffffff 0%,#eef2f9 52%,#e6ebf4 100%);
+  --hero-vig:rgba(190,200,220,.35);
+  --limb-bg:none; --limb-edge:transparent; --limb-g1:transparent; --limb-g2:transparent; --limb-g3:transparent;
+  --dot1:#0f1c33; --dot2:#27487f; --dot3:#3a5f9c; --star:#27487f; --halo:60,100,190;
+  --w-grid:rgba(8,18,46,.16); --w-cross:rgba(8,18,46,.38); --w-paper:#ffffff; --w-ink:#0b1430;
+  --g1:29,91,242; --g2:110,150,255; --g3:20,160,255; --g-a:.36;
+}

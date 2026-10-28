@@ -1,0 +1,102 @@
+<!--meta
+title: Book a discovery call | Theianex
+description: Tell us what you need. We'll say plainly whether and how Theianex can help.
+page: contact
+scripts: contact-call.js
+-->
+<section class="page-hero ct-hero" data-chapter="Contact" data-form="none" data-glow="0" data-grid="3">
+  <div class="wrap ph-text">
+    <span class="kick rv">Contact</span>
+    <h1 class="h1 rv">Book a <em>discovery call.</em></h1>
+    <p class="lead rv">Let&rsquo;s talk about what you need. We&rsquo;ll tell you plainly whether and how we can help.</p>
+  </div>
+  <div class="wrap">
+    <div class="call rv" id="call" aria-hidden="true">
+      <div class="call-tiles">
+        <div class="call-tile">
+          <span class="call-av a1"><svg viewBox="0 0 64 64"><circle cx="32" cy="24" r="11"/><path d="M10 58a22 18 0 0 1 44 0"/></svg></span>
+          <span class="call-nm">Your practice</span>
+          <span class="wave" id="wave1"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+        </div>
+        <div class="call-tile">
+          <span class="call-av a2"><svg viewBox="0 0 120 64" style="--mkw:6"><use href="#mark"/></svg></span>
+          <span class="call-nm">Theianex</span>
+          <span class="wave w2" id="wave2"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+        </div>
+        <span class="call-tag"><i></i>Discovery call</span>
+        <em class="pq-ill">Illustrative</em>
+      </div>
+      <div class="call-agenda">
+        <span class="b-h">On the call</span>
+        <ul>
+          <li class="on"><i></i>Your practice and how you work today</li>
+          <li><i></i>Where a paraplanner would help most</li>
+          <li><i></i>Whether we are the right fit</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec ct-expect" data-chapter="What to expect" data-form="cluster" data-n="2" data-pos=".7,.12" data-glow="1" data-grid="1">
+  <div class="wrap ct-expect-in">
+    <div>
+      <span class="kick rv">What to expect</span>
+      <h2 class="h2 rv">A conversation, <em>not a pitch.</em></h2>
+    </div>
+    <div class="rv">
+      <p class="lead">We&rsquo;ll ask about your practice, the documents you prepare and how you work today. You&rsquo;ll hear plainly whether we can help, and what working together would look like.</p>
+      <p class="ct-meta"><span>About <mark class="tbc">20 to 30 minutes</mark></span></p>
+      <a class="link" href="/how-we-work#getting-started">See how an engagement begins</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec ct-ways" id="book" data-chapter="Two ways in" data-form="none" data-glow="5" data-grid="3">
+  <div class="wrap">
+    <span class="kick rv">Two ways in</span>
+    <h2 class="h2 rv">Pick a time, <em>or write to us.</em></h2>
+    <div class="ways">
+      <article class="way way-book rv">
+        <h3 class="h3">Choose a time</h3>
+        <p class="copy">Pick a slot that suits you and we&rsquo;ll send an invitation.</p>
+        <div class="slots" aria-hidden="true">
+          <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span>
+          <i></i><i class="free"></i><i></i><i class="free"></i><i class="free"></i>
+          <i class="free"></i><i></i><i class="free"></i><i></i><i></i>
+          <i></i><i class="free"></i><i></i><i class="free"></i><i class="free"></i>
+        </div>
+        <div class="embed"><mark class="tbc">booking tool embed goes here (Calendly, Cal.com, or similar)</mark></div>
+      </article>
+
+      <article class="way way-form rv" style="--d:1">
+        <h3 class="h3">Send us a message</h3>
+        <p class="copy">Tell us a little about your practice and we&rsquo;ll reply to arrange a call.</p>
+        <form id="contactForm" class="form" novalidate>
+          <div class="fld-row">
+            <label class="fld"><span>Name</span><input name="name" type="text" autocomplete="name" required maxlength="120"></label>
+            <label class="fld"><span>Work email</span><input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+          </div>
+          <label class="fld"><span>Practice or licensee</span><input name="practice" type="text" autocomplete="organization" required maxlength="160"></label>
+          <label class="fld"><span>Documents a month</span>
+            <select name="volume">
+              <option value="">Choose one</option>
+              <option>Under 10</option>
+              <option>10 to 30</option>
+              <option>Over 30</option>
+              <option>Not sure</option>
+            </select>
+          </label>
+          <label class="fld"><span>Anything you would like us to know</span><textarea name="message" rows="4" maxlength="4000"></textarea></label>
+          <label class="hp" aria-hidden="true">Website<input name="company_website" type="text" tabindex="-1" autocomplete="off"></label>
+          <p class="consent">By sending this you agree to us using your details to reply. See our <a class="link-i" href="/privacy">Privacy Policy</a>.</p>
+          <div class="f-act">
+            <button class="btn btn-lg" type="submit">Send message</button>
+            <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+        <p class="ct-direct">Prefer email? <mark class="tbc">hello@your-domain.com.au</mark></p>
+      </article>
+    </div>
+  </div>
+</section>

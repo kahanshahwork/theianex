@@ -1,0 +1,102 @@
+/* =========================================================
+   HOW WE WORK
+   ========================================================= */
+
+/* ---- hero: the conversion scene ---- */
+.conv{position:relative;height:clamp(300px,58vh,540px);border-radius:28px;background:var(--surf);border:1px solid var(--line);overflow:hidden;box-shadow:var(--shadow);background-image:radial-gradient(var(--line) 1px,transparent 1.4px);background-size:26px 26px}
+.conv canvas{position:absolute;inset:0;width:100%;height:100%}
+.conv-core{position:absolute;z-index:2;width:clamp(58px,6vw,84px);aspect-ratio:1;border-radius:50%;background:var(--bg2);border:1px solid var(--acc);display:grid;place-items:center;transform:translate(-50%,-50%);box-shadow:0 0 50px -4px var(--glow);left:52%;top:50%}
+.conv-core svg{--mkw:5;width:62%;height:auto;color:var(--ink)}
+.conv-lab{position:absolute;top:18px;font-size:.62rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--mute)}
+.l-in{left:24px}.l-out{right:24px}
+
+/* ---- 1. who does what ---- */
+.wd .h2{margin-bottom:clamp(40px,6vw,88px)}
+.wd-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,64px)}
+.wd-art{width:100%;max-width:340px;height:auto;margin-bottom:clamp(20px,2.6vw,34px);overflow:visible}
+.wd-item .h3{margin-bottom:14px}
+.wd-lines path{fill:none;stroke:var(--line2);stroke-width:2;stroke-dasharray:3 7}
+.wd-src circle{fill:var(--surf3);stroke:var(--acc);stroke-width:2}
+.wd-doc{fill:var(--surf);stroke:var(--line2);stroke-width:2}
+.wd-dl path{fill:none;stroke:var(--line2);stroke-width:5;stroke-linecap:round}
+.wd-dot{fill:var(--acc)}
+.wd-glass{animation:glass 6s ease-in-out infinite;transform:translate(86px,48px)}
+.wd-glass circle{fill:var(--acc-soft);stroke:var(--acc);stroke-width:3}
+.wd-glass>path{fill:none;stroke:var(--acc);stroke-width:5;stroke-linecap:round}
+.wd-hit{stroke:var(--ok);stroke-width:5;stroke-linecap:round;fill:none}
+@keyframes glass{0%,100%{transform:translate(86px,50px)}25%{transform:translate(126px,70px)}50%{transform:translate(104px,110px)}75%{transform:translate(138px,88px)}}
+.wd-sig{fill:none;stroke:var(--acc);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:380;stroke-dashoffset:380;animation:sig 5s ease-in-out infinite}
+@keyframes sig{0%{stroke-dashoffset:380}50%,92%{stroke-dashoffset:0}100%{stroke-dashoffset:380;opacity:0}}
+.wd-ok{fill:var(--ok-soft);stroke:var(--ok);stroke-width:2.4;opacity:0;animation:okp 5s ease-in-out infinite}
+.wd-okp{fill:none;stroke:var(--ok);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;opacity:0;animation:okp 5s ease-in-out infinite}
+@keyframes okp{0%,48%{opacity:0;transform:scale(.7)}60%,92%{opacity:1;transform:none}100%{opacity:0}}
+.wd-ok,.wd-okp{transform-box:fill-box;transform-origin:center}
+@media (max-width:900px){.wd-grid{grid-template-columns:1fr;gap:56px}.wd-art{max-width:300px}}
+
+/* ---- 2. checkpoints (pinned; see 45-pin.css) ---- */
+.cps .pin-title{margin-bottom:.15em}
+.cps .pin-p{margin-bottom:clamp(10px,1.6vh,18px)}
+.cl{display:flex;align-items:flex-start;gap:12px;margin-bottom:clamp(8px,1.3vh,14px);opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.cl.on{opacity:1;transform:none}
+.cl p{font-size:clamp(.92rem,1.1vw,1.06rem);line-height:1.42;color:var(--ink);padding:.55em 1em;border-radius:6px 16px 16px 16px;background:var(--surf2);max-width:32em}
+.cl.pp p{background:var(--ok-soft)}
+.cl .av{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;font-style:normal;font-size:.62rem;font-weight:700;letter-spacing:.04em;background:var(--acc-soft);color:var(--acc2);border:1px solid var(--line2)}
+.cl .av.pp{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.pin-get{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin-top:clamp(8px,1.4vh,16px);padding-top:clamp(10px,1.6vh,16px);border-top:1px solid var(--line);opacity:0;transform:translateY(8px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.pin-get.on{opacity:1;transform:none}
+.pin-gl{flex:none;font-family:var(--mono);font-size:.64rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--acc2)}
+.pin-get p{flex:1;min-width:14em;font-size:clamp(.95rem,1.2vw,1.12rem);color:var(--ink)}
+@media (max-width:700px){.cl.sys{display:none}.cl .av{width:24px;height:24px}.cl p{font-size:.88rem;padding:.45em .85em}.pin-get p{min-width:0}}
+
+/* ---- 3. getting started ---- */
+.gs .lead{margin-top:20px}
+.gs-list{position:relative;margin-top:clamp(56px,8vw,120px);display:grid;gap:clamp(40px,7vw,110px)}
+.gs-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.gs-svg path{fill:none;stroke-linecap:round}
+.gs-svg .base{stroke:var(--line2);stroke-width:2;stroke-dasharray:2 9}
+.gs-svg .fill{stroke:var(--acc);stroke-width:3}
+.gs-step{position:relative;display:flex;align-items:center;gap:clamp(16px,3vw,44px);width:min(100%,660px);padding-left:44px;opacity:.32;transition:opacity .7s var(--ease)}
+.gs-step:nth-of-type(even){margin-left:auto}
+.gs-step.on{opacity:1}
+.gs-dot{position:absolute;left:0;top:50%;width:16px;height:16px;margin-top:-8px;border-radius:50%;background:var(--bg);border:2px solid var(--line2);transition:background .5s,border-color .5s,box-shadow .5s}
+.gs-step.on .gs-dot{background:var(--acc);border-color:var(--acc);box-shadow:0 0 0 8px var(--acc-soft)}
+.gs-n{flex:none;min-width:.62em;font-weight:200;font-size:clamp(4.4rem,10vw,9rem);line-height:.9;color:transparent;-webkit-text-stroke:1.2px var(--line2);transition:color .6s,-webkit-text-stroke-color .6s}
+.gs-step.on .gs-n{-webkit-text-stroke-color:var(--acc);color:var(--acc-soft)}
+.gs-step .h3{margin-bottom:10px;font-size:clamp(1.35rem,2.2vw,2rem)}
+@media (max-width:700px){.gs-step{padding-left:38px;width:100%;margin-left:0!important}.gs-n{font-size:clamp(3.2rem,16vw,4.4rem)}}
+
+/* ---- 4. working with us ---- */
+.wwu{overflow:hidden;background:var(--bg2)}
+.wwu-in{position:relative;z-index:1}
+.wwu .h2{margin-bottom:clamp(40px,6vw,88px)}
+.wwu-blob{position:absolute;right:-12%;top:8%;width:min(70vw,860px);aspect-ratio:1;background:radial-gradient(closest-side,var(--glow),transparent 72%);border-radius:42% 58% 63% 37%/45% 38% 62% 55%;filter:blur(8px);opacity:.9;animation:blob 16s ease-in-out infinite alternate;pointer-events:none}
+@keyframes blob{0%{border-radius:42% 58% 63% 37%/45% 38% 62% 55%;transform:translate(0,0) rotate(0)}50%{border-radius:58% 42% 38% 62%/58% 55% 45% 42%;transform:translate(-4%,6%) rotate(40deg)}100%{border-radius:38% 62% 52% 48%/40% 60% 40% 60%;transform:translate(3%,-4%) rotate(80deg)}}
+.wwu-list p{font-weight:300;font-size:clamp(1.55rem,3.4vw,3.1rem);line-height:1.22;letter-spacing:-.02em;max-width:21em;margin-bottom:clamp(34px,5vw,64px)}
+
+
+
+/* ---- hero: heading and the four checkpoints on the left, the animation at half width on the right ---- */
+.hw-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,72px);align-items:center}
+.how-hero .h1{font-size:clamp(2.3rem,4.6vw,4.6rem);margin-bottom:clamp(12px,2vh,22px)}
+.how-hero .lead{font-size:clamp(1.02rem,1.4vw,1.3rem);margin-bottom:clamp(16px,3vh,34px)}
+.hw-steps{display:flex;flex-direction:column}
+.hw-step{position:relative;display:grid;grid-template-columns:2.4em minmax(0,1fr) auto;align-items:baseline;gap:0 10px;text-align:left;padding:clamp(10px,1.6vh,16px) 0;color:var(--mute);transition:color .35s;cursor:pointer}
+.hw-step::before,.hw-step::after{content:"";position:absolute;left:0;right:0;top:0;height:2px}
+.hw-step::before{background:var(--line)}
+.hw-step::after{background:var(--acc);transform:scaleX(var(--f,0));transform-origin:0 50%}
+.hw-step:last-child{border-bottom:1px solid var(--line)}
+.hw-step b{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--acc2);font-weight:600}
+.hw-step span{font-weight:300;font-size:clamp(1.5rem,2.7vw,2.5rem);line-height:1.05;letter-spacing:-.03em}
+.hw-step em{font-style:normal;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+.hw-step.is-active,.hw-step:hover{color:var(--ink)}
+@media (max-width:900px){
+  .hw-grid{grid-template-columns:1fr;gap:14px;align-items:start}
+  .how-hero .pin-stick{justify-content:flex-start}
+  .how-hero .h1{font-size:clamp(2rem,9vw,2.8rem);margin-bottom:8px}
+  .how-hero .lead{display:none}
+  .hw-steps{flex-direction:row;gap:6px;margin-top:10px}
+  .hw-step{flex:1;grid-template-columns:1fr;gap:2px;padding:12px 0 0}
+  .hw-step span{font-size:clamp(.98rem,4.4vw,1.25rem)}
+  .hw-step em{display:none}
+  .conv{height:clamp(300px,52svh,460px)}
+}

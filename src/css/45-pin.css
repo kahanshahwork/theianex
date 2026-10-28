@@ -1,0 +1,101 @@
+/* =========================================================
+   PINNED STAGES: a tall section whose stage sticks while the scroll position picks the step.
+   Markup and behaviour: src/js/shared/15-pin.js
+   ========================================================= */
+.pin{position:relative;height:calc(100vh + var(--steps,3) * var(--sl,70vh));height:calc(100svh + var(--steps,3) * var(--sl,70svh))}
+.pin-stick{position:sticky;top:0;height:100vh;height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding-block:calc(var(--nav-h) + 6px) clamp(18px,3.2vh,44px)}
+.pin-stick>.wrap{width:100%}
+.pin-center{align-items:center;text-align:center}
+.pin-h2.h2{font-size:clamp(1.9rem,3.6vw,3.5rem);margin-bottom:clamp(14px,2.6vh,30px)}
+.pin-stick .kick{margin-bottom:clamp(12px,2vh,24px)}
+.pin-grid{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:clamp(24px,4vw,72px);align-items:center}
+.pin-space{min-height:40vh}
+
+/* the glass card with the current step */
+.pin-card{position:relative;border-radius:28px;background:color-mix(in srgb,var(--surf) 78%,transparent);border:1px solid var(--line);box-shadow:var(--shadow);padding:clamp(18px,2.2vw,32px)}
+.pin-tabs{display:grid;grid-template-columns:repeat(var(--steps,3),minmax(0,1fr));gap:10px;margin-bottom:clamp(14px,2.4vh,26px)}
+.pin-tab{position:relative;text-align:left;padding-top:14px;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);transition:color .3s;cursor:pointer}
+.pin-tab::before,.pin-tab::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px}
+.pin-tab::before{background:var(--line)}
+.pin-tab::after{background:var(--acc);transform:scaleX(var(--f,0));transform-origin:0 50%}
+.pin-tab b{font-weight:600;color:var(--acc2);margin-right:.5em}
+.pin-tab.is-active,.pin-tab:hover{color:var(--ink)}
+.pin-panel{display:none}
+.pin-panel.is-active{display:block;animation:pinIn .5s var(--ease) both}
+@keyframes pinIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.pin-chip{display:inline-flex;align-items:center;gap:.7em;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc2);padding:.4em .95em;border:1px solid var(--line2);border-radius:99px}
+.pin-chip i{width:7px;height:7px;border-radius:50%;background:var(--acc);animation:blink 1.6s ease-in-out infinite}
+.pin-title{font-weight:300;font-size:clamp(2.2rem,4.4vw,4.2rem);line-height:1.02;letter-spacing:-.04em;margin:clamp(10px,1.6vh,18px) 0 clamp(8px,1.4vh,14px);text-wrap:balance}
+.pin-title em{font-style:normal;color:var(--acc2)}
+.pin-p{color:var(--ink2);max-width:32em;font-size:clamp(.98rem,1.2vw,1.12rem)}
+.pin-type{font-family:var(--mono);font-size:clamp(.74rem,.86vw,.84rem);line-height:1.5;color:var(--acc2);min-height:3em;margin-top:clamp(10px,1.8vh,18px);max-width:40em}
+.pin-type::after{content:"";display:inline-block;width:.5em;height:1.05em;margin-left:2px;vertical-align:-.15em;background:var(--acc);opacity:0}
+.pin-type.typing::after{opacity:1;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:.25}}
+.pin-stat{color:var(--ok)}
+
+/* words that light up with the pin */
+.lit{font-weight:300;font-size:clamp(1.45rem,3vw,2.8rem);line-height:1.2;letter-spacing:-.03em;max-width:22em;text-wrap:pretty}
+.lw{opacity:.2;transition:opacity .4s}
+.lw.on{opacity:1}
+
+/* the Paraplanning -> ParaTech word */
+.ptx{display:flex;flex-direction:column;align-items:center;text-align:center}
+.ptx-h{font-weight:300;font-size:clamp(3rem,11.4vw,10.6rem);line-height:1;letter-spacing:-.055em;white-space:nowrap}
+.ptx-vis{display:inline-block}
+.ptx-s{position:relative;display:inline-block;vertical-align:baseline;white-space:nowrap}
+.ptx-o{display:inline-block;will-change:transform,opacity,filter}
+.ptx-n{position:absolute;left:0;top:0;display:inline-block;opacity:0;color:var(--acc2);will-change:transform,opacity,filter}
+.js .ptx-n{opacity:0}
+html:not(.js) .ptx-n{display:none}
+.ptx-tag{margin-top:clamp(14px,3vh,34px);font-size:clamp(1.1rem,2vw,1.9rem);font-weight:340;color:var(--ink2);letter-spacing:-.015em;opacity:0}
+html:not(.js) .ptx-tag{opacity:1}
+.ptx-arrow{display:inline-block;margin:0 .35em;color:var(--acc)}
+
+@media (max-width:900px){
+  .pin-grid{grid-template-columns:1fr;gap:12px;align-items:start}
+  .pin-space{display:none}
+  .pin-stick{justify-content:flex-start;padding-top:calc(var(--nav-h) + 4px)}
+  .pin{--sl:62svh}
+  .pin-title{font-size:clamp(1.9rem,8.4vw,2.6rem)}
+  .pin-tab{font-size:.6rem;letter-spacing:.08em}
+  .pin-card{padding:16px;border-radius:22px}
+}
+@media (max-height:800px) and (min-width:901px){
+  .pin-title{font-size:clamp(2rem,3.6vw,3.4rem)}
+  .pin-p{font-size:.98rem}
+  .pin-h2.h2{font-size:clamp(1.7rem,3vw,2.8rem)}
+}
+@media (prefers-reduced-motion:reduce){.pin-chip i,.pin-type.typing::after{animation:none}.lw{opacity:1}}
+@keyframes msg{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---- Why IANEX? ---- */
+.why-hero-in>*{max-width:min(100%,760px)}
+.why-hero .h1{font-size:clamp(2.4rem,5.4vw,5.2rem);margin-bottom:clamp(18px,3.4vh,40px)}
+.why-hero .lit{font-size:clamp(1.25rem,2.1vw,2.1rem);max-width:24em}
+.why-note{margin-top:clamp(14px,2.4vh,28px)}
+.pin-tabs--5{gap:6px}
+.pin-tabs--5 .pin-tab{font-size:.6rem;letter-spacing:.06em;padding-top:12px}
+.pin-tabs--5 .pin-tab b{margin-right:.35em}
+.why-help{margin-top:clamp(12px,2vh,22px);padding-top:clamp(12px,2vh,20px);border-top:1px solid var(--line);opacity:0;transform:translateY(10px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.why-help.on{opacity:1;transform:none}
+.why-help .pin-gl{display:inline-flex;align-items:center;gap:.7em;font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ok);margin-bottom:6px}
+.why-help .pin-gl::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.why-help p{color:var(--ink);font-size:clamp(1rem,1.3vw,1.22rem);max-width:30em}
+.ptx--left{align-items:flex-start;text-align:left;margin-top:clamp(18px,4vh,48px)}
+.ptx--left .ptx-h{font-size:clamp(2.8rem,8.4vw,8rem)}
+.close--next .close-in{display:flex;flex-direction:column;align-items:flex-start}
+.next-link{display:inline-flex;align-items:center;gap:.4em;margin-top:clamp(24px,4vw,48px);font-weight:300;font-size:clamp(2.4rem,7vw,6.4rem);letter-spacing:-.045em;line-height:1;color:var(--ink);border-bottom:2px solid var(--line2);padding-bottom:.12em;transition:border-color .3s,color .3s}
+.next-link i{font-style:normal;color:var(--acc);transition:transform .4s var(--ease)}
+.next-link:hover{border-color:var(--acc)}
+.next-link:hover i{transform:translateX(.25em)}
+@media (max-width:900px){.pin-tabs--5 .tl{display:none}.pin-tabs--5 .pin-tab{font-size:.7rem}.ptx--left .ptx-h{font-size:clamp(2.6rem,13vw,4.4rem)}}
+
+/* on a phone the card only takes the room it needs, so the scene stays visible beneath it */
+@media (max-width:900px){
+  .cl,.pin-get,.why-help{max-height:0;margin-block:0;padding-block:0;overflow:hidden;border-width:0;transition:max-height .6s var(--ease),opacity .5s var(--ease),transform .5s var(--ease),margin .4s}
+  .cl.on{max-height:9em;margin-bottom:8px}
+  .pin-get.on{max-height:9em;margin-top:10px;padding-top:10px;border-top-width:1px}
+  .why-help.on{max-height:12em;margin-top:12px;padding-top:12px;border-top-width:1px}
+  .pin-type{min-height:2.6em}
+}
