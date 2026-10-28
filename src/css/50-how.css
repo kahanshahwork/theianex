@@ -125,16 +125,36 @@
   .how-hero[data-step="0"] .hp-cap span:nth-child(1),.how-hero[data-step="1"] .hp-cap span:nth-child(2),.how-hero[data-step="2"] .hp-cap span:nth-child(3),.how-hero[data-step="3"] .hp-cap span:nth-child(4){opacity:1}
 }
 
-/* ---- phone, document checkpoints: the 3D document gets the top band, the text sits below it ---- */
+/* ---- inside one document: the conversation is the picture ---- */
+.cps .pin-panel.is-active{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(28px,5vw,88px);align-items:center}
+.cps .pin-title{font-size:clamp(2.2rem,4.2vw,4rem)}
+.cp-text .pin-p{max-width:26em}
+.cw{border-radius:26px;background:color-mix(in srgb,var(--surf) 86%,transparent);border:1px solid var(--line2);box-shadow:var(--shadow);overflow:hidden;min-height:clamp(260px,40vh,380px)}
+.cw-head{display:flex;align-items:center;gap:12px;padding:15px 20px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
+.cw-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px var(--ok-soft);animation:blink 1.6s ease-in-out infinite}
+.cw-doc{color:var(--ink2)}
+.cw-st{margin-left:auto;color:var(--acc2)}
+.cw-body{padding:clamp(14px,2vw,24px);display:flex;flex-direction:column;gap:clamp(8px,1.4vh,14px)}
+.cw .cl{margin:0}
+.cw .cl p{font-size:clamp(.95rem,1.15vw,1.12rem);max-width:30em}
 @media (max-width:900px){
-  .cps .pin-stick{justify-content:flex-start;padding-top:calc(var(--nav-h) + clamp(190px,29svh,250px))}
-  .cps .pin-h2,.cps .pin-type{display:none}
+  .cps .pin-stick{justify-content:flex-start}
+  .cps .pin-h2{display:none}
   .cps .kick{margin-bottom:10px}
   .cps .pin-tabs{margin-bottom:12px}
-  .cps .pin-title{font-size:clamp(1.9rem,8.4vw,2.5rem);margin:8px 0 4px}
-  .cps .pin-p{font-size:.95rem;margin-bottom:8px}
-  .cps .cl{gap:10px}
-  .cps .cl p{font-size:.84rem;line-height:1.38;padding:.4em .8em}
-  .cps .pin-get{gap:8px}
+  .cps .pin-tab{font-size:.56rem;letter-spacing:.04em}
+  .cps .pin-tab b{display:block;margin:0 0 3px}
+  .cps .pin-panel.is-active{grid-template-columns:1fr;gap:12px;align-items:start}
+  .cps .pin-title{font-size:clamp(1.9rem,8.4vw,2.5rem);margin:0 0 4px}
+  .cps .pin-p{font-size:.95rem;margin-bottom:0}
+  .cps .pin-get{margin-top:6px;gap:8px}
   .cps .pin-get p{font-size:.9rem}
+  .cp-text{display:contents}
+  .cps .pin-panel .cw{order:3}
+  .cps .pin-panel .pin-get{order:4;margin-top:0}
+  .cw{border-radius:20px;min-height:0}
+  .cw-head{padding:11px 14px;font-size:.62rem}
+  .cw-body{padding:12px 12px 4px;gap:0}
+  .cw .cl{gap:10px}
+  .cw .cl p{font-size:.84rem;line-height:1.38;padding:.4em .8em}
 }

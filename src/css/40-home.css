@@ -35,7 +35,7 @@ html:not(.js) .pre,.no-pre .pre{display:none}
   .hero{min-height:640px}
   .hero-foot{flex-direction:column;align-items:center;justify-content:flex-end;gap:14px}
   .hero-cta{flex-direction:column;gap:14px}
-  .scroll{display:none}
+  .scroll{display:flex}
   .hero-cta .link{display:none}
 }
 
@@ -106,3 +106,15 @@ html:not(.js) .pre,.no-pre .pre{display:none}
 .close .h1{max-width:12em;margin-bottom:clamp(20px,3vw,34px)}
 .close-cta{display:flex;flex-wrap:wrap;align-items:center;gap:22px 32px;margin-top:clamp(32px,4.4vw,56px)}
 
+
+/* ---- phone, Who we are: each word becomes a big slide that changes as you scroll ---- */
+.who-slides{display:none}
+@media (max-width:900px){
+  .who .trio-ps{display:none}
+  .who-slides{display:block;position:relative;height:clamp(170px,30svh,270px);margin-top:clamp(10px,2.4vh,26px)}
+  .ws{position:absolute;left:0;right:0;top:0;opacity:0;transform:translateY(46px);filter:blur(6px);transition:opacity .55s var(--ease),transform .65s var(--ease),filter .55s var(--ease);pointer-events:none}
+  .ws.is-active{opacity:1;transform:none;filter:none}
+  .ws-n{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;color:var(--acc2);margin-bottom:6px}
+  .ws b{display:block;font-weight:300;font-size:clamp(3.4rem,21vw,6.6rem);line-height:1;letter-spacing:-.055em;color:var(--ink);margin-bottom:clamp(8px,1.6vh,16px)}
+  .ws p{color:var(--ink2);font-size:clamp(1.05rem,4.6vw,1.3rem);max-width:17em}
+}

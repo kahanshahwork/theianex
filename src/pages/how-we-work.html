@@ -85,62 +85,79 @@ scripts: how-hero.js, how-path.js
   </div>
 </section>
 
-<!-- ============ 2. DOCUMENT CHECKPOINTS: one checkpoint per scroll step, the scene changes with it ============ -->
-<section class="pin cps" id="checkpoints" data-pin="4" style="--steps:4;--sl:56vh" data-chapter="Checkpoints" data-form="none" data-glow="1" data-grid="2" data-scenes="h0,h1,h2,h3" data-doc="how">
+<!-- ============ 2. INSIDE ONE DOCUMENT: the conversation between technology and paraplanner, one stage per scroll step ============ -->
+<section class="pin cps" id="checkpoints" data-pin="4" style="--steps:4;--sl:56vh" data-chapter="Inside one document" data-form="none" data-glow="2" data-grid="3">
   <div class="pin-stick">
     <div class="wrap">
-      <span class="kick rv">Document checkpoints</span>
+      <span class="kick rv">Inside one document</span>
       <h2 class="h2 pin-h2 rv">Where AI helps, <em>and what you get.</em></h2>
-      <div class="pin-grid">
-        <div class="pin-card">
-          <div class="pin-tabs" role="tablist" aria-label="Checkpoints">
-            <button class="pin-tab" data-tab="0"><b>01</b>Brief</button>
-            <button class="pin-tab" data-tab="1"><b>02</b>Prepare</button>
-            <button class="pin-tab" data-tab="2"><b>03</b>Diligence</button>
-            <button class="pin-tab" data-tab="3"><b>04</b>Deliver</button>
-          </div>
+      <div class="pin-card">
+        <div class="pin-tabs" role="tablist" aria-label="Stages">
+          <button class="pin-tab" data-tab="0"><b>01</b>Read the file</button>
+          <button class="pin-tab" data-tab="1"><b>02</b>Build the draft</button>
+          <button class="pin-tab" data-tab="2"><b>03</b>Check the draft</button>
+          <button class="pin-tab" data-tab="3"><b>04</b>Hand over</button>
+        </div>
           <div class="pin-panel is-active" data-panel="0">
-            <span class="pin-chip"><i></i>Step 01 of 04 &middot; Client file in</span>
-            <h3 class="pin-title">Brief</h3>
-            <p class="pin-p">You send the client file and instructions. We confirm scope and deadline in writing.</p>
-            <p class="pin-type" data-type="&gt; Client file received: fact-find, statements, existing advice" data-t0=".02" data-t1=".26" aria-hidden="true"></p>
-            <div class="cl ai" data-at="0.3"><i class="av">AI</i><p>Read six documents. Client goals, income, super and insurance details extracted.</p></div>
-            <div class="cl ai" data-at="0.46"><i class="av">AI</i><p>Three gaps flagged: partner&rsquo;s super balance, intended retirement age, risk profile date.</p></div>
-            <div class="cl pp" data-at="0.62"><i class="av pp">P</i><p>Questions sent to the adviser in one message.</p></div>
-            <div class="pin-get" data-at=".8"><span class="pin-gl">What you get</span><p>One list of questions at the start, not scattered queries halfway through.</p></div>
+            <div class="cp-text">
+              <h3 class="pin-title">Read the file</h3>
+              <p class="pin-p">You send the client file and instructions. We confirm scope and deadline in writing.</p>
+              <div class="pin-get" data-at=".8"><span class="pin-gl">What you get</span><p>One list of questions at the start, not scattered queries halfway through.</p></div>
+            </div>
+            <div class="cw" aria-label="The conversation on this document">
+              <div class="cw-head"><i class="cw-dot"></i><span class="cw-doc">Statement of Advice</span><span class="cw-st">Reading the file</span></div>
+              <div class="cw-body">
+            <div class="cl ai" data-at="0.1"><i class="av">AI</i><p>Read six documents. Client goals, income, super and insurance details extracted.</p></div>
+            <div class="cl ai" data-at="0.3"><i class="av">AI</i><p>Three gaps flagged: partner&rsquo;s super balance, intended retirement age, risk profile date.</p></div>
+            <div class="cl pp" data-at="0.46"><i class="av pp">P</i><p>Questions sent to the adviser in one message.</p></div>
+              </div>
+            </div>
           </div>
           <div class="pin-panel" data-panel="1">
-            <span class="pin-chip"><i></i>Step 02 of 04 &middot; Draft built</span>
-            <h3 class="pin-title">Prepare</h3>
-            <p class="pin-p">The first draft is built from the file.</p>
-            <p class="pin-type" data-type="&gt; Draft started from the client file" data-t0=".02" data-t1=".26" aria-hidden="true"></p>
-            <div class="cl ai" data-at="0.3"><i class="av">AI</i><p>Scope, current position and strategy sections drafted from the file.</p></div>
-            <div class="cl ai" data-at="0.46"><i class="av">AI</i><p>Figures and research pulled in. Nothing retyped by hand.</p></div>
-            <div class="cl pp" data-at="0.62"><i class="av pp">P</i><p>Draft picked up. Starting the analysis.</p></div>
-            <div class="pin-get" data-at=".8"><span class="pin-gl">What you get</span><p>A draft in front of the paraplanner sooner, with fewer transcription errors.</p></div>
+            <div class="cp-text">
+              <h3 class="pin-title">Build the draft</h3>
+              <p class="pin-p">The first draft is built from the file.</p>
+              <div class="pin-get" data-at=".8"><span class="pin-gl">What you get</span><p>A draft in front of the paraplanner sooner, with fewer transcription errors.</p></div>
+            </div>
+            <div class="cw" aria-label="The conversation on this document">
+              <div class="cw-head"><i class="cw-dot"></i><span class="cw-doc">Statement of Advice</span><span class="cw-st">Drafting</span></div>
+              <div class="cw-body">
+            <div class="cl ai" data-at="0.1"><i class="av">AI</i><p>Scope, current position and strategy sections drafted from the file.</p></div>
+            <div class="cl ai" data-at="0.3"><i class="av">AI</i><p>Figures and research pulled in. Nothing retyped by hand.</p></div>
+            <div class="cl pp" data-at="0.46"><i class="av pp">P</i><p>Draft picked up. Starting the analysis.</p></div>
+              </div>
+            </div>
           </div>
           <div class="pin-panel" data-panel="2">
-            <span class="pin-chip"><i></i>Step 03 of 04 &middot; Checked twice</span>
-            <h3 class="pin-title">Diligence</h3>
-            <p class="pin-p">Where our paraplanners spend the time the technology saves.</p>
-            <p class="pin-type" data-type="&gt; Draft checked against the client file" data-t0=".02" data-t1=".26" aria-hidden="true"></p>
-            <div class="cl ai" data-at="0.3"><i class="av">AI</i><p>Figures agree with the file except one: the super balance differs from the statement.</p></div>
-            <div class="cl ai" data-at="0.46"><i class="av">AI</i><p>Recommendation 2 doesn&rsquo;t yet refer to the client&rsquo;s retirement goal. Required disclosures are present.</p></div>
-            <div class="cl pp" data-at="0.62"><i class="av pp">P</i><p>Reviewed. Super balance corrected, recommendation 2 linked to the goal.</p></div>
-            <div class="pin-get" data-at=".8"><span class="pin-gl">What you get</span><p>Fewer revisions, and a document that stands up on file review.</p></div>
+            <div class="cp-text">
+              <h3 class="pin-title">Check the draft</h3>
+              <p class="pin-p">Where our paraplanners spend the time the technology saves.</p>
+              <div class="pin-get" data-at=".8"><span class="pin-gl">What you get</span><p>Fewer revisions, and a document that stands up on file review.</p></div>
+            </div>
+            <div class="cw" aria-label="The conversation on this document">
+              <div class="cw-head"><i class="cw-dot"></i><span class="cw-doc">Statement of Advice</span><span class="cw-st">Checking</span></div>
+              <div class="cw-body">
+            <div class="cl ai" data-at="0.1"><i class="av">AI</i><p>Figures agree with the file except one: the super balance differs from the statement.</p></div>
+            <div class="cl ai" data-at="0.3"><i class="av">AI</i><p>Recommendation 2 doesn&rsquo;t yet refer to the client&rsquo;s retirement goal. Required disclosures are present.</p></div>
+            <div class="cl pp" data-at="0.46"><i class="av pp">P</i><p>Reviewed. Super balance corrected, recommendation 2 linked to the goal.</p></div>
+              </div>
+            </div>
           </div>
           <div class="pin-panel" data-panel="3">
-            <span class="pin-chip"><i></i>Step 04 of 04 &middot; Ready for sign-off</span>
-            <h3 class="pin-title">Deliver</h3>
-            <p class="pin-p">The finished document goes out with a short handover note.</p>
-            <p class="pin-type" data-type="&gt; Final consistency check complete" data-t0=".02" data-t1=".26" aria-hidden="true"></p>
-            <div class="cl ai" data-at="0.3"><i class="av">AI</i><p>Document assembled. Open points and assumptions listed.</p></div>
-            <div class="cl pp" data-at="0.46"><i class="av pp">P</i><p>Handover note: assumes retirement at 65. Please confirm the insurance premium before sign-off.</p></div>
-            <div class="cl pp" data-at="0.62"><i class="av pp">P</i><p>Ready for adviser review and sign-off.</p></div>
-            <div class="pin-get" data-at=".8"><span class="pin-gl">What you get</span><p>A document ready for your review and sign-off, with the assumptions stated.</p></div>
+            <div class="cp-text">
+              <h3 class="pin-title">Hand over</h3>
+              <p class="pin-p">The finished document goes out with a short handover note.</p>
+              <div class="pin-get" data-at=".8"><span class="pin-gl">What you get</span><p>A document ready for your review and sign-off, with the assumptions stated.</p></div>
+            </div>
+            <div class="cw" aria-label="The conversation on this document">
+              <div class="cw-head"><i class="cw-dot"></i><span class="cw-doc">Statement of Advice</span><span class="cw-st">Ready for review</span></div>
+              <div class="cw-body">
+            <div class="cl ai" data-at="0.1"><i class="av">AI</i><p>Document assembled. Open points and assumptions listed.</p></div>
+            <div class="cl pp" data-at="0.3"><i class="av pp">P</i><p>Handover note: assumes retirement at 65. Please confirm the insurance premium before sign-off.</p></div>
+            <div class="cl pp" data-at="0.46"><i class="av pp">P</i><p>Ready for adviser review and sign-off.</p></div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="pin-space" aria-hidden="true"></div>
       </div>
     </div>
   </div>

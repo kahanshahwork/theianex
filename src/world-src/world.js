@@ -277,7 +277,7 @@ const DFILES = [0, 1, 3, 4]; /* the tiles that fall into the core */
 const SK = () => (small() ? clamp(W / 3.6, .5, .9) : .82); /* global tile size factor */
 /* where the document scene puts the core and the sheet (world units) */
 function docGeo(c) {
-  const sm = small(), sx = c.px * W, sy = c.py * H, ss = sm ? (c.top ? 1.3 : 2) : H * 1.1; /* ss: final height of the sheet in world units */
+  const sm = small(), sx = c.px * W, sy = c.py * H, ss = sm ? (c.top ? 1.4 : 1.8) : H * 1.1; /* ss: final height of the sheet in world units */
   return { sx, sy, ss, cx: sm ? sx - W * (c.top ? .5 : .46) : sx - W * .36, cy: sm ? (c.top ? sy + H * .02 : sy + H * .52) : sy + H * .4 };
 }
 function formation(c, i, t) {
@@ -298,7 +298,7 @@ function formation(c, i, t) {
       }
       if (i === 5 || i === 8) { /* finished sheets sit behind it in a neat stack */
         const j = i === 5 ? 1 : 2, k = smooth(clamp(stk * 2 - (j - 1), 0, 1));
-        return { x: lerp(D.sx, D.sx + .36 * j * o, k), y: lerp(D.sy, D.sy - .26 * j * o, k), z: -.12 - .16 * j, rx: -.04, ry: -.2, rz: -.025 + j * .012, s: D.ss / SK() * .995, v: k > .02 ? 1 : 0 };
+        return { x: lerp(D.sx, D.sx + .36 * j * o, k), y: lerp(D.sy, D.sy - .26 * j * o, k), z: -.12 - .16 * j, rx: -.04, ry: -.2, rz: -.025 + j * .012, s: D.ss / SK() * .995, v: 0 };
       }
       return HIDE(c);
     }
@@ -372,9 +372,9 @@ const SC = {
   who2: { form: 'none', glow: 5, grid: 4 },
   ptx: { form: 'none', glow: 5, grid: 3 },
   /* home: Faster / Smarter / More efficient. The sheet and the core come from the data-doc timeline. */
-  t0: { form: 'doc', pos: [.56, -.04], mp: [0, -.66], glow: 2, grid: 3 },
-  t1: { form: 'doc', pos: [.56, -.04], mp: [0, -.66], glow: 4, grid: 2 },
-  t2: { form: 'doc', pos: [.56, -.04], mp: [0, -.66], glow: 5, grid: 1 },
+  t0: { form: 'doc', pos: [.56, -.04], mp: [0, -.5], glow: 2, grid: 3 },
+  t1: { form: 'doc', pos: [.56, -.04], mp: [0, -.5], glow: 4, grid: 2 },
+  t2: { form: 'doc', pos: [.56, -.04], mp: [0, -.5], glow: 5, grid: 1 },
   /* how we work: Brief / Prepare / Diligence / Deliver */
   h0: { form: 'doc', pos: [.58, -.04], mp: [0, .5], top: 1, glow: 1, grid: 2 },
   h1: { form: 'doc', pos: [.58, -.04], mp: [0, .5], top: 1, glow: 3, grid: 1 },
@@ -524,7 +524,7 @@ function behindText(p, s, sheet) {
 /* things that are not tiles: the core (document scenes) and the gate (jam scenes) */
 function extras(c) {
   const o = { core: 0, cx: 0, cy: 0, gate: 0, gx: 0, gy: 0, fa: 0, gap: .3, go: 0 };
-  if (c.form === 'doc') { const D = docGeo(c); o.core = smooth(clamp((c.inn || 0) * 9, 0, 1)) * (1 - .6 * smooth(clamp((c.stk || 0) * 3, 0, 1))); o.cx = D.cx; o.cy = D.cy; }
+  if (c.form === 'doc') { const D = docGeo(c); o.core = 0; /* no ring: the files fold straight into the sheet */ o.cx = D.cx; o.cy = D.cy; }
   if (c.form === 'jam' && c.gt && !c.pile) { o.gate = 1; o.gx = c.px * W; o.gy = c.py * H; o.fa = c.fa || 0; o.gap = c.gap || .3; o.go = clamp(c.go || 0, 0, 1); }
   return o;
 }

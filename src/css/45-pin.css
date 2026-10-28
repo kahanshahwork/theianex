@@ -127,3 +127,5 @@ html:not(.js) .ptx-tag{opacity:1}
   .ptx--left .ptx-h{font-size:clamp(3.6rem,25vw,8rem)}
   .ptx--left .ptx-vis{text-align:left}
 }
+
+@media (max-width:900px){.ptxs .kick{font-size:.62rem;letter-spacing:.08em;white-space:nowrap;gap:.7em}}
