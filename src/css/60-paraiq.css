@@ -24,7 +24,7 @@
 .pm.typing p i{width:7px;height:7px;border-radius:50%;background:var(--mute);animation:dotb 1s ease-in-out infinite}
 .pm.typing p i:nth-child(2){animation-delay:.15s}.pm.typing p i:nth-child(3){animation-delay:.3s}
 @keyframes dotb{0%,100%{opacity:.3;transform:none}50%{opacity:1;transform:translateY(-3px)}}
-.pm-status{align-self:center;font-size:.78rem;font-weight:600;letter-spacing:.06em;padding:.45em 1.1em;border-radius:99px;border:1px dashed var(--line2);color:var(--mute);animation:msg .6s var(--ease) both}
+.pm-status{align-self:center;font-size:.78rem;font-weight:600;letter-spacing:.06em;padding:.45em 1.1em;border-radius:99px;border:1px solid var(--line2);color:var(--mute);animation:msg .6s var(--ease) both}
 .pm-status.ok{color:var(--ok);border:1px solid var(--ok);background:var(--ok-soft)}
 .pq-input{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px clamp(20px,3vw,36px);border-top:1px solid var(--line);color:var(--mute);background:var(--bg2);font-size:.95rem}
 .pq-ill{font-style:normal;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--line2);border-radius:99px;padding:.3em .8em}

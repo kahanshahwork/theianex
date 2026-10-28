@@ -12,7 +12,7 @@ main,.foot{position:relative;z-index:1}
 .no-world .page-hero{background:radial-gradient(80% 60% at 85% 0%,var(--acc-soft),transparent 70%)}
 
 /* glass panels so tiles and light pass behind the windows */
-.has-world .pin-card,.has-world .pq-win,.has-world .call-tiles,.has-world .call-agenda,.has-world .way,.has-world .dp-a,.has-world .conv{
+.has-world .pq-win,.has-world .call-tiles,.has-world .call-agenda,.has-world .way,.has-world .dp-a,.has-world .conv{
   background:color-mix(in srgb,var(--surf) 74%,transparent);backdrop-filter:blur(18px) saturate(1.25);-webkit-backdrop-filter:blur(18px) saturate(1.25)}
 
 /* headlines come into focus as they reach the middle of the screen */

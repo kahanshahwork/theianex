@@ -366,12 +366,11 @@ const GRIDS = [
 /* ---------- scenes: one per step of a pinned section ---------- */
 const PI = Math.PI;
 const SC = {
-  /* home: Trained / Equipped / Flexible */
-  who0: { form: 'stream', n: 5, path: 0, glow: 0, grid: 0 },
-  who1: { form: 'cluster', n: 3, pos: [.62, 0], mp: [.5, -.5], glow: 3, grid: 1 },
-  who2: { form: 'stream', n: 4, path: 2, glow: 5, grid: 4 },
-  /* the ParaTech moment */
-  ptx: { form: 'stream', n: 3, path: 1, glow: 5, grid: 3 },
+  /* calm scenes: no tiles, only the glow and the grid change (tiles live in Technology and the How we work checkpoints) */
+  who0: { form: 'none', glow: 0, grid: 0 },
+  who1: { form: 'none', glow: 3, grid: 1 },
+  who2: { form: 'none', glow: 5, grid: 4 },
+  ptx: { form: 'none', glow: 5, grid: 3 },
   /* home: Faster / Smarter / More efficient. The sheet and the core come from the data-doc timeline. */
   t0: { form: 'doc', pos: [.56, -.04], mp: [0, -.66], glow: 2, grid: 3 },
   t1: { form: 'doc', pos: [.56, -.04], mp: [0, -.66], glow: 4, grid: 2 },
@@ -381,14 +380,9 @@ const SC = {
   h1: { form: 'doc', pos: [.58, -.04], mp: [0, -.66], glow: 3, grid: 1 },
   h2: { form: 'doc', pos: [.58, -.04], mp: [0, -.66], glow: 0, grid: 4 },
   h3: { form: 'doc', pos: [.58, -.04], mp: [0, -.66], glow: 5, grid: 3 },
-  /* why ianex: the pile, five bottlenecks (gate opens as each one is answered), then the open flow */
-  y0: { form: 'jam', pile: 1, n: 5, pos: [.62, -.12], mp: [.3, -.5], glow: 3, grid: 1 },
-  b0: { form: 'jam', n: 5, fa: 0, gap: .3, pos: [.62, 0], mp: [.2, -.5], glow: 3, grid: 0, gt: 1 },
-  b1: { form: 'jam', n: 5, fa: -PI / 2, gap: .3, pos: [.6, -.16], mp: [.1, -.56], glow: 1, grid: 4, gt: 1, sp: .9 },
-  b2: { form: 'jam', n: 5, fa: 0, gap: .34, pos: [.58, .04], mp: [.2, -.5], glow: 4, grid: 2, gt: 1, bob: .5, sp: 1.1 },
-  b3: { form: 'jam', n: 5, fa: -.42, gap: .5, pos: [.64, -.04], mp: [.2, -.5], glow: 2, grid: 3, gt: 1, sp: 1.2 },
-  b4: { form: 'jam', n: 5, fa: .38, gap: .28, pos: [.66, .02], mp: [.2, -.5], glow: 5, grid: 1, gt: 1 },
-  c0: { form: 'jam', n: 5, fa: 0, gap: .3, go: 1, pos: [.6, 0], mp: [.2, -.5], glow: 3, grid: 4, gt: 1 },
+  /* why ianex */
+  y0: { form: 'none', glow: 3, grid: 1 },
+  c0: { form: 'none', glow: 3, grid: 4 },
 };
 /* the document timeline, in steps of scroll (f = 0..steps) */
 const ramp = (f, a, b) => clamp((f - a) / (b - a), 0, 1);

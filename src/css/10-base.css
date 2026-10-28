@@ -43,13 +43,6 @@ h1 em,h2 em,h3 em,.h1 em,.h2 em,.h3 em,.hero-title em,.foot-line em{font-style:n
 .js .rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
 .js .rv.in{opacity:1;transform:none}
 
-/* ---------- Items still to confirm: visible on purpose until resolved ---------- */
-mark.tbc{background:var(--warn-soft);color:var(--warn);border-radius:6px;padding:.05em .45em;font-size:.88em;font-weight:500;box-decoration-break:clone;-webkit-box-decoration-break:clone;outline:1px dashed color-mix(in srgb,var(--warn) 60%,transparent)}
-mark.tbc::before{content:"To confirm:";margin-right:.4em;opacity:.75;font-weight:600}
-/* a draft line inside display type or lit text: keeps its size, shows the dashed "to confirm" underline only */
-mark.tbc.q{background:none;color:inherit;font-size:inherit;font-weight:inherit;padding:0;outline:none;border-radius:0;border-bottom:1px dashed color-mix(in srgb,var(--warn) 55%,transparent);box-decoration-break:clone;-webkit-box-decoration-break:clone}
-mark.tbc.q::before{content:none}
-
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}

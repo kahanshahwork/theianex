@@ -11,8 +11,8 @@
 .pin-grid{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:clamp(24px,4vw,72px);align-items:center}
 .pin-space{min-height:40vh}
 
-/* the glass card with the current step */
-.pin-card{position:relative;border-radius:28px;background:color-mix(in srgb,var(--surf) 78%,transparent);border:1px solid var(--line);box-shadow:var(--shadow);padding:clamp(18px,2.2vw,32px)}
+/* the current step: open on the page, no box */
+.pin-card{position:relative}
 .pin-tabs{display:grid;grid-template-columns:repeat(var(--steps,3),minmax(0,1fr));gap:10px;margin-bottom:clamp(14px,2.4vh,26px)}
 .pin-tab{position:relative;text-align:left;padding-top:14px;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);transition:color .3s;cursor:pointer}
 .pin-tab::before,.pin-tab::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px}
@@ -23,7 +23,7 @@
 .pin-panel{display:none}
 .pin-panel.is-active{display:block;animation:pinIn .5s var(--ease) both}
 @keyframes pinIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.pin-chip{display:inline-flex;align-items:center;gap:.7em;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc2);padding:.4em .95em;border:1px solid var(--line2);border-radius:99px}
+.pin-chip{display:inline-flex;align-items:center;gap:.7em;font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acc2)}
 .pin-chip i{width:7px;height:7px;border-radius:50%;background:var(--acc);animation:blink 1.6s ease-in-out infinite}
 .pin-title{font-weight:300;font-size:clamp(2.2rem,4.4vw,4.2rem);line-height:1.02;letter-spacing:-.04em;margin:clamp(10px,1.6vh,18px) 0 clamp(8px,1.4vh,14px);text-wrap:balance}
 .pin-title em{font-style:normal;color:var(--acc2)}
@@ -59,7 +59,6 @@ html:not(.js) .ptx-tag{opacity:1}
   .pin{--sl:62svh}
   .pin-title{font-size:clamp(1.9rem,8.4vw,2.6rem)}
   .pin-tab{font-size:.6rem;letter-spacing:.08em}
-  .pin-card{padding:16px;border-radius:22px}
 }
 @media (max-height:800px) and (min-width:901px){
   .pin-title{font-size:clamp(2rem,3.6vw,3.4rem)}
@@ -98,4 +97,19 @@ html:not(.js) .ptx-tag{opacity:1}
   .pin-get.on{max-height:9em;margin-top:10px;padding-top:10px;border-top-width:1px}
   .why-help.on{max-height:12em;margin-top:12px;padding-top:12px;border-top-width:1px}
   .pin-type{min-height:2.6em}
+}
+
+/* ---- bottlenecks: a numbered list on the left, the open step on the right ---- */
+@media (min-width:901px){
+  .bn{display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr);gap:clamp(32px,6vw,110px);align-items:center}
+  .bn-list.pin-tabs{display:flex;flex-direction:column;gap:0;margin:0}
+  .bn-list .pin-tab{padding:clamp(11px,2vh,19px) 0 clamp(11px,2vh,19px) clamp(18px,1.8vw,28px);font-family:inherit;font-size:clamp(1.05rem,1.55vw,1.5rem);letter-spacing:-.02em;text-transform:none;font-weight:300;color:var(--mute2,var(--mute))}
+  .bn-list .pin-tab b{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;margin-right:1em;vertical-align:.18em}
+  .bn-list .pin-tab::before,.bn-list .pin-tab::after{top:0;bottom:0;left:0;right:auto;width:2px;height:auto}
+  .bn-list .pin-tab::after{transform:scaleY(var(--f,0));transform-origin:50% 0}
+  .bn-list .pin-tab .tl{display:inline}
+  .bn-list .pin-tab.is-active{color:var(--ink)}
+  .bn-panels .pin-title{font-size:clamp(2.4rem,4.6vw,4.6rem);max-width:11em}
+  .bn-panels .pin-p{font-size:clamp(1.02rem,1.3vw,1.24rem);max-width:30em}
+  .bn-panels .why-help{max-width:30em}
 }

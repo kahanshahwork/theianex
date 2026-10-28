@@ -37,7 +37,7 @@
 .slots span{font-size:.64rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-align:center;color:var(--mute);padding-bottom:4px}
 .slots i{height:32px;border-radius:10px;background:var(--surf2);border:1px solid var(--line)}
 .slots i.free{border-color:var(--acc);background:var(--acc-soft)}
-.embed{min-height:96px;border:1px dashed var(--line2);border-radius:16px;display:grid;place-items:center;padding:18px;text-align:center}
+.embed{min-height:96px;border:1px solid var(--line2);border-radius:16px;display:grid;place-items:center;padding:18px;text-align:center}
 .form{display:flex;flex-direction:column;gap:18px}
 .fld-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .fld{display:flex;flex-direction:column;gap:8px}

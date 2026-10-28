@@ -67,7 +67,8 @@ function parsePage(src) {
 
 const pages = [];
 let tbcTotal = 0;
-const tbcList = [];
+const tbcRows = {}, tbcSeen = {}, footerTbc = new Set(), footerDone = new Set();
+(read(join(SRC, 'partials', 'footer.html')).match(/<mark class="tbc[^"]*">[\s\S]*?<\/mark>/g) || []).forEach((m) => footerTbc.add(m.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()));
 for (const f of ls(join(SRC, 'pages'), '.html')) {
   const name = basename(f, '.html');
   const { meta, body } = parsePage(read(join(SRC, 'pages', f)));
@@ -85,12 +86,19 @@ for (const f of ls(join(SRC, 'pages'), '.html')) {
     year: String(new Date().getFullYear()),
   };
   vars.main = render(body, vars);
-  const out = render('{{> layout}}', vars);
+  let out = render('{{> layout}}', vars);
+  /* "to confirm" items: the site shows none of them. They are lifted out of the page here and listed in TO-CONFIRM.md */
+  const seen = tbcSeen[name] || (tbcSeen[name] = new Set());
+  out = out.replace(/\s?<mark class="tbc([^"]*)">([\s\S]*?)<\/mark>/g, (all, cls, inner) => {
+    const note = /\bnote\b/.test(cls), text = inner.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    if (footerTbc.has(text)) { if (footerDone.has(text)) return note ? '' : (all.startsWith(' ') ? ' ' : '') + inner; footerDone.add(text); }
+    if (!seen.has(text)) { seen.add(text); tbcTotal++; (tbcRows[name] = tbcRows[name] || []).push({ note, text }); }
+    return note ? '' : (all.startsWith(' ') ? ' ' : '') + inner;
+  });
+  out = out.replace(/<p class="[^"]*">\s*<\/p>\s*/g, '');
   const outFile = join(DIST, name + '.html');
   writeFileSync(outFile, out);
   pages.push({ name, path: vars.path, noindex: meta.robots === 'noindex' });
-  const hits = out.match(/class="tbc[ "]/g);
-  if (hits) { tbcTotal += hits.length; tbcList.push(`${name}: ${hits.length}`); }
 }
 
 /* ---- robots + sitemap ---- */
@@ -104,6 +112,9 @@ writeFileSync(
 
 console.log(`built ${pages.length} pages -> dist/`);
 if (tbcTotal) {
-  console.log(`\n${tbcTotal} items still marked "to confirm" (search for class="tbc" in src/pages):\n  ` + tbcList.join('\n  '));
+  const md = ['# To confirm', '', 'Nothing on the site is highlighted. Every drafted or placeholder line is listed here by page. Lines marked "note" are instructions that were taken off the page; the rest stay on the page as plain text until they are replaced. In the source, they are the <mark class="tbc"> tags in src/pages.', ''];
+  for (const [pg, rows] of Object.entries(tbcRows)) { md.push(`## ${pg}`, ''); rows.forEach((r) => md.push(`- ${r.note ? '(note, removed from page) ' : ''}${r.text}`)); md.push(''); }
+  writeFileSync(join(ROOT, 'TO-CONFIRM.md'), md.join('\n'));
+  console.log(`\n${tbcTotal} drafted or placeholder items listed in TO-CONFIRM.md`);
   if (STRICT) { console.error('\nSTRICT build failed: resolve every "to confirm" item before launch.'); process.exit(1); }
 }

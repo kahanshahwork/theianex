@@ -47,10 +47,10 @@ To add a page: create `src/pages/name.html`, add a `<!--meta ... -->` block at t
 
 ## Before launch
 
-Anything not yet decided is highlighted on the page in amber with a "To confirm:" label. List them with:
+Nothing on the site is highlighted. Anything not yet decided is tagged in the source as `<mark class="tbc">` (add `note` to a tag for an instruction that should not show on the page). The build lifts them out of the page and writes them, page by page, to `TO-CONFIRM.md`:
 
 ```bash
-node build.mjs         # prints a count per page
+node build.mjs         # rewrites TO-CONFIRM.md
 STRICT=1 node build.mjs   # fails the build while any remain (use this as a final check)
 ```
 
