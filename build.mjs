@@ -1,5 +1,6 @@
 // Theianex static build. No dependencies.
 // src/pages/*.html  +  src/partials/*.html  ->  dist/*.html, one css bundle, one shared js bundle, per-page scripts.
+import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, rmSync, existsSync, statSync } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -42,6 +43,11 @@ if (existsSync(join(SRC, 'js/world.js'))) cpSync(join(SRC, 'js/world.js'), join(
 
 /* ---- assets ---- */
 cpSync(join(SRC, 'assets'), join(DIST, 'assets'), { recursive: true });
+
+/* ---- cache busting: css and js are cached for a year, so every build puts a fingerprint on their URLs ---- */
+const fp = createHash('md5');
+for (const d of ['css', 'js']) for (const f of readdirSync(join(DIST, d)).sort()) fp.update(f).update(readFileSync(join(DIST, d, f)));
+const BUILD_V = fp.digest('hex').slice(0, 10);
 
 /* ---- templating ---- */
 const partials = {};
@@ -86,7 +92,7 @@ for (const f of ls(join(SRC, 'pages'), '.html')) {
     year: String(new Date().getFullYear()),
   };
   vars.main = render(body, vars);
-  let out = render('{{> layout}}', vars);
+  let out = render('{{> layout}}', vars).replace(/((?:href|src)="\/(?:css|js)\/[^"?]+)"/g, `$1?v=${BUILD_V}"`);
   /* "to confirm" items: the site shows none of them. They are lifted out of the page here and listed in TO-CONFIRM.md */
   const seen = tbcSeen[name] || (tbcSeen[name] = new Set());
   out = out.replace(/\s?<mark class="tbc([^"]*)">([\s\S]*?)<\/mark>/g, (all, cls, inner) => {
