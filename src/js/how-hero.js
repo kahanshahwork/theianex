@@ -124,7 +124,7 @@
   }
   function run(v) {
     visible = v;
-    if (v && !running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
+    if (v && !running && box.offsetWidth) { running = true; last = performance.now(); requestAnimationFrame(frame); }
     else if (!v) running = false;
   }
   colors(); layout();

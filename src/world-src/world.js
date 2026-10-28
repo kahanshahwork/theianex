@@ -277,8 +277,8 @@ const DFILES = [0, 1, 3, 4]; /* the tiles that fall into the core */
 const SK = () => (small() ? clamp(W / 3.6, .5, .9) : .82); /* global tile size factor */
 /* where the document scene puts the core and the sheet (world units) */
 function docGeo(c) {
-  const sm = small(), sx = c.px * W, sy = c.py * H, ss = sm ? 2 : H * 1.1; /* ss: final height of the sheet in world units */
-  return { sx, sy, ss, cx: sm ? sx - W * .46 : sx - W * .36, cy: sm ? sy + H * .52 : sy + H * .4 };
+  const sm = small(), sx = c.px * W, sy = c.py * H, ss = sm ? (c.top ? 1.3 : 2) : H * 1.1; /* ss: final height of the sheet in world units */
+  return { sx, sy, ss, cx: sm ? sx - W * (c.top ? .5 : .46) : sx - W * .36, cy: sm ? (c.top ? sy + H * .02 : sy + H * .52) : sy + H * .4 };
 }
 function formation(c, i, t) {
   const n = nOf(c);
@@ -376,10 +376,10 @@ const SC = {
   t1: { form: 'doc', pos: [.56, -.04], mp: [0, -.66], glow: 4, grid: 2 },
   t2: { form: 'doc', pos: [.56, -.04], mp: [0, -.66], glow: 5, grid: 1 },
   /* how we work: Brief / Prepare / Diligence / Deliver */
-  h0: { form: 'doc', pos: [.58, -.04], mp: [0, -.66], glow: 1, grid: 2 },
-  h1: { form: 'doc', pos: [.58, -.04], mp: [0, -.66], glow: 3, grid: 1 },
-  h2: { form: 'doc', pos: [.58, -.04], mp: [0, -.66], glow: 0, grid: 4 },
-  h3: { form: 'doc', pos: [.58, -.04], mp: [0, -.66], glow: 5, grid: 3 },
+  h0: { form: 'doc', pos: [.58, -.04], mp: [0, .5], top: 1, glow: 1, grid: 2 },
+  h1: { form: 'doc', pos: [.58, -.04], mp: [0, .5], top: 1, glow: 3, grid: 1 },
+  h2: { form: 'doc', pos: [.58, -.04], mp: [0, .5], top: 1, glow: 0, grid: 4 },
+  h3: { form: 'doc', pos: [.58, -.04], mp: [0, .5], top: 1, glow: 5, grid: 3 },
   /* why ianex */
   y0: { form: 'none', glow: 3, grid: 1 },
   c0: { form: 'none', glow: 3, grid: 4 },

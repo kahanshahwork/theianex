@@ -32,7 +32,7 @@
       for (var k = 0; k < chapters.length; k++) if (chapters[k].top <= y) idx = k;
       if (idx !== lastIdx) {
         lastIdx = idx;
-        chapN.textContent = (idx < 10 ? '0' : '') + idx; chapT.textContent = chapters[idx].name;
+        var num = idx + (document.body.classList.contains('is-home') ? 0 : 1); chapN.textContent = (num < 10 ? '0' : '') + num; chapT.textContent = chapters[idx].name;
         chap.classList.remove('swap'); void chap.offsetWidth; chap.classList.add('swap');
       }
     }

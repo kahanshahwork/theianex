@@ -3,7 +3,7 @@
    Markup and behaviour: src/js/shared/15-pin.js
    ========================================================= */
 .pin{position:relative;height:calc(100vh + var(--steps,3) * var(--sl,70vh));height:calc(100svh + var(--steps,3) * var(--sl,70svh))}
-.pin-stick{position:sticky;top:0;height:100vh;height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding-block:calc(var(--nav-h) + 6px) clamp(18px,3.2vh,44px)}
+.pin-stick{overflow-x:clip;position:sticky;top:0;height:100vh;height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding-block:calc(var(--nav-h) + 6px) clamp(18px,3.2vh,44px)}
 .pin-stick>.wrap{width:100%}
 .pin-center{align-items:center;text-align:center}
 .pin-h2.h2{font-size:clamp(1.9rem,3.6vw,3.5rem);margin-bottom:clamp(14px,2.6vh,30px)}
@@ -88,7 +88,7 @@ html:not(.js) .ptx-tag{opacity:1}
 .next-link i{font-style:normal;color:var(--acc);transition:transform .4s var(--ease)}
 .next-link:hover{border-color:var(--acc)}
 .next-link:hover i{transform:translateX(.25em)}
-@media (max-width:900px){.pin-tabs--5 .tl{display:none}.pin-tabs--5 .pin-tab{font-size:.7rem}.ptx--left .ptx-h{font-size:clamp(2.6rem,13vw,4.4rem)}}
+@media (max-width:900px){.pin-tabs--5 .tl{display:none}.pin-tabs--5 .pin-tab{font-size:.7rem}}
 
 /* on a phone the card only takes the room it needs, so the scene stays visible beneath it */
 @media (max-width:900px){
@@ -112,4 +112,18 @@ html:not(.js) .ptx-tag{opacity:1}
   .bn-panels .pin-title{font-size:clamp(2.4rem,4.6vw,4.6rem);max-width:11em}
   .bn-panels .pin-p{font-size:clamp(1.02rem,1.3vw,1.24rem);max-width:30em}
   .bn-panels .why-help{max-width:30em}
+}
+
+/* ---- phone: Paraplanning -> ParaTech, stacked, huge and centred ---- */
+@media (max-width:900px){
+  .ptxs .pin-stick,#change .pin-stick{justify-content:center;padding-top:calc(var(--nav-h) + 4px)}
+  .ptxs .wrap{display:flex;flex-direction:column;align-items:center;text-align:center}
+  .ptxs .kick{justify-content:center;text-align:center;margin-bottom:clamp(18px,4vh,36px)}
+  .ptx-h{white-space:normal;font-size:clamp(3.6rem,25vw,8rem);line-height:.94;letter-spacing:-.06em}
+  .ptx-vis{display:block}
+  .ptx-pa{display:block}
+  .ptx-tag{margin-top:clamp(20px,4.4vh,40px);font-size:clamp(1.2rem,5.4vw,1.7rem);max-width:15em}
+  .ptx--left{align-items:flex-start;text-align:left;margin-top:clamp(22px,5vh,44px)}
+  .ptx--left .ptx-h{font-size:clamp(3.6rem,25vw,8rem)}
+  .ptx--left .ptx-vis{text-align:left}
 }
