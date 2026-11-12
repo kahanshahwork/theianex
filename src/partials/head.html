@@ -12,9 +12,9 @@
 <link rel="preload" href="/assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
 <script>
-/* Set the theme before first paint so there is no flash. A saved choice wins; otherwise follow the device. */
-(function(){var d=document.documentElement,t;try{t=localStorage.getItem('tx-theme')}catch(e){}
-if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'}
+/* Theme follows the device clock: light 6am to 6pm local time, dark otherwise. A toggle choice lasts for the visit only. */
+(function(){var d=document.documentElement,t;try{t=sessionStorage.getItem('tx-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){var h=new Date().getHours();t=(h>=6&&h<18)?'light':'dark'}
 d.setAttribute('data-theme',t);d.classList.add('js');
 var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',t==='light'?'#f3f5f9':'#04060b')})();
 </script>

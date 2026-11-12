@@ -6,7 +6,7 @@
   var title=document.getElementById('heroTitle'), cap=document.getElementById('capLoop'), mtPos=document.getElementById('mtPos');
   var stms=[].slice.call(hero.querySelectorAll('.stm'));
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var TAU=Math.PI*2, TRANS=2.8;
+  var TAU=Math.PI*2, TRANS=1.7, FIRST_HOLD=2.2;
   var SCENES=[{m:'loop',hold:5.6},{m:'map',hold:7.6}];
   var NS=SCENES.length;
   var PAL=['#eaf0fa','#9db4d3','#c4d2e8'],STAR='#dfe8ff',HALO='220,234,255',LIGHT=false;
@@ -236,7 +236,7 @@
     clearTimeout(stmTimer);
     stms.forEach(function(s){s.classList.remove('on')});
     var want=stms.filter(function(s){return +s.dataset.scene===idx})[0];
-    stmTimer=setTimeout(function(){if(want)want.classList.add('on')},instant?100:first?900:1000);
+    stmTimer=setTimeout(function(){if(want)want.classList.add('on')},instant?100:first?900:600);
   }
 
   function frame(now){
@@ -246,7 +246,7 @@
     requestAnimationFrame(frame);
   }
   function update(){
-    var sc=SCENES[idx],total=(first?0:TRANS)+sc.hold,tS=clk-sceneT;
+    var sc=SCENES[idx],total=(first?0:TRANS)+(first&&idx===0?FIRST_HOLD:sc.hold),tS=clk-sceneT;
     if(started&&tS>total){first=false;enter(idx+1)}
     tS=clk-sceneT;
     curMode=SCENES[idx].m;fromMode=first||tS>TRANS?curMode:fromModeStore;
@@ -352,7 +352,7 @@
     }
     introT=clk+0.15;
     enter(0,false);
-    sceneT=clk+2.4;
+    sceneT=clk+.6;
     running=true;last=performance.now();requestAnimationFrame(frame);
   }
   window.__heroStart=start;

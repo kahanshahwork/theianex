@@ -1,0 +1,118 @@
+/* =========================================================
+   PHONE: pinned stages use the live screen height (dvh), sit centred, and are never cropped.
+   Spacing, type and cards scale from the screen height so each stage fills the screen with room to breathe.
+   The header is on the Home page only (see 20-shell.css), so there is no header to clear here.
+   ========================================================= */
+@media (max-width:900px){
+  .pin-stick{justify-content:flex-start;padding-block:clamp(28px,6dvh,64px) clamp(24px,4.4dvh,48px)}
+  .pin-stick>.wrap{margin-block:auto;width:100%}
+  /* stages whose content changes height from step to step keep a fixed title: top-aligned */
+  .tech .pin-stick>.wrap,.pipe .pin-stick>.wrap,.roles .pin-stick>.wrap,.walk .pin-stick>.wrap,.caps .pin-stick>.wrap,.arch-sec .pin-stick>.wrap{margin-block:0}
+  .tech .pin-stick,.pipe .pin-stick,.roles .pin-stick,.walk .pin-stick,.caps .pin-stick,.arch-sec .pin-stick{padding-top:clamp(40px,8dvh,84px)}
+  .pin-h2.h2{margin-bottom:clamp(14px,2.6dvh,28px)}
+  .pin-stick .kick{margin-bottom:clamp(14px,2.6dvh,28px)}
+
+  /* ---- Home: who we are ---- */
+  .who .h2{font-size:clamp(1.9rem,8.6vw,2.6rem)}
+  .who-p{font-size:clamp(.98rem,4.2vw,1.1rem);margin-top:clamp(12px,2dvh,20px)}
+  .who-grid{gap:clamp(22px,4.6dvh,44px)}
+  .fl-node{padding-bottom:clamp(20px,4.2dvh,40px)}
+  .fl-t{font-size:clamp(1.3rem,5.8vw,1.55rem)}
+  .fl-d{font-size:clamp(.94rem,4vw,1.04rem);margin-top:clamp(6px,1dvh,10px)}
+
+  /* ---- Home: what we prepare ---- */
+  .prep .pin-h2.h2{font-size:clamp(1.8rem,8vw,2.4rem);margin-bottom:clamp(10px,1.8dvh,18px)}
+  .prep .pc-lead{font-size:clamp(.88rem,3.8vw,.98rem)}
+  .pc-row{gap:clamp(7px,1.2dvh,12px);margin-top:clamp(12px,2dvh,20px)}
+  .pc{padding:clamp(6px,1dvh,10px) 14px}
+  .pc-t{font-size:clamp(1.02rem,4.6vw,1.2rem)}
+  .pc-d{font-size:clamp(.8rem,3.5vw,.9rem)}
+
+  /* ---- Home: technology ---- */
+  .tech .pin-h2{font-size:clamp(1.8rem,8vw,2.4rem)}
+  .tc-track{margin-bottom:clamp(14px,2.4dvh,24px)}
+  .tc-s{font-size:clamp(.74rem,3.4vw,.86rem)}
+  .tc-stage{min-height:clamp(250px,40dvh,400px);margin-top:clamp(22px,4dvh,44px)}
+  .tc-pn{gap:clamp(10px,1.8dvh,18px)}
+  .dc,.ex{font-size:clamp(.78rem,3.5vw,.9rem);padding:clamp(11px,1.8dvh,17px) 14px}
+  .tc-an{font-size:.86rem}
+  .sf span{padding:clamp(12px,1.9dvh,18px) 14px}
+
+  /* ---- How: pipeline ---- */
+  .pipe .pin-h2{font-size:clamp(1.8rem,8vw,2.4rem);margin-bottom:clamp(14px,2.6dvh,28px)}
+  .pipe .pin-stick{justify-content:flex-start}
+  .pl-s{font-size:clamp(.72rem,3.2vw,.84rem)}
+  .pl-stage{margin-top:clamp(16px,3dvh,32px);min-height:0}
+  .pl-tx p{font-size:clamp(.84rem,min(4vw,1.72dvh),1.02rem);margin-bottom:clamp(8px,1.4dvh,14px)}
+  .pl-tx .pl-an{font-size:.9rem}
+  .pl-pn .paper{padding:clamp(10px,1.4dvh,16px) 16px}
+  .pl-pn .paper .pp-c,.pl-pn .paper .pp-r{font-size:.84rem;margin-top:clamp(6px,1dvh,10px)}
+
+  /* ---- How: roles ---- */
+  .roles .pin-h2{font-size:clamp(1.8rem,8vw,2.4rem)}
+  .rl2{gap:clamp(12px,2.2dvh,22px)}
+  .soa2{padding:clamp(10px,1.6dvh,16px) 14px}
+  .soa2-r{padding:clamp(5px,.9dvh,10px) 6px;font-size:clamp(.86rem,3.7vw,.96rem)}
+  .rc{padding:clamp(10px,1.4dvh,16px) 16px}
+  .rc li{font-size:clamp(.86rem,3.7vw,.96rem)}
+  .rc ul{gap:clamp(3px,.7dvh,8px)}
+
+  /* ---- How: client file ---- */
+  .walk .pin-h2.h2{font-size:clamp(1.8rem,8vw,2.4rem)}
+  .wk-grid{gap:clamp(14px,2.4dvh,24px)}
+  .wk-rail{gap:8px}
+  .wk-st{padding:clamp(10px,1.6dvh,15px) 12px;font-size:clamp(.84rem,3.7vw,.94rem)}
+  .wk-win{height:clamp(330px,46dvh,440px)}
+  .wk-pn .sf span{padding:clamp(9px,1.4dvh,14px) 12px}
+
+  /* ---- ParaIQ: capabilities, efficiency, architecture ---- */
+  .cap-view{height:clamp(276px,40dvh,390px);padding:16px}
+  .cap-side{padding:10px}
+  .caps .more{margin-bottom:clamp(8px,1.6dvh,16px)}
+  .caps .pin-h2,.arch-sec .pin-h2{font-size:clamp(1.8rem,8vw,2.4rem)}
+  .eff .pin-h2.h2{font-size:clamp(1.8rem,8vw,2.4rem);margin-bottom:clamp(12px,2.2dvh,22px)}
+  .ba-an{margin-top:0;font-size:clamp(1rem,4.4vw,1.15rem);color:var(--ink)}
+  .ba-an small{font-size:.74rem;margin-top:6px}
+  .ba{margin-top:clamp(8px,1.6dvh,16px)}
+  .ba-cols{grid-template-columns:1fr;gap:clamp(10px,1.8dvh,16px)}
+  /* before: a compact row, the pile of documents and its caption side by side so nothing overlaps */
+  .ba-b{height:auto;display:grid;grid-template-columns:104px minmax(0,1fr);grid-template-areas:"h h" "s p";column-gap:18px;row-gap:8px;align-items:center;padding:14px 16px}
+  .ba-b .ba-h{grid-area:h}
+  .ba-b .ba-stack{grid-area:s;width:104px;height:80px;margin:0}
+  .ba-b .ba-stack i{height:46px;width:80%}
+  .ba-b p{grid-area:p;margin:0;font-size:.9rem}
+  /* with ParaIQ: the taller panel, caption pinned to its bottom edge inside the box */
+  .ba-a{height:clamp(230px,32dvh,320px);padding:16px}
+  .ba-pn>p{font-size:.9rem}
+  .ba-a .sf span{padding:clamp(9px,1.5dvh,14px) 12px;font-size:.84rem}
+  .ba-a .pr,.ba-a .gp{font-size:.88rem}
+  .ba-steps{margin-top:clamp(12px,2dvh,20px)}
+  .ba .ill{margin-top:clamp(10px,1.8dvh,18px)}
+}
+
+/* short phones (about 740px tall and under): tighter again so nothing runs past the bottom */
+@media (max-width:900px) and (max-height:790px){
+  .pin-stick{padding-block:26px 18px}
+  .tech .pin-stick,.pipe .pin-stick,.roles .pin-stick,.walk .pin-stick,.caps .pin-stick,.arch-sec .pin-stick{padding-top:34px}
+  .pin-h2.h2,.pin-stick .kick{margin-bottom:10px}
+  .pin-h2.h2,.who .h2,.prep .pin-h2.h2,.tech .pin-h2,.pipe .pin-h2,.roles .pin-h2,.walk .pin-h2.h2,.eff .pin-h2.h2,.caps .pin-h2,.arch-sec .pin-h2{font-size:clamp(1.55rem,7vw,1.9rem)}
+  .prep .pc-lead{display:none}
+  .pc{grid-template-columns:62px minmax(0,1fr);padding:6px 12px;column-gap:12px}
+  .pc-pw{width:62px;height:70px}
+  .pc-pw .paper{transform:scale(.3)}
+  .pc-d{font-size:.76rem;line-height:1.3}
+  .pl-pn .paper>:nth-child(n+4){display:none}
+  .pl-tx .pl-an{margin-top:4px}
+  .soa2-h{padding-bottom:5px}
+  .soa2-r{padding:5px 6px;font-size:.8rem}
+  .rc li{font-size:.8rem}
+  .rc{padding:9px 14px}
+  .roles .pin-h2{margin-bottom:8px}
+  .wk-win{height:300px}
+  .wk-st{padding:7px 10px;font-size:.8rem}
+  .ba-an small{display:none}
+  .ba-a{height:204px;padding:12px 14px}
+  .ba-b{padding:10px 14px}
+  .ba-b .ba-stack{height:60px}
+  .cap-view{height:230px}
+}

@@ -5,8 +5,8 @@
    Engine: src/js/mountain.js. The hero above this section is untouched.
    Without JS or with reduced motion the steps stack as plain content (.mtn-static).
    ========================================================= */
-.mtn{position:relative;height:calc(100vh + 900vh);height:calc(100svh + 900svh)}
-.mtn-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:radial-gradient(80% 60% at 60% 112%,var(--acc-soft),transparent 72%),var(--bg);--gutpx:24px;--ay:50svh}
+.mtn{position:relative;height:calc(100vh + 900vh);height:calc(100dvh + 900dvh)}
+.mtn-stick{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;background:radial-gradient(80% 60% at 60% 112%,var(--acc-soft),transparent 72%),var(--bg);--gutpx:24px;--ay:50dvh}
 .mtn-svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .mtn-svg path{fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .mtn-svg .mt-fill{fill:url(#mtnBody);stroke:none}
@@ -18,7 +18,6 @@
 .mtn-svg .mt-fg{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);opacity:0;transition:transform .55s var(--ease),opacity .4s}
 .mtn-svg .mt-fg.on{transform:none;opacity:1}
 .mtn-svg circle{fill:var(--acc2);filter:drop-shadow(0 0 9px var(--acc))}
-.mt-name{position:absolute;left:0;top:0;z-index:2;pointer-events:none;font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--acc2);white-space:nowrap;opacity:0;transform:translate(-50%,-100%);text-shadow:0 0 12px var(--bg)}
 
 .mt-lay{position:absolute;inset:0;z-index:3;pointer-events:none}
 .mt-step{position:absolute;inset:0;opacity:0;visibility:hidden;will-change:opacity}
@@ -76,7 +75,7 @@
 
 /* phone: the same idea in portrait. Problem above the flag, help below it; the intro and summit stack above a smaller mountain */
 @media (max-width:900px){
-  .mtn{height:calc(100vh + 860vh);height:calc(100svh + 860svh)}
+  .mtn{height:calc(100vh + 860vh);height:calc(100dvh + 860dvh)}
   .mtn-stick{--gutpx:20px}
   .st-l,.st-r{padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
   .st-l{left:var(--gutpx);right:var(--gutpx);width:auto;bottom:calc(100% - var(--ay) + 118px)}
@@ -85,21 +84,20 @@
   .mt-p{font-size:.86rem;line-height:1.4}
   .mt-help p{font-size:.9rem;line-height:1.4}
   .mt-vis{display:none}
-  .mt-intro,.mt-sum{display:flex;flex-direction:column;gap:6px;padding:calc(var(--nav-h) + 6px) var(--gutpx) 0}
+  .mt-intro,.mt-sum{display:flex;flex-direction:column;gap:clamp(8px,1.6dvh,16px);padding:clamp(36px,7.5dvh,76px) var(--gutpx) 0}
   .mt-intro .in-l,.mt-intro .in-r,.mt-intro .in-m,.mt-sum .in-l,.mt-sum .in-r{position:static;width:auto;transform:none;text-align:left}
   .mt-intro .in-m{order:-1;margin-bottom:6px}
-  .in-l p,.in-r p{font-size:.8rem;line-height:1.38;margin-bottom:6px}
+  .in-l p,.in-r p{font-size:clamp(.8rem,min(3.5vw,1.75dvh),.92rem);line-height:1.4;margin-bottom:clamp(6px,1dvh,10px)}
   .mt-t1{font-size:clamp(1.6rem,7.4vw,2rem)}
   .mt-t2{font-size:clamp(1.35rem,6.2vw,1.7rem);margin-bottom:6px}
-  .mt-ph{left:50%;top:auto;bottom:5.5svh;gap:6px}
+  .mt-ph{left:50%;top:auto;bottom:5.5dvh;gap:6px}
   .ph{font-size:.86rem}
-  .mt-name{font-size:.6rem}
 }
 
 /* reduced motion or no JS: the steps are plain stacked content, the mountain is dropped */
 .mtn-static,html:not(.js) .mtn{height:auto}
 .mtn-static .mtn-stick,html:not(.js) .mtn-stick{position:static;height:auto;overflow:visible;padding:clamp(40px,8vw,100px) var(--gut);background:none}
-.mtn-static .mtn-svg,.mtn-static .mt-name,html:not(.js) .mtn-svg,html:not(.js) .mt-name{display:none}
+.mtn-static .mtn-svg,html:not(.js) .mtn-svg{display:none}
 .mtn-static .mt-lay,html:not(.js) .mt-lay{position:static;display:flex;flex-direction:column;gap:clamp(36px,6vw,80px)}
 .mtn-static .mt-step,html:not(.js) .mt-step{position:static;opacity:1;visibility:visible;transform:none!important;pointer-events:auto;display:flex;flex-direction:column;padding:0}
 .mtn-static .mt-step>*,html:not(.js) .mt-step>*{position:static!important;width:auto!important;max-width:44em;transform:none!important;text-align:left!important;margin-bottom:14px}

@@ -29,20 +29,21 @@
     var next = TX.theme() === 'light' ? 'dark' : 'light';
     root.classList.add('theme-anim');
     root.setAttribute('data-theme', next);
-    try { localStorage.setItem('tx-theme', next); } catch (e) {}
+    try { sessionStorage.setItem('tx-theme', next); } catch (e) {}
     paintToggle();
     window.dispatchEvent(new CustomEvent('themechange', { detail: next }));
     setTimeout(function () { root.classList.remove('theme-anim'); }, 700);
   });
-  /* follow the device only while the visitor has not chosen */
-  try {
-    matchMedia('(prefers-color-scheme: light)').addEventListener('change', function (e) {
-      var saved = null; try { saved = localStorage.getItem('tx-theme'); } catch (x) {}
-      if (saved === 'light' || saved === 'dark') return;
-      root.setAttribute('data-theme', e.matches ? 'light' : 'dark'); paintToggle();
-      window.dispatchEvent(new CustomEvent('themechange', { detail: TX.theme() }));
-    });
-  } catch (e) {}
+  /* follow the device clock (light 6am to 6pm) until the visitor picks a theme for this visit */
+  function clockTheme() { var h = new Date().getHours(); return (h >= 6 && h < 18) ? 'light' : 'dark'; }
+  setInterval(function () {
+    var saved = null; try { saved = sessionStorage.getItem('tx-theme'); } catch (x) {}
+    if (saved === 'light' || saved === 'dark') return;
+    var t = clockTheme();
+    if (t === TX.theme()) return;
+    root.setAttribute('data-theme', t); paintToggle();
+    window.dispatchEvent(new CustomEvent('themechange', { detail: t }));
+  }, 30000);
 
   /* ---- menu ---- */
   var burger = TX.$('#burger'), sheet = TX.$('#sheet');

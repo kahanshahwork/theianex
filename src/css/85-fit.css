@@ -2,7 +2,7 @@
    ONE SCREEN PER SECTION: closing blocks, disclosures, Orin, enquiry.
    Each of these is at least one screen tall and centres its content, which must fit inside it.
    ========================================================= */
-.close,.disc,.orin,.ct-ways{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:calc(var(--nav-h) + 12px) clamp(24px,5vh,56px)}
+.close,.disc,.orin,.ct-ways{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding-block:calc(var(--nav-h) + 12px) clamp(24px,5vh,56px)}
 .close>.wrap,.disc>.wrap,.orin>.wrap,.ct-ways>.wrap{width:100%}
 .close .h1{margin-bottom:clamp(14px,2.4vh,30px)}
 .close-cta{margin-top:clamp(20px,3.4vh,44px)}

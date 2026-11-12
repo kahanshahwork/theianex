@@ -58,7 +58,7 @@ Items include the public email address, legal entity name and ABN, the booking t
 
 ## Theme and the 3D scene
 
-Dark and light themes switch from the header and are remembered. The first visit follows the visitor's device setting. Colours are tokens at the top of `src/css/00-tokens.css`, including the colours the 3D scene reads (`--w-*` and `--g*`).
+The theme follows the visitor's device clock: light from 6am to 6pm local time, dark otherwise (the device's own light/dark setting is ignored). The header toggle overrides it for the current visit only (sessionStorage) and the clock takes over again on the next visit. On a phone the header appears on the Home page only and scrolls away with it; other pages navigate from the footer. Pinned stages use the live screen height (`dvh`), so they stay locked as the browser's address bar shows and hides. Phone spacing for pinned stages lives in `src/css/86-phone.css`. Colours are tokens at the top of `src/css/00-tokens.css`, including the colours the 3D scene reads (`--w-*` and `--g*`).
 
 Behind every page sits one fixed 3D scene (three.js): glossy document tiles over a curved crosshair grid, lit by one blue glow that sweeps in from a different edge in each chapter. The home hero (infinity into Australia) is separate and sits on top of it.
 

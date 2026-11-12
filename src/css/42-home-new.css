@@ -90,7 +90,7 @@
 .tc .ill{display:block;text-align:center}
 
 /* ---- ParaIQ intro: text only ---- */
-.piqi{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding-block:calc(var(--nav-h) + 12px) clamp(24px,5vh,60px)}
+.piqi{min-height:100vh;min-height:100dvh;display:flex;align-items:center;padding-block:calc(var(--nav-h) + 12px) clamp(24px,5vh,60px)}
 .piqi-in{width:100%}
 .piqi .h2{font-size:clamp(2rem,4.6vw,4.4rem);max-width:15em;margin-bottom:clamp(22px,5vh,56px)}
 .piqi-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,48px);margin-bottom:clamp(22px,4vh,44px)}

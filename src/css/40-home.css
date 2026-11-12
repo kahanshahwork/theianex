@@ -11,7 +11,7 @@ html:not(.js) .pre,.no-pre .pre{display:none}
 @keyframes preIn{to{opacity:1;transform:none}}
 
 /* ---- hero: particle loop that unfolds into Australia ---- */
-.hero{position:relative;height:100svh;min-height:680px;overflow:hidden;background:var(--hero-bg)}
+.hero{position:relative;height:100dvh;min-height:680px;overflow:hidden;background:var(--hero-bg)}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(90% 70% at 50% 45%,transparent 55%,var(--hero-vig) 100%)}
 .limb{position:absolute;left:50%;width:190vw;height:190vw;bottom:calc(-190vw + 9vh);transform:translateX(-50%);border-radius:50%;z-index:0;background:var(--limb-bg);box-shadow:0 -1px 0 var(--limb-edge),0 -10px 40px var(--limb-g1),0 -40px 120px var(--limb-g2),0 -120px 240px var(--limb-g3)}
 :root[data-theme="light"] .limb{display:none}

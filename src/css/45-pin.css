@@ -2,8 +2,8 @@
    PINNED STAGES: a tall section whose stage sticks while the scroll position picks the step.
    Markup and behaviour: src/js/shared/15-pin.js
    ========================================================= */
-.pin{position:relative;height:calc(100vh + var(--steps,3) * var(--sl,70vh));height:calc(100svh + var(--steps,3) * var(--sl,70svh))}
-.pin-stick{overflow-x:clip;position:sticky;top:0;height:100vh;height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding-block:calc(var(--nav-h) + 6px) clamp(18px,3.2vh,44px)}
+.pin{position:relative;height:calc(100vh + var(--steps,3) * var(--sl,70vh));height:calc(100dvh + var(--steps,3) * var(--sl,70dvh))}
+.pin-stick{overflow-x:clip;position:sticky;top:0;height:100vh;height:100dvh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding-block:calc(var(--nav-h) + 6px) clamp(18px,3.2vh,44px)}
 .pin-stick>.wrap{width:100%}
 .pin-center{align-items:center;text-align:center}
 .pin-h2.h2{font-size:clamp(1.9rem,3.6vw,3.5rem);margin-bottom:clamp(14px,2.6vh,30px)}
@@ -56,7 +56,7 @@ html:not(.js) .ptx-tag{opacity:1}
   .pin-grid{grid-template-columns:1fr;gap:12px;align-items:start}
   .pin-space{display:none}
   .pin-stick{justify-content:flex-start;padding-top:calc(var(--nav-h) + 4px)}
-  .pin{--sl:62svh}
+  .pin{--sl:62dvh}
   .pin-title{font-size:clamp(1.9rem,8.4vw,2.6rem)}
   .pin-tab{font-size:.6rem;letter-spacing:.08em}
 }

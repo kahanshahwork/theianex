@@ -21,8 +21,19 @@
 .call-agenda li.on{color:var(--ink)}
 .call-agenda li.on i{background:var(--acc);border-color:var(--acc);box-shadow:0 0 0 5px var(--acc-soft)}
 @media (max-width:900px){.call{grid-template-columns:1fr}}
-@media (max-width:520px){.call-tiles{grid-template-columns:1fr 1fr;padding:12px;gap:10px}.call-tile{aspect-ratio:3/4}.call-tag{top:22px;bottom:auto;transform:translateX(-50%);font-size:.6rem}.call-tiles .pq-ill{display:none}.wave{left:50%;transform:translateX(-50%);bottom:14px}}
-
+/* phone: a tidy call mock-up. The tag sits above two portrait tiles, nothing overlaps, the label sits beneath */
+@media (max-width:520px){
+  .ct-hero .call.rv{margin-top:clamp(34px,6dvh,56px)}
+  .ct-hero .call-tiles{grid-template-columns:1fr 1fr;padding:14px;gap:12px;border-radius:24px}
+  .ct-hero .call-tiles .call-tag{position:static;transform:none;order:-1;grid-column:1/-1;justify-self:center;font-size:.64rem;margin-bottom:2px}
+  .ct-hero .call .call-tile{aspect-ratio:auto;min-height:clamp(150px,22dvh,210px);padding:18px 8px 16px;gap:12px;justify-content:center}
+  .ct-hero .call-av{width:clamp(64px,19vw,84px)}
+  .ct-hero .call-nm{font-size:.64rem;letter-spacing:.08em;text-align:center}
+  .ct-hero .wave{position:relative;left:auto;bottom:auto;transform:none;height:22px;margin-top:2px}
+  .ct-hero .call-tiles .pq-ill{display:inline-block;position:static;grid-column:1/-1;justify-self:center;margin-top:2px}
+  .ct-hero .call-agenda{padding:20px 20px 22px}
+  .ct-hero .call-agenda ul{gap:14px}
+}
 
 .ct-ways{background:var(--bg2)}
 .ct-ways .h2{margin-bottom:clamp(14px,2vw,24px)}

@@ -10,7 +10,7 @@
   if (!root) return;
   if (TX.reduce) { root.classList.add('mtn-static'); return; }
 
-  var stick = TX.$('#mtnStick'), svg = TX.$('#mtnSvg'), world = TX.$('#mtnWorld'), name = TX.$('#mtnName'),
+  var stick = TX.$('#mtnStick'), svg = TX.$('#mtnSvg'), world = TX.$('#mtnWorld'),
       steps = TX.$$('.mt-step[data-i]'), intro = TX.$('#mtnIntro'), sum = TX.$('#mtnSum'), phs = TX.$$('.ph', sum), go = TX.$('#mtnGo');
   var clamp = TX.clamp, NS = 'http://www.w3.org/2000/svg';
   function lerp(a, b, t) { return a + (b - a) * t; }
@@ -134,10 +134,6 @@
     flags.forEach(function (f, j) { f.classList.toggle('on', c.s >= SCP[j] - 12); });
     topFlag.classList.toggle('on', c.s >= SEND - 12);
 
-    /* the mountain's name above the summit when the whole mountain is in view */
-    var nl = clamp((.3 - k) / .1, 0, 1);
-    name.style.opacity = nl.toFixed(2);
-    name.style.transform = 'translate(' + (ox + summit[0] * k).toFixed(1) + 'px,' + (oy + summit[1] * k - 220 * k - 8).toFixed(1) + 'px) translate(-50%,-100%)';
 
     /* introduction */
     setStep(intro, 1 - sm((p - .06) / .04));
