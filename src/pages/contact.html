@@ -38,64 +38,61 @@ scripts: contact-call.js
   </div>
 </section>
 
-<section class="sec ct-expect" data-chapter="What to expect" data-form="none" data-n="2" data-pos=".7,.12" data-glow="1" data-grid="1">
-  <div class="wrap ct-expect-in">
-    <div>
-      <span class="kick rv">What to expect</span>
-      <h2 class="h2 rv">A conversation, <em>not a pitch.</em></h2>
-    </div>
-    <div class="rv">
-      <p class="lead">We&rsquo;ll ask about your practice, the documents you prepare and how you work today. You&rsquo;ll hear plainly whether we can help, and what working together would look like.</p>
-      <p class="ct-meta"><span>About <mark class="tbc">20 to 30 minutes</mark></span></p>
-      <a class="link" href="/how-we-work#getting-started">See how an engagement begins</a>
-    </div>
-  </div>
-</section>
-
-<section class="sec ct-ways" id="book" data-chapter="Two ways in" data-form="none" data-glow="5" data-grid="3">
+<!-- ============ C-02 ENQUIRY FORM + C-03 DIRECT CONTACT ============ -->
+<section class="sec ct-ways" id="enquiry" data-chapter="Enquiry" data-form="none" data-glow="5" data-grid="3">
   <div class="wrap">
-    <span class="kick rv">Two ways in</span>
-    <h2 class="h2 rv">Pick a time, <em>or write to us.</em></h2>
     <div class="ways">
-      <article class="way way-book rv">
-        <h3 class="h3">Choose a time</h3>
-        <p class="copy">Pick a slot that suits you and we&rsquo;ll send an invitation.</p>
-        <div class="slots" aria-hidden="true">
-          <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span>
-          <i></i><i class="free"></i><i></i><i class="free"></i><i class="free"></i>
-          <i class="free"></i><i></i><i class="free"></i><i></i><i></i>
-          <i></i><i class="free"></i><i></i><i class="free"></i><i class="free"></i>
+      <div class="ct-intro">
+        <span class="kick rv">Enquiry</span>
+        <h2 class="h2 rv">Tell us about your <em>practice.</em></h2>
+        <p class="lead rv">Tell us about your advice practice, the type of documentation you prepare and where you need additional support.</p>
+        <p class="ct-p rv">We'll discuss your requirements and how Theianex could fit into your existing workflow.</p>
+        <div class="ct-direct rv">
+          <h3 class="h3">Prefer a direct conversation?</h3>
+          <p class="copy">Get in touch with our team to discuss your requirements.</p>
+          <p class="ct-det"><mark class="tbc note">Real business contact details go here (email, phone). None were supplied, and the sample booking calendar has been removed until a real calendar integration is configured.</mark></p>
         </div>
-        <div class="embed"><mark class="tbc">booking tool embed goes here (Calendly, Cal.com, or similar)</mark></div>
-      </article>
+      </div>
 
       <article class="way way-form rv" style="--d:1">
-        <h3 class="h3">Send us a message</h3>
-        <p class="copy">Tell us a little about your practice and we&rsquo;ll reply to arrange a call.</p>
         <form id="contactForm" class="form" novalidate>
           <div class="fld-row">
             <label class="fld"><span>Name</span><input name="name" type="text" autocomplete="name" required maxlength="120"></label>
-            <label class="fld"><span>Work email</span><input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+            <label class="fld"><span>Advice firm</span><input name="practice" type="text" autocomplete="organization" required maxlength="160"></label>
           </div>
-          <label class="fld"><span>Practice or licensee</span><input name="practice" type="text" autocomplete="organization" required maxlength="160"></label>
-          <label class="fld"><span>Documents a month</span>
-            <select name="volume">
-              <option value="">Choose one</option>
-              <option>Under 10</option>
-              <option>10 to 30</option>
-              <option>Over 30</option>
-              <option>Not sure</option>
-            </select>
-          </label>
-          <label class="fld"><span>Anything you would like us to know</span><textarea name="message" rows="4" maxlength="4000"></textarea></label>
+          <div class="fld-row">
+            <label class="fld"><span>Business email</span><input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+            <label class="fld"><span>Contact number</span><input name="phone" type="tel" autocomplete="tel" maxlength="40"></label>
+          </div>
+          <div class="fld-row">
+            <label class="fld"><span>Type of support required</span>
+              <select name="support">
+                <option value="">Choose one</option>
+                <option>Advice documentation</option>
+                <option>Client file preparation</option>
+                <option>Research and strategy support</option>
+                <option>Document review</option>
+                <option>Not sure yet</option>
+              </select>
+            </label>
+            <label class="fld"><span>Approximate monthly workload</span>
+              <select name="volume">
+                <option value="">Choose one</option>
+                <option>Under 10 documents</option>
+                <option>10 to 30 documents</option>
+                <option>Over 30 documents</option>
+                <option>Not sure</option>
+              </select>
+            </label>
+          </div>
+          <label class="fld"><span>Additional information</span><textarea name="message" rows="4" maxlength="4000"></textarea></label>
           <label class="hp" aria-hidden="true">Website<input name="company_website" type="text" tabindex="-1" autocomplete="off"></label>
           <p class="consent">By sending this you agree to us using your details to reply. See our <a class="link-i" href="/privacy">Privacy Policy</a>.</p>
           <div class="f-act">
-            <button class="btn btn-lg" type="submit">Send message</button>
+            <button class="btn btn-lg" type="submit">Submit enquiry</button>
             <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
           </div>
         </form>
-        <p class="ct-direct">Prefer email? <mark class="tbc">hello@your-domain.com.au</mark></p>
       </article>
     </div>
   </div>

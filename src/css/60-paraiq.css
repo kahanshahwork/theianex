@@ -35,32 +35,6 @@
   .pq-pill{display:none}.pq-bar .pq-t{margin-right:auto}
 }
 
-/* ---- data privacy ---- */
-.dp-sec .h2{margin-bottom:22px}
-.dp-note{margin-bottom:clamp(32px,5vw,72px)}
-.dp{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,88px);align-items:start}
-.dp-q{display:flex;flex-direction:column}
-.dp-qb{display:flex;gap:18px;align-items:baseline;text-align:left;padding:clamp(14px,1.6vw,20px) 0;border-top:1px solid var(--line);color:var(--mute);font-weight:300;font-size:clamp(1.2rem,2vw,1.7rem);line-height:1.2;letter-spacing:-.015em;transition:color .4s,padding .4s var(--ease)}
-.dp-qb:last-child{border-bottom:1px solid var(--line)}
-.dp-qb span{flex:none;font-weight:600;font-size:.62rem;letter-spacing:.2em;color:var(--acc);opacity:.7}
-.dp-qb:hover{color:var(--ink)}
-.dp-qb.is-active{color:var(--ink);padding-left:14px;box-shadow:inset 3px 0 0 var(--acc)}
-.dp-a{position:sticky;top:calc(var(--nav-h) + 24px);padding:clamp(24px,3vw,44px);border-radius:28px;background:var(--surf);border:1px solid var(--line);box-shadow:var(--shadow)}
-.dflow{width:100%;height:auto;margin-bottom:clamp(20px,3vw,36px);overflow:visible}
-.df-link path{fill:none;stroke:var(--line2);stroke-width:2;stroke-dasharray:3 7}
-.df-dot{fill:var(--acc)}.df-dot.d2{fill:var(--ok)}
-.df-n circle{fill:var(--surf2);stroke:var(--line2);stroke-width:2;transition:stroke .5s,fill .5s,filter .5s}
-.df-n path{fill:none;stroke:var(--mute);stroke-width:3;stroke-linecap:round}
-.df-n.n2 svg{color:var(--ink)}
-.df-lock rect{fill:var(--bg);stroke:var(--acc);stroke-width:2}.df-lock path{fill:none;stroke:var(--acc);stroke-width:2}
-.dflow text{font-size:12px;fill:var(--mute);text-anchor:middle;font-family:var(--sans);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
-.dp[data-active="0"] .n2 circle,.dp[data-active="1"] .n2 circle,.dp[data-active="2"] .n2 circle,.dp[data-active="3"] .n2 circle,.dp[data-active="5"] .n2 circle,.dp[data-active="4"] .n3 circle,.dp[data-active="6"] .n1 circle{stroke:var(--acc);fill:var(--acc-soft)}
-.dp-p{display:none}
-.dp-p.is-active{display:block;animation:msg .6s var(--ease) both}
-.dp-p .h3{margin-bottom:16px;font-size:clamp(1.3rem,2.2vw,1.9rem)}
-.dp-p .lead{font-size:clamp(1.05rem,1.5vw,1.3rem)}
-@media (max-width:980px){.dp{grid-template-columns:1fr}.dp-a{position:relative;top:0}}
-
 /* ---- disclosures ---- */
 .disc{background:var(--bg2)}
 .disc .h2{margin-bottom:clamp(40px,6vw,88px)}

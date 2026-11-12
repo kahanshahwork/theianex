@@ -81,6 +81,16 @@ Each section chooses what the scene does while it is on screen, using data attri
 
 You do not have to keep the grid out of the way of text: the scene finds headings, copy and panels on its own, fades the grid behind them and dims any tile that drifts behind plain text.
 
+### The Why Theianex climb (the mountain)
+
+`src/js/mountain.js` drives the long mountain on the Why page (section `#mtn`, styles in `src/css/55-mountain.css`). There is no animation library. The scroll position through the section is the only clock:
+
+- The mountain is one long SVG (ridges, contour lines, the route). The SVG `viewBox` is the camera: it pans along the route, zooms in as you climb and pulls back at the summit.
+- The route and ridges are drawn with `stroke-dasharray` / `stroke-dashoffset`. The finer lines are revealed by a mask that moves up ahead of the climber.
+- Checkpoint labels, connector lines and the text are HTML or SVG in screen space, placed from the camera so they stay sharp. The copy sits in the DOM in reading order.
+- On a phone the camera zooms differently, the marker sits near the top and the words underneath. With reduced motion (or no JavaScript) the mountain is dropped and the steps stack as plain content.
+- To change the mountain shape, edit the paths inside `<svg id="mtnSvg">` in `src/pages/why-ianex.html`. The five checkpoints sit at fractions of the route length (`CPS` in `mountain.js`).
+
 ### Scroll-pinned steps
 
 Several sections are not timers any more: they are tall "pinned" sections whose stage sticks to the screen while the scroll position picks the step (`src/js/shared/15-pin.js`, styles in `src/css/45-pin.css`). Used for Trained / Equipped / Flexible, Faster / Smarter / More efficient, the four How we work checkpoints, the Why IANEX? statement and bottlenecks, and the ParaTech moment.

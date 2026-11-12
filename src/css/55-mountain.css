@@ -1,0 +1,126 @@
+/* =========================================================
+   WHY THEIANEX: the climb. One long SVG mountain; the camera follows the route as you scroll.
+   Engine: src/js/mountain.js. The hero above this section is untouched.
+   Without JS or with reduced motion the steps stack as plain content (.mtn-static).
+   ========================================================= */
+.mtn{position:relative;height:calc(100vh + 800vh);height:calc(100svh + 800svh)}
+.mtn-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:radial-gradient(70% 55% at 50% 108%,var(--acc-soft),transparent 72%),var(--bg)}
+.mtn-svg,.mt-con{position:absolute;inset:0;width:100%;height:100%;display:block}
+.mt-con{z-index:2;pointer-events:none}
+
+/* the mountain: thin lines, no fills */
+.mtn-svg path{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:var(--sw,1.2)}
+.mt-body{fill:url(#mtnBg);stroke:none!important}
+.mt-ridge{stroke:color-mix(in srgb,var(--ink) 78%,transparent)}
+.mt-far path{stroke:color-mix(in srgb,var(--ink) 14%,transparent)}
+.mt-fine path{stroke:color-mix(in srgb,var(--ink) 34%,transparent)}
+.mt-cont path{stroke:color-mix(in srgb,var(--ink) 16%,transparent);stroke-dasharray:calc(var(--sw,1.2)*2) calc(var(--sw,1.2)*7)}
+.mt-route{stroke:var(--acc);stroke-width:calc(var(--sw,1.2)*1.9)!important;filter:drop-shadow(0 0 6px var(--acc-soft))}
+.mt-flag{stroke:var(--acc2);stroke-width:calc(var(--sw,1.2)*1.5)!important;opacity:0;transition:opacity .6s}
+.mt-flag.on{opacity:1}
+.mt-dot{fill:var(--acc2);filter:drop-shadow(0 0 9px var(--acc))}
+.mt-con path{fill:none;stroke:color-mix(in srgb,var(--ink) 38%,transparent);stroke-width:1;opacity:0}
+
+/* checkpoint markers (screen space, placed by the engine) */
+.mt-cp{position:absolute;left:0;top:0;z-index:3;pointer-events:none;will-change:transform;opacity:0}
+.cp-r{position:absolute;left:-9px;top:-9px;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--acc);background:var(--bg);transition:background .4s,box-shadow .4s}
+.mt-cp.pass .cp-r{background:var(--acc)}
+.mt-cp.now .cp-r{background:var(--acc);box-shadow:0 0 0 7px var(--acc-soft),0 0 24px var(--acc)}
+.cp-l{position:absolute;left:0;bottom:20px;transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.16em;color:var(--acc2);text-shadow:0 0 12px var(--bg),0 0 4px var(--bg);opacity:0;transition:opacity .35s}
+.mt-cp.now .cp-l{opacity:1}
+
+/* content sits in the negative space beside the route */
+.mt-lay{position:absolute;inset:0;z-index:3;left:50%;width:min(100%,var(--max));transform:translateX(-50%);pointer-events:none}
+.mt-step{position:absolute;inset:0;opacity:0;visibility:hidden;transform:translateY(var(--ty,0px))}
+.mt-step.vis{visibility:visible}
+.mt-step.on{pointer-events:auto}
+.mt-tx{position:absolute;top:50%;width:min(35vw,500px);transform:translateY(-50%);text-shadow:0 0 16px var(--bg),0 0 5px var(--bg),0 0 2px var(--bg)}
+.mt-step[data-side=l] .mt-tx{left:var(--gut)}
+.mt-step[data-side=r] .mt-tx{right:var(--gut)}
+.mt-h{font-weight:300;font-size:clamp(1.7rem,2.7vw,2.7rem);line-height:1.08;letter-spacing:-.035em;text-wrap:balance;margin-bottom:clamp(10px,1.8vh,18px)}
+.mt-p{color:var(--ink2);font-size:clamp(.95rem,1.12vw,1.08rem);line-height:1.5;margin-bottom:10px}
+.mt-help{margin-top:clamp(12px,2vh,20px);padding-top:clamp(10px,1.6vh,16px);border-top:1px solid var(--line)}
+.mt-help .pin-gl{display:inline-flex;align-items:center;gap:.7em;font-family:var(--mono);font-size:.64rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ok);margin-bottom:6px}
+.mt-help .pin-gl::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.mt-help p{color:var(--ink);font-size:clamp(.98rem,1.2vw,1.14rem);line-height:1.5}
+
+/* the small visual on the other side of the route */
+.mt-vis{position:absolute;top:50%;width:min(21vw,290px);height:auto;transform:translateY(-50%);overflow:visible}
+.mt-step[data-side=l] .mt-vis{right:var(--gut)}
+.mt-step[data-side=r] .mt-vis{left:var(--gut)}
+.mt-vis .vs{fill:none;stroke:color-mix(in srgb,var(--ink) 38%,transparent);stroke-width:1.5}
+.mt-vis .va{stroke:var(--acc)}
+.mt-vis .vc{fill:color-mix(in srgb,var(--bg) 78%,transparent)}
+.mt-vis .vb{fill:var(--acc);opacity:.85}
+.mt-vis .vq{fill:var(--warn);stroke:none}
+.mt-vis .vqf{fill:var(--warn)}
+.mt-vis .vh{opacity:1;fill:var(--acc2)}
+.mt-vis .vd circle{fill:var(--acc2)}.mt-vis .vd .vd2{fill:var(--ok)}
+.mt-vis .vl,.mt-vis .vl-g path{stroke-dasharray:300;stroke-dashoffset:300}
+.mt-vis .vi,.mt-vis .vr{opacity:0}
+.mt-vis .vr{transform-box:fill-box;transform-origin:0 50%;transform:scaleX(0)}
+.mt-vis .v5{transition:transform 1.1s var(--ease) .5s}
+.mt-vis .v5a{transform:translateX(24px)}.mt-vis .v5b{transform:translateX(-18px)}.mt-vis .v5c{transform:translateX(36px)}
+.mt-step.on .mt-vis .vi{animation:vIn .6s var(--ease) both;animation-delay:calc(var(--i,0)*.1s)}
+.mt-step.on .mt-vis .vr{animation:vGrow .7s var(--ease) both;animation-delay:calc(var(--i,0)*.1s)}
+.mt-step.on .mt-vis .vl,.mt-step.on .mt-vis .vl-g path{animation:vDraw .9s var(--ease) both;animation-delay:calc(var(--i,0)*.1s)}
+.mt-step.on .mt-vis .v5{transform:none}
+@keyframes vIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes vGrow{from{opacity:0;transform:scaleX(0)}to{opacity:.85;transform:none}}
+@keyframes vDraw{from{stroke-dashoffset:300}to{stroke-dashoffset:0}}
+
+/* W-01 introduction */
+.mt-intro{--ty:0px}
+.mt-in{position:absolute;left:var(--gut);right:var(--gut);top:calc(var(--nav-h) + clamp(16px,5vh,56px));display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,5vw,90px);align-items:start;text-shadow:0 0 16px var(--bg),0 0 4px var(--bg)}
+.mt-t1{font-weight:300;font-size:clamp(2.1rem,4.5vw,4.4rem);line-height:1.02;letter-spacing:-.045em;text-wrap:balance}
+.mt-in-c p{color:var(--ink2);font-size:clamp(.95rem,1.12vw,1.08rem);line-height:1.5;margin-bottom:10px}
+.mt-in-c .link{margin-top:10px}
+
+/* W-07 summit */
+.mt-t2{font-weight:300;font-size:clamp(1.9rem,3.3vw,3.3rem);line-height:1.05;letter-spacing:-.04em;text-wrap:balance;margin-bottom:clamp(12px,2vh,20px)}
+.mt-sum .mt-tx{width:min(34vw,480px);left:var(--gut)}
+.mt-ph{position:absolute;top:50%;transform:translateY(-50%);right:var(--gut);display:flex;flex-direction:column;gap:clamp(14px,3vh,34px);text-align:left}
+.ph{position:relative;padding-left:22px;font-weight:300;font-size:clamp(1.5rem,2.8vw,2.7rem);letter-spacing:-.035em;line-height:1.1;color:var(--ink);opacity:0;transform:translateY(12px);transition:opacity .6s var(--ease),transform .6s var(--ease);text-shadow:0 0 16px var(--bg),0 0 5px var(--bg)}
+.ph::before{content:"";position:absolute;left:0;top:.5em;width:9px;height:9px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 5px var(--acc-soft)}
+.ph.on{opacity:1;transform:none}
+
+/* phone: a simpler vertical climb. Marker in the upper part, words underneath. */
+@media (max-width:900px){
+  .mtn{height:calc(100vh + 720vh);height:calc(100svh + 720svh)}
+  .mt-tx,.mt-sum .mt-tx{left:var(--gut)!important;right:var(--gut)!important;width:auto;top:auto;bottom:clamp(14px,3.4svh,34px);transform:none}
+  .mt-h{font-size:clamp(1.35rem,6vw,1.7rem);margin-bottom:8px}
+  .mt-p{font-size:.88rem;line-height:1.42;margin-bottom:7px}
+  .mt-help{margin-top:8px;padding-top:8px}
+  .mt-help p{font-size:.9rem;line-height:1.42}
+  .mt-help .pin-gl{font-size:.58rem;margin-bottom:3px}
+  .mt-vis{display:none}
+  .mt-in{grid-template-columns:1fr;gap:12px;top:calc(var(--nav-h) + 2px)}
+  .mt-t1{font-size:clamp(1.7rem,8vw,2.2rem)}
+  .mt-in-c p{font-size:.86rem;line-height:1.4;margin-bottom:6px}
+  .mt-t2{font-size:clamp(1.4rem,6.4vw,1.8rem);margin-bottom:8px}
+  .mt-sum .mt-p{font-size:.86rem;line-height:1.4;margin-bottom:6px}
+  .mt-ph{top:calc(var(--nav-h) + 4px);transform:none;left:var(--gut);right:var(--gut);flex-direction:column;gap:6px}
+  .ph{font-size:clamp(1.15rem,5.2vw,1.5rem)}
+  .cp-l{font-size:.6rem}
+}
+
+/* reduced motion or no JS: the steps are plain stacked content, the mountain is dropped */
+.mtn-static{height:auto}
+.mtn-static .mtn-stick{background:none;position:static;height:auto;overflow:visible;padding:clamp(40px,8vw,100px) var(--gut)}
+.mtn-static .mtn-svg,.mtn-static .mt-con,.mtn-static .mt-cp{display:none}
+.mtn-static .mt-lay{position:static;transform:none;width:auto;display:flex;flex-direction:column;gap:clamp(40px,7vw,90px)}
+.mtn-static .mt-step{position:static;opacity:1;visibility:visible;transform:none;pointer-events:auto}
+.mtn-static .mt-step .mt-tx,.mtn-static .mt-in,.mtn-static .mt-ph{position:static;width:auto;max-width:44em;transform:none;display:block}
+.mtn-static .mt-vis{display:none}
+.mtn-static .ph{opacity:1;transform:none;margin-bottom:10px}
+.mtn-static .mt-ph{margin-top:20px}
+.mtn-static .mt-in{display:block}
+.mtn-static .mt-in-c{margin-top:16px}
+html:not(.js) .mtn{height:auto}
+html:not(.js) .mtn-stick{position:static;height:auto;overflow:visible;padding:clamp(40px,8vw,100px) var(--gut)}
+html:not(.js) .mtn-svg,html:not(.js) .mt-con,html:not(.js) .mt-cp{display:none}
+html:not(.js) .mt-lay{position:static;transform:none;width:auto;display:flex;flex-direction:column;gap:60px}
+html:not(.js) .mt-step{position:static;opacity:1;visibility:visible}
+html:not(.js) .mt-step .mt-tx,html:not(.js) .mt-in,html:not(.js) .mt-ph{position:static;width:auto;max-width:44em;transform:none;display:block}
+html:not(.js) .mt-vis{display:none}
+html:not(.js) .ph{opacity:1;transform:none}

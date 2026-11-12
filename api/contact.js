@@ -26,9 +26,11 @@ export default async function handler(req, res) {
   const email = clean(body.email, 200);
   const practice = clean(body.practice, 160);
   const volume = clean(body.volume, 40);
+  const phone = clean(body.phone, 40);
+  const support = clean(body.support, 80);
   const message = String(body.message ?? '').trim().slice(0, 4000);
   if (!name || !practice || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-    return res.status(400).json({ ok: false, error: 'Please check your name, work email and practice.' });
+    return res.status(400).json({ ok: false, error: 'Please check your name, advice firm and business email.' });
   }
   if (!process.env.RESEND_API_KEY || !process.env.CONTACT_TO || !process.env.CONTACT_FROM) {
     return res.status(500).json({ ok: false, error: 'Email is not configured yet.' });
@@ -40,8 +42,8 @@ export default async function handler(req, res) {
       to: [process.env.CONTACT_TO],
       reply_to: email,
       subject: `New enquiry: ${name}, ${practice}`,
-      text: `Name: ${name}\nEmail: ${email}\nPractice: ${practice}\nDocuments a month: ${volume || 'not given'}\n\n${message || '(no message)'}`,
-      html: `<p><b>${esc(name)}</b> (${esc(email)})<br>${esc(practice)}<br>Documents a month: ${esc(volume || 'not given')}</p><p>${esc(message || '(no message)').replace(/\n/g, '<br>')}</p>`,
+      text: `Name: ${name}\nAdvice firm: ${practice}\nEmail: ${email}\nContact number: ${phone || 'not given'}\nType of support: ${support || 'not given'}\nMonthly workload: ${volume || 'not given'}\n\n${message || '(no message)'}`,
+      html: `<p><b>${esc(name)}</b> (${esc(email)})<br>${esc(practice)}<br>Contact number: ${esc(phone || 'not given')}<br>Type of support: ${esc(support || 'not given')}<br>Monthly workload: ${esc(volume || 'not given')}</p><p>${esc(message || '(no message)').replace(/\n/g, '<br>')}</p>`,
     });
 
     const booking = process.env.BOOKING_URL ? `\n\nIf you would rather pick a time now, use this link: ${process.env.BOOKING_URL}` : '';

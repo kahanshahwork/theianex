@@ -39,82 +39,12 @@ html:not(.js) .pre,.no-pre .pre{display:none}
   .hero-cta .link{display:none}
 }
 
-/* ---- 1. who we are ---- */
-.who-grid{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:clamp(32px,6vw,100px);align-items:center}
-.who .h2{margin-bottom:clamp(26px,3.4vw,44px)}
-.who .lead{margin-bottom:22px}
-
-.who-space{aspect-ratio:1/1;width:100%;max-width:640px;justify-self:center}
-
-/* ---- what we prepare: three open columns, each stepping down one even notch ---- */
-.prep .h2{margin-bottom:clamp(36px,5vw,72px);max-width:12em}
-.prep-cards{--step:clamp(0px,5.4vw,88px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3.4vw,56px);align-items:start;padding-bottom:calc(var(--step) * 2)}
-.prep-card{--rise:0;position:relative;padding-top:clamp(18px,2vw,28px);border-top:1px solid var(--line2);margin-top:calc(var(--i,0) * var(--step));
-  transform:translateY(calc((1 - var(--rise)) * 56px));opacity:calc(.04 + var(--rise) * .96);will-change:transform,opacity}
-.prep-card:nth-child(2){--i:1}
-.prep-card:nth-child(3){--i:2}
-.pc-n{display:block;font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;color:var(--mute);margin-bottom:clamp(30px,5vw,72px)}
-.pc-h{font-weight:300;font-size:clamp(1.8rem,3.1vw,3rem);line-height:1.04;letter-spacing:-.035em;color:var(--ink);margin-bottom:clamp(14px,1.6vw,22px);text-wrap:balance}
-.pc-h em{font-style:normal;color:var(--acc2)}
-.pc-p{color:var(--ink2);max-width:21em;font-size:clamp(.98rem,1.15vw,1.12rem);margin-bottom:clamp(18px,2vw,26px)}
-.pc-tags{display:flex;flex-direction:column;gap:6px}
-.pc-tags li{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
-.pc-tags li::before{content:"";display:inline-block;width:14px;height:1px;background:var(--acc);vertical-align:middle;margin-right:10px}
-@media (max-width:900px){
-  .prep-cards{grid-template-columns:1fr;padding-bottom:0}
-  .prep-card{margin-top:0}
-  .pc-n{margin-bottom:18px}
-}
-
-/* ---- trained / equipped / flexible (pinned): three words in a row, one line that changes ---- */
-.who.pin .h2{font-size:clamp(2rem,4.1vw,4rem);margin-bottom:clamp(14px,2vh,26px)}
-.who.pin .lead{margin-bottom:12px;font-size:clamp(1.05rem,1.55vw,1.4rem)}
-.who.pin .copy{font-size:clamp(.92rem,1.05vw,1.05rem)}
-.trio{margin-top:clamp(20px,3.4vh,40px);display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:clamp(14px,2.4vw,40px)}
-.trio-btn{position:relative;display:block;text-align:left;padding:16px 0 0;color:var(--mute);transition:color .4s}
-.trio-btn::before,.trio-btn::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px}
-.trio-btn::before{background:var(--line)}
-.trio-btn::after{background:var(--acc);transform:scaleX(var(--f,0));transform-origin:0 50%}
-.trio-btn b{font-weight:300;font-size:clamp(1.6rem,3.2vw,3rem);line-height:1.05;letter-spacing:-.03em}
-.trio-btn.is-active,.trio-btn:hover{color:var(--ink)}
-.trio-ps{margin-top:clamp(12px,2vh,22px);min-height:3.4em}
-.trio-p{display:none;color:var(--ink2);font-size:clamp(1rem,1.3vw,1.2rem);max-width:30em}
-.trio-p.is-active{display:block;animation:pinIn .5s var(--ease) both}
-@media (max-width:900px){
-  .who-grid{grid-template-columns:1fr}
-  .who-space{display:none}
-  .trio{gap:12px}
-  .trio-btn b{font-size:clamp(1.25rem,5.6vw,1.7rem)}
-}
-@media (max-width:900px) and (max-height:760px){.who.pin .copy{display:none}}
-
-@media (max-width:900px){.tech-note{display:none}}
-/* ---- the ParaTech moment ---- */
-.tech-note{font-size:clamp(1rem,1.5vw,1.3rem);color:var(--ink2);max-width:32em;margin-top:clamp(12px,2vh,24px)}
-
 /* ---- closing ---- */
 .close{overflow:hidden}
 .close-mark{--mkw:.9;position:absolute;right:-8%;top:50%;width:min(86vw,1100px);height:auto;transform:translateY(-50%);color:var(--ink);opacity:.07;pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
 @keyframes drift{from{transform:translateY(-50%) rotate(-3deg)}to{transform:translateY(-53%) rotate(2deg)}}
 .close-in{position:relative}
-.piq-line{display:inline-flex;align-items:center;flex-wrap:wrap;gap:6px 22px;margin-bottom:clamp(40px,6vw,88px);padding:12px 0;border-bottom:1px solid var(--line2);font-size:clamp(.95rem,1.2vw,1.1rem);color:var(--ink2);transition:border-color .3s}
-.piq-line b{color:var(--ink);font-weight:600}
-.piq-go{color:var(--acc);font-weight:550}
-.piq-go::after{content:"  \2192";transition:margin .3s}
-.piq-line:hover{border-color:var(--acc)}
-.piq-line:hover .piq-go::after{margin-left:.5em}
 .close .h1{max-width:12em;margin-bottom:clamp(20px,3vw,34px)}
 .close-cta{display:flex;flex-wrap:wrap;align-items:center;gap:22px 32px;margin-top:clamp(32px,4.4vw,56px)}
 
 
-/* ---- phone, Who we are: each word becomes a big slide that changes as you scroll ---- */
-.who-slides{display:none}
-@media (max-width:900px){
-  .who .trio-ps{display:none}
-  .who-slides{display:block;position:relative;height:clamp(170px,30svh,270px);margin-top:clamp(10px,2.4vh,26px)}
-  .ws{position:absolute;left:0;right:0;top:0;opacity:0;transform:translateY(46px);filter:blur(6px);transition:opacity .55s var(--ease),transform .65s var(--ease),filter .55s var(--ease);pointer-events:none}
-  .ws.is-active{opacity:1;transform:none;filter:none}
-  .ws-n{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;color:var(--acc2);margin-bottom:6px}
-  .ws b{display:block;font-weight:300;font-size:clamp(3.4rem,21vw,6.6rem);line-height:1;letter-spacing:-.055em;color:var(--ink);margin-bottom:clamp(8px,1.6vh,16px)}
-  .ws p{color:var(--ink2);font-size:clamp(1.05rem,4.6vw,1.3rem);max-width:17em}
-}

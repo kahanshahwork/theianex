@@ -9,32 +9,24 @@ Nothing on the site is highlighted. Every drafted or placeholder line is listed 
 
 ## contact
 
-- 20 to 30 minutes
-- booking tool embed goes here (Calendly, Cal.com, or similar)
+- (note, removed from page) Real business contact details go here (email, phone). None were supplied, and the sample booking calendar has been removed until a real calendar integration is configured.
 
 ## how-we-work
 
-- (note, removed from page) what is agreed at this stage
+- (note, removed from page) Section-to-role mapping in the SOA preview is drafted from the board's role lists. Confirm before launch.
 
 ## index
 
 - Paraplanning, with technology built in
 - Paraplanning, built on technology.
-- The documents behind your advice.
+- Paraplanners review the information, carry out the assigned research and preparation, and check the work before it is returned.
+- Processes client documents, extracts the information into a structured file and flags potential gaps for review.
+- SOAs, ROAs and supporting documents, reviewed and returned to the adviser for approval.
 
 ## paraiq
 
-- (note, removed from page) all answers below are drafts: confirm against the product, then have a lawyer review them against the Australian Privacy Act
-- (note, removed from page) confirm against the product
-- region
-- (note, removed from page) hosting location
-- No, if true. Confirm for ParaIQ and for any outside AI provider
-- Name each provider and say what it receives
-- (note, removed from page) confirm
-- retention period
-- (note, removed from page) confirm with a lawyer
+- (note, removed from page) Privacy and architecture statements come from the content board and the ParaIQ product deck. Confirm against the actual implementation, then have a lawyer review against the Privacy Act, before launch.
 - (note, removed from page) exact wording, and whether advisers need to tell their licensee or clients that AI assisted the work (lawyer)
-- (note, removed from page) link to a separate ParaIQ site?
 
 ## privacy
 
@@ -65,21 +57,3 @@ Nothing on the site is highlighted. Every drafted or placeholder line is listed 
 
 - Behind every piece of advice sits a stack of documents. The advice is the part you love. The paperwork around it is where the time goes. So we start with what is slowing you down.
 - (note, removed from page) all copy on this page is a draft, please review
-- Where the time goes
-- Retyping the same facts
-- Client details sit in the fact-find, the statements, the emails and the notes. Every new document starts with someone typing them out again.
-- Technology reads the file once and carries the facts through, so nobody retypes what already exists.
-- Chasing what is missing
-- A draft stalls on a question that only surfaces halfway through: a balance, a date, a signed form.
-- Gaps are flagged at the brief and sent to you as one list, not scattered across the week.
-- Rounds of revisions
-- A figure does not match, a recommendation does not quite tie back to the goal, and the document goes back and forth.
-- Every draft is checked against the client file, and a paraplanner reviews what is flagged, before it reaches you.
-- Busy weeks and deadlines
-- Reviews cluster and deadlines bunch. The team that coped last week is stretched this week.
-- A team that flexes with your volume and works the way your practice works.
-- Consistency at the end
-- Disclosures, assumptions and wording drift from one document to the next, and checking them is the last thing anyone has time for.
-- A final consistency check on every document, with the assumptions stated in a short handover note.
-- And the documents keep moving.
-- Paraplanning, built on technology.
