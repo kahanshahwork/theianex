@@ -34,6 +34,7 @@ body.is-home:not(.past-hero) .chap{opacity:0}
 .chap i{font-style:normal;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
 .chap.swap i,.chap.swap b{animation:chapIn .6s var(--ease)}
 @keyframes chapIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (max-width:900px){.chap{display:none!important}}
 @media (max-width:700px){.chap{bottom:14px}.chap small{display:none}.chap i{font-size:.68rem}}
 
 /* keep copy readable when tiles pass behind it */

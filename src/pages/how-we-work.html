@@ -81,59 +81,61 @@ scripts: how-hero.js
   </div>
 </section>
 
-<!-- ============ HW-03 ROLES: one large SOA preview, sections show who is responsible ============ -->
-<section class="sec roles" id="roles" data-chapter="Responsibilities" data-form="none" data-glow="5" data-grid="3">
-  <div class="wrap">
-    <span class="kick rv">Roles <mark class="tbc note">Section-to-role mapping in the SOA preview is drafted from the board's role lists. Confirm before launch.</mark></span>
-    <h2 class="h2 rv">Clear responsibilities <em>throughout the process.</em></h2>
-    <div class="rl rv" data-tabs>
-      <div class="soa" role="tablist" aria-label="Sections of a Statement of Advice">
-        <span class="soa-h">Statement of Advice</span>
-        <button class="soa-s" data-tab="0" type="button"><b>1</b>Client information<i></i></button>
-        <button class="soa-s" data-tab="1" type="button"><b>2</b>Scope of advice<i></i></button>
-        <button class="soa-s" data-tab="2" type="button"><b>3</b>Research and strategy<i></i></button>
-        <button class="soa-s" data-tab="3" type="button"><b>4</b>Draft and preliminary checks<i></i></button>
-        <button class="soa-s" data-tab="4" type="button"><b>5</b>Review and quality check<i></i></button>
-        <button class="soa-s" data-tab="5" type="button"><b>6</b>Recommendations and approval<i></i></button>
+<!-- ============ HW-03 ROLES: one SOA, six sections, three roles. Scroll walks down the SOA; the responsible role lights up beside it ============ -->
+<section class="pin roles" id="roles" data-pin="6" style="--steps:6;--sl:30vh" data-chapter="Responsibilities" data-form="none" data-glow="5" data-grid="3">
+  <div class="pin-stick">
+    <div class="wrap">
+      <span class="kick rv">Roles <mark class="tbc note">Section-to-role mapping in the SOA preview is drafted from the board's role lists. Confirm before launch.</mark></span>
+      <h2 class="h2 pin-h2 rv">Clear responsibilities <em>throughout the process.</em></h2>
+      <div class="rl2">
+        <div class="soa2" role="tablist" aria-label="Sections of a Statement of Advice">
+          <div class="soa2-h"><span>Statement of Advice</span><i class="ln c-iq">ParaIQ</i><i class="ln c-pp">Paraplanner</i><i class="ln c-ad">Adviser</i></div>
+          <div class="soa2-r" data-tab="0" tabindex="0"><b>1</b><span>Client information</span><s class="c-iq on"></s><s class="c-pp"></s><s class="c-ad"></s></div>
+          <div class="soa2-r" data-tab="1" tabindex="0"><b>2</b><span>Scope of advice</span><s class="c-iq"></s><s class="c-pp"></s><s class="c-ad on"></s></div>
+          <div class="soa2-r" data-tab="2" tabindex="0"><b>3</b><span>Research and strategy</span><s class="c-iq"></s><s class="c-pp on"></s><s class="c-ad"></s></div>
+          <div class="soa2-r" data-tab="3" tabindex="0"><b>4</b><span>Draft and preliminary checks</span><s class="c-iq on"></s><s class="c-pp"></s><s class="c-ad"></s></div>
+          <div class="soa2-r" data-tab="4" tabindex="0"><b>5</b><span>Review and quality check</span><s class="c-iq"></s><s class="c-pp on"></s><s class="c-ad"></s></div>
+          <div class="soa2-r" data-tab="5" tabindex="0"><b>6</b><span>Recommendations and approval</span><s class="c-iq"></s><s class="c-pp"></s><s class="c-ad on"></s></div>
+        </div>
+        <div class="rcs">
+          <div class="rc c-iq"><span class="rl-who">Technology &middot; ParaIQ</span><ul><li>Processes supported documents.</li><li>Extracts and structures information.</li><li>Identifies potential gaps and inconsistencies.</li><li>Assists with drafting and preliminary checks.</li></ul></div>
+          <div class="rc c-pp"><span class="rl-who">Paraplanners &middot; Theianex</span><ul><li>Review extracted information.</li><li>Conduct assigned research and preparation.</li><li>Examine issues and refine documents.</li><li>Perform quality checks before handover.</li></ul></div>
+          <div class="rc c-ad"><span class="rl-who">Financial adviser &middot; You</span><ul><li>Provide client context and instructions.</li><li>Determine appropriate recommendations.</li><li>Review the completed advice.</li><li>Retain final advice and approval responsibility.</li></ul></div>
+        </div>
       </div>
-      <div class="rl-view">
-        <div class="rl-pn" data-panel="0"><span class="rl-who">Technology · ParaIQ</span><ul><li>Processes supported documents.</li><li>Extracts and structures information.</li><li>Identifies potential gaps and inconsistencies.</li><li>Assists with drafting and preliminary checks.</li></ul></div>
-        <div class="rl-pn" data-panel="1"><span class="rl-who">Financial adviser · You</span><ul><li>Provide client context and instructions.</li><li>Determine appropriate recommendations.</li><li>Review the completed advice.</li><li>Retain final advice and approval responsibility.</li></ul></div>
-        <div class="rl-pn" data-panel="2"><span class="rl-who">Paraplanners · Theianex</span><ul><li>Review extracted information.</li><li>Conduct assigned research and preparation.</li><li>Examine issues and refine documents.</li><li>Perform quality checks before handover.</li></ul></div>
-        <div class="rl-pn" data-panel="3"><span class="rl-who">Technology · ParaIQ</span><ul><li>Processes supported documents.</li><li>Extracts and structures information.</li><li>Identifies potential gaps and inconsistencies.</li><li>Assists with drafting and preliminary checks.</li></ul></div>
-        <div class="rl-pn" data-panel="4"><span class="rl-who">Paraplanners · Theianex</span><ul><li>Review extracted information.</li><li>Conduct assigned research and preparation.</li><li>Examine issues and refine documents.</li><li>Perform quality checks before handover.</li></ul></div>
-        <div class="rl-pn" data-panel="5"><span class="rl-who">Financial adviser · You</span><ul><li>Provide client context and instructions.</li><li>Determine appropriate recommendations.</li><li>Review the completed advice.</li><li>Retain final advice and approval responsibility.</li></ul></div>
-        <span class="ill">Select a section. Illustrative layout.</span>
-      </div>
+      <span class="ill">Illustrative layout</span>
     </div>
   </div>
 </section>
 
-<!-- ============ HW-04 INSIDE A CLIENT FILE: simulated four-tab walkthrough ============ -->
-<section class="sec walk" id="client-file" data-chapter="Inside a client file" data-form="none" data-glow="2" data-grid="3">
-  <div class="wrap">
-    <span class="kick rv">Inside a client file</span>
-    <h2 class="h2 rv">See how a client file moves <em>through ParaIQ.</em></h2>
-    <p class="lead rv">ParaIQ supports the preparation process by turning information from multiple client documents into a structured working file.</p>
-    <p class="walk-p rv">Our paraplanners use this information to review the case, identify outstanding matters and progress the advice documentation.</p>
-    <div class="wk rv" data-tabs>
-      <div class="wk-tabs" role="tablist" aria-label="Client case walkthrough">
-        <button class="wk-tab" data-tab="0" type="button"><b>01</b>Documents received</button>
-        <button class="wk-tab" data-tab="1" type="button"><b>02</b>Structured client information</button>
-        <button class="wk-tab" data-tab="2" type="button"><b>03</b>Initial review and queries</button>
-        <button class="wk-tab" data-tab="3" type="button"><b>04</b>Advice document draft</button>
+<!-- ============ HW-04 INSIDE A CLIENT FILE: four steps, one fixed window ============ -->
+<section class="pin walk" id="client-file" data-pin="4" style="--steps:4;--sl:38vh" data-chapter="Inside a client file" data-form="none" data-glow="2" data-grid="3">
+  <div class="pin-stick">
+    <div class="wrap wk-grid">
+      <div class="wk-copy">
+        <span class="kick rv">Inside a client file</span>
+        <h2 class="h2 pin-h2 rv">See how a client file moves <em>through ParaIQ.</em></h2>
+        <p class="wk-lead rv">ParaIQ turns information from multiple client documents into a structured working file. Our paraplanners use it to review the case, identify outstanding matters and progress the advice documentation.</p>
+        <ol class="wk-rail" role="tablist" aria-label="Client case walkthrough">
+          <li class="wk-st" data-tab="0" tabindex="0"><b>01</b>Documents received</li>
+          <li class="wk-st" data-tab="1" tabindex="0"><b>02</b>Structured client information</li>
+          <li class="wk-st" data-tab="2" tabindex="0"><b>03</b>Initial review and queries</li>
+          <li class="wk-st" data-tab="3" tabindex="0"><b>04</b>Advice document draft</li>
+        </ol>
       </div>
-      <div class="app wk-win" aria-hidden="false">
-        <div class="app-bar"><i></i><i></i><i></i><span>ParaIQ · Client case</span></div>
-        <div class="wk-body">
-          <div class="wk-pn" data-panel="0"><span class="wk-r"><u>Fact-find.pdf</u><em class="ok">Received</em></span><span class="wk-r"><u>Super statement.pdf</u><em class="ok">Received</em></span><span class="wk-r"><u>Insurance schedule.pdf</u><em class="ok">Received</em></span><span class="wk-r"><u>Meeting notes.docx</u><em class="ok">Received</em></span></div>
-          <div class="wk-pn" data-panel="1"><div class="sf"><span><u>Client</u>Details organised</span><span><u>Income</u>Organised</span><span><u>Assets and liabilities</u>Organised</span><span><u>Superannuation</u>Organised</span><span><u>Insurance</u>Organised</span><span><u>Goals</u>From adviser instructions</span></div></div>
-          <div class="wk-pn" data-panel="2"><span class="wk-r"><u>Figure differs between two documents</u><em class="q">Query</em></span><span class="wk-r"><u>Beneficiary details not supplied</u><em class="q">Query</em></span><span class="wk-r"><u>Income details consistent</u><em class="ok">Checked</em></span></div>
-          <div class="wk-pn" data-panel="3"><div class="paper"><span class="pp-h">Draft advice document</span><i class="pp-l w9"></i><i class="pp-l w8"></i><span class="pp-s">Draft for paraplanner review</span><i class="pp-l w7"></i><i class="pp-l w9"></i></div></div>
+      <div class="wk-side">
+        <div class="app wk-win">
+          <div class="app-bar"><i></i><i></i><i></i><span>ParaIQ &middot; Client case</span></div>
+          <div class="wk-body">
+            <div class="wk-pn" data-panel="0"><span class="wk-r"><u>Fact-find.pdf</u><em class="ok">Received</em></span><span class="wk-r"><u>Super statement.pdf</u><em class="ok">Received</em></span><span class="wk-r"><u>Insurance schedule.pdf</u><em class="ok">Received</em></span><span class="wk-r"><u>Meeting notes.docx</u><em class="ok">Received</em></span></div>
+            <div class="wk-pn" data-panel="1"><div class="sf"><span><u>Client</u>Details organised</span><span><u>Income</u>Organised</span><span><u>Assets and liabilities</u>Organised</span><span><u>Superannuation</u>Organised</span><span><u>Insurance</u>Organised</span><span><u>Goals</u>From adviser instructions</span></div></div>
+            <div class="wk-pn" data-panel="2"><span class="wk-r"><u>Figure differs between two documents</u><em class="q">Query</em></span><span class="wk-r"><u>Beneficiary details not supplied</u><em class="q">Query</em></span><span class="wk-r"><u>Income details consistent</u><em class="ok">Checked</em></span></div>
+            <div class="wk-pn" data-panel="3"><div class="paper"><span class="pp-h">Draft advice document</span><i class="pp-l w9"></i><i class="pp-l w8"></i><span class="pp-s">Draft for paraplanner review</span><i class="pp-l w7"></i><i class="pp-l w9"></i></div></div>
+          </div>
         </div>
+        <p class="ill walk-ill">Illustrative demonstration. Not connected to the live ParaIQ system.</p>
       </div>
     </div>
-    <p class="ill walk-ill">Illustrative demonstration. This page is not connected to the live ParaIQ system.</p>
   </div>
 </section>
 

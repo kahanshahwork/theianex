@@ -5,7 +5,6 @@ Nothing on the site is highlighted. Every drafted or placeholder line is listed 
 ## 404
 
 - hello@your-domain.com.au
-- Legal entity name and ABN
 
 ## contact
 
@@ -31,7 +30,7 @@ Nothing on the site is highlighted. Every drafted or placeholder line is listed 
 ## privacy
 
 - (note, removed from page) placeholder structure only. Have a lawyer write and approve the final policy before launch
-- Legal entity name, ABN and address
+- (note, removed from page) add registered address when available
 - (note, removed from page) add client file data we handle for advisers, and the role we hold under the Privacy Act
 - (note, removed from page) lawyer to confirm
 - list service providers, including email, hosting and AI providers, and any overseas disclosure

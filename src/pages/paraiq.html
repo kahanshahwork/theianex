@@ -34,74 +34,65 @@ scripts: paraiq-chat.js
   </div>
 </section>
 
-<!-- ============ P-02 CAPABILITIES: product-interface walkthrough, five selectable capabilities ============ -->
-<section class="sec caps" id="capabilities" data-chapter="Capabilities" data-form="none" data-glow="1" data-grid="3">
-  <div class="wrap">
-    <a class="more rv" href="https://paraiq.site/" target="_blank" rel="noopener">For more information on ParaIQ, visit paraiq.site<span aria-hidden="true"> &#8599;</span></a>
-    <span class="kick rv">Capabilities</span>
-    <h2 class="h2 rv">One workspace. Multiple stages of <em>paraplanning.</em></h2>
-    <div class="cap rv" data-tabs>
-      <div class="cap-list" role="tablist" aria-label="ParaIQ capabilities">
-        <button class="cap-tab" data-tab="0" type="button"><b>01</b>Document processing</button>
-        <button class="cap-tab" data-tab="1" type="button"><b>02</b>Structured data</button>
-        <button class="cap-tab" data-tab="2" type="button"><b>03</b>Initial review</button>
-        <button class="cap-tab" data-tab="3" type="button"><b>04</b>SOA preparation</button>
-        <button class="cap-tab" data-tab="4" type="button"><b>05</b>Orin</button>
+<!-- ============ P-02 CAPABILITIES: the product's own sidebar is the selector; scroll walks down it ============ -->
+<section class="pin caps" id="capabilities" data-pin="4" style="--steps:4;--sl:36vh" data-chapter="Capabilities" data-form="none" data-glow="1" data-grid="3">
+  <div class="pin-stick">
+    <div class="wrap">
+      <a class="more rv" href="https://paraiq.site/" target="_blank" rel="noopener">For more information on ParaIQ, visit paraiq.site<span aria-hidden="true"> &#8599;</span></a>
+      <span class="kick rv">Capabilities</span>
+      <h2 class="h2 pin-h2 rv">One workspace. Multiple stages of <em>paraplanning.</em></h2>
+      <div class="app cap-app">
+        <div class="app-bar"><i></i><i></i><i></i><span>ParaIQ</span></div>
+        <div class="cap-in">
+          <div class="cap-side" role="tablist" aria-label="ParaIQ capabilities">
+            <span class="cap-sh">Workspace</span>
+            <div class="cap-tab" data-tab="0" tabindex="0"><b>01</b>Document processing</div>
+            <div class="cap-tab" data-tab="1" tabindex="0"><b>02</b>Structured data</div>
+            <div class="cap-tab" data-tab="2" tabindex="0"><b>03</b>Initial review</div>
+            <div class="cap-tab" data-tab="3" tabindex="0"><b>04</b>SOA preparation</div>
+            <a class="cap-more" href="#orin"><b>05</b>Orin<span aria-hidden="true"> &darr;</span></a>
+          </div>
+          <div class="cap-view">
+            <div class="cap-pn" data-panel="0"><p class="cap-d">Upload and process multiple supported client documents, including PDFs, Word documents, spreadsheets and images.</p>
+              <div class="cap-body"><span class="wk-r"><u>Fact-find.pdf</u><em class="ok">Processed</em></span><span class="wk-r"><u>Meeting notes.docx</u><em class="ok">Processed</em></span><span class="wk-r"><u>Cash flow.xlsx</u><em class="ok">Processed</em></span><span class="wk-r"><u>Insurance schedule.png</u><em class="ok">Processed</em></span></div></div>
+            <div class="cap-pn" data-panel="1"><p class="cap-d">Extract relevant client information and organise it into structured data with references to the original source documents.</p>
+              <div class="cap-body"><span class="wk-r"><u>Client details</u><em class="src">Fact-find</em></span><span class="wk-r"><u>Income and expenses</u><em class="src">Cash flow</em></span><span class="wk-r"><u>Insurance</u><em class="src">Insurance schedule</em></span><span class="wk-r"><u>Goals and objectives</u><em class="src">Meeting notes</em></span></div></div>
+            <div class="cap-pn" data-panel="2"><p class="cap-d">Identify missing information, potential discrepancies and matters requiring clarification before proceeding with document preparation.</p>
+              <div class="cap-body"><span class="wk-r"><u>Missing information</u><em class="q">Query</em></span><span class="wk-r"><u>Potential discrepancy between documents</u><em class="q">Query</em></span><span class="wk-r"><u>Matter requiring clarification</u><em class="q">Query</em></span><span class="wk-r"><u>Information consistent</u><em class="ok">Checked</em></span></div></div>
+            <div class="cap-pn" data-panel="3"><p class="cap-d">Assist with preparing structured Statement of Advice drafts using the available client information and relevant preparation instructions.</p>
+              <div class="cap-body"><div class="paper"><span class="pp-h">Statement of Advice (draft)</span><span class="pp-s">Scope of advice</span><i class="pp-l w9"></i><i class="pp-l w7"></i><span class="pp-s">Client circumstances</span><i class="pp-l w8"></i><i class="pp-l w6"></i><span class="pp-s">Recommendations</span><i class="pp-l w9"></i></div></div></div>
+          </div>
+        </div>
       </div>
-      <div class="cap-view">
-        <div class="cap-pn" data-panel="0">
-          <p class="cap-d">Upload and process multiple supported client documents, including PDFs, Word documents, spreadsheets and images.</p>
-          <div class="app"><div class="app-bar"><i></i><i></i><i></i><span>ParaIQ · Documents</span></div><div class="cap-body">
-            <span class="wk-r"><u>Fact-find.pdf</u><em class="ok">Processed</em></span><span class="wk-r"><u>Meeting notes.docx</u><em class="ok">Processed</em></span><span class="wk-r"><u>Cash flow.xlsx</u><em class="ok">Processed</em></span><span class="wk-r"><u>Insurance schedule.png</u><em class="ok">Processed</em></span></div></div>
-        </div>
-        <div class="cap-pn" data-panel="1">
-          <p class="cap-d">Extract relevant client information and organise it into structured data with references to the original source documents.</p>
-          <div class="app"><div class="app-bar"><i></i><i></i><i></i><span>ParaIQ · Client data</span></div><div class="cap-body">
-            <span class="wk-r"><u>Client details</u><em class="src">Fact-find</em></span><span class="wk-r"><u>Income and expenses</u><em class="src">Cash flow</em></span><span class="wk-r"><u>Insurance</u><em class="src">Insurance schedule</em></span><span class="wk-r"><u>Goals and objectives</u><em class="src">Meeting notes</em></span></div></div>
-        </div>
-        <div class="cap-pn" data-panel="2">
-          <p class="cap-d">Identify missing information, potential discrepancies and matters requiring clarification before proceeding with document preparation.</p>
-          <div class="app"><div class="app-bar"><i></i><i></i><i></i><span>ParaIQ · Initial review</span></div><div class="cap-body">
-            <span class="wk-r"><u>Missing information</u><em class="q">Query</em></span><span class="wk-r"><u>Potential discrepancy between documents</u><em class="q">Query</em></span><span class="wk-r"><u>Matter requiring clarification</u><em class="q">Query</em></span><span class="wk-r"><u>Information consistent</u><em class="ok">Checked</em></span></div></div>
-        </div>
-        <div class="cap-pn" data-panel="3">
-          <p class="cap-d">Assist with preparing structured Statement of Advice drafts using the available client information and relevant preparation instructions.</p>
-          <div class="app"><div class="app-bar"><i></i><i></i><i></i><span>ParaIQ · SOA draft</span></div><div class="cap-body"><div class="paper"><span class="pp-h">Statement of Advice (draft)</span><span class="pp-s">Scope of advice</span><i class="pp-l w9"></i><i class="pp-l w7"></i><span class="pp-s">Client circumstances</span><i class="pp-l w8"></i><i class="pp-l w6"></i><span class="pp-s">Recommendations</span><i class="pp-l w9"></i></div></div></div>
-        </div>
-        <div class="cap-pn" data-panel="4">
-          <p class="cap-d">Interact with case information through natural-language questions, helping paraplanners understand and navigate the available client records.</p>
-          <div class="app"><div class="app-bar"><i></i><i></i><i></i><span>ParaIQ · Orin</span></div><div class="cap-body"><div class="oc"><span class="oc-u">Which documents mention the client's insurance?</span><span class="oc-a"><b>Orin</b>Two supplied documents refer to insurance cover: the insurance schedule and the meeting notes.<em class="src">Insurance schedule</em><em class="src">Meeting notes</em></span></div></div></div>
-        </div>
-        <span class="ill">Illustrative interface, not a screenshot of live client data.</span>
-      </div>
+      <span class="ill">Illustrative interface, not a screenshot of live client data.</span>
     </div>
   </div>
 </section>
 
-<!-- ============ P-03 WORKFLOW EFFICIENCY: before and after processing animation ============ -->
-<section class="sec eff" id="efficiency" data-chapter="Efficiency" data-form="none" data-glow="2" data-grid="3">
-  <div class="wrap eff-grid">
-    <div>
-      <span class="kick rv">Workflow</span>
-      <h2 class="h2 rv">Faster processing. Earlier visibility. <em>More time for review.</em></h2>
-      <p class="eff-p rv">One of the most time-consuming parts of paraplanning is bringing together information from multiple client documents and identifying what is missing.</p>
-      <p class="eff-p rv">ParaIQ assists with this work by processing the documents, extracting relevant information and preparing an initial review.</p>
-      <p class="eff-p rv">For suitable files, this stage can be completed in approximately 30 minutes, allowing our paraplanners to move into reviewing the findings and progressing the case sooner.</p>
-    </div>
-    <div class="ba rv" data-tabs data-auto="3400">
-      <div class="ba-cols">
-        <div class="ba-b"><span class="ba-h">Before</span><div class="ba-stack" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><p>Multiple documents, read and consolidated by hand.</p></div>
-        <div class="ba-a"><span class="ba-h">With ParaIQ</span>
-          <div class="ba-pn" data-panel="0"><div class="ba-up"><i></i><i></i><i></i></div><p>Multiple files uploaded</p></div>
-          <div class="ba-pn" data-panel="1"><div class="ba-ex"><i></i><i></i><i></i><i></i></div><p>Information extracted</p></div>
-          <div class="ba-pn" data-panel="2"><div class="sf"><span><u>Client</u>Profile</span><span><u>Income</u>Organised</span><span><u>Super</u>Organised</span><span><u>Insurance</u>Organised</span></div><p>Structured client profile generated</p></div>
-          <div class="ba-pn" data-panel="3"><div class="gp"><b>Potential gaps</b><span>Figure differs between two documents</span><span>Beneficiary details not supplied</span></div><p>Potential gaps highlighted</p></div>
-          <div class="ba-pn" data-panel="4"><div class="pr"><span class="pr-h">Paraplanner review</span><span class="pr-r ok"><s></s>Findings examined</span><span class="pr-r"><s></s>Queries consolidated</span></div><p>A paraplanner reviews the result</p></div>
-        </div>
+<!-- ============ P-03 WORKFLOW EFFICIENCY: before and after, five steps driven by scroll ============ -->
+<section class="pin eff" id="efficiency" data-pin="5" style="--steps:5;--sl:30vh" data-chapter="Efficiency" data-form="none" data-glow="2" data-grid="3">
+  <div class="pin-stick">
+    <div class="wrap eff-grid">
+      <div class="eff-copy">
+        <span class="kick rv">Workflow</span>
+        <h2 class="h2 pin-h2 rv">Faster processing. Earlier visibility. <em>More time for review.</em></h2>
+        <p class="eff-p rv">Bringing together information from multiple client documents and finding what is missing is one of the most time-consuming parts of paraplanning. ParaIQ processes the documents, extracts the relevant information and prepares an initial review, so our paraplanners can move on to the findings sooner.</p>
+        <p class="ba-an rv">For suitable files, about 30 minutes.* <small>*Indicative internal benchmark for initial processing and review, subject to file complexity and validation. It is not the time to complete an SOA.</small></p>
       </div>
-      <div class="ba-steps" role="tablist" aria-label="Processing stages"><button data-tab="0" type="button" aria-label="Upload"></button><button data-tab="1" type="button" aria-label="Extract"></button><button data-tab="2" type="button" aria-label="Profile"></button><button data-tab="3" type="button" aria-label="Gaps"></button><button data-tab="4" type="button" aria-label="Review"></button></div>
-      <p class="ba-an">Approximately 30 minutes for suitable files.* <small>*Indicative internal benchmark for initial processing and review, subject to file complexity and validation. It is not the time to complete an SOA.</small></p>
-      <span class="ill">Illustrative animation</span>
+      <div class="ba rv">
+        <div class="ba-cols">
+          <div class="ba-b"><span class="ba-h">Before</span><div class="ba-stack" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><p>Multiple documents, read and consolidated by hand.</p></div>
+          <div class="ba-a"><span class="ba-h">With ParaIQ</span>
+            <div class="ba-pn" data-panel="0"><div class="ba-up"><i></i><i></i><i></i></div><p>Multiple files uploaded</p></div>
+            <div class="ba-pn" data-panel="1"><div class="ba-ex"><i></i><i></i><i></i><i></i></div><p>Information extracted</p></div>
+            <div class="ba-pn" data-panel="2"><div class="sf"><span><u>Client</u>Profile</span><span><u>Income</u>Organised</span><span><u>Super</u>Organised</span><span><u>Insurance</u>Organised</span></div><p>Structured client profile generated</p></div>
+            <div class="ba-pn" data-panel="3"><div class="gp"><b>Potential gaps</b><span>Figure differs between two documents</span><span>Beneficiary details not supplied</span></div><p>Potential gaps highlighted</p></div>
+            <div class="ba-pn" data-panel="4"><div class="pr"><span class="pr-h">Paraplanner review</span><span class="pr-r ok"><s></s>Findings examined</span><span class="pr-r"><s></s>Queries consolidated</span></div><p>A paraplanner reviews the result</p></div>
+          </div>
+        </div>
+        <div class="ba-steps" role="tablist" aria-label="Processing stages"><button data-tab="0" type="button" aria-label="Upload"></button><button data-tab="1" type="button" aria-label="Extract"></button><button data-tab="2" type="button" aria-label="Profile"></button><button data-tab="3" type="button" aria-label="Gaps"></button><button data-tab="4" type="button" aria-label="Review"></button></div>
+        <span class="ill">Illustrative animation</span>
+      </div>
     </div>
   </div>
 </section>
@@ -123,24 +114,26 @@ scripts: paraiq-chat.js
   </div>
 </section>
 
-<!-- ============ P-05 ARCHITECTURE: local-first document handling ============ -->
-<section class="sec arch-sec" id="architecture" data-chapter="Architecture" data-form="none" data-glow="2" data-grid="3">
-  <div class="wrap">
-    <span class="kick rv">Architecture and privacy <mark class="tbc note">Privacy and architecture statements come from the content board and the ParaIQ product deck. Confirm against the actual implementation, then have a lawyer review against the Privacy Act, before launch.</mark></span>
-    <h2 class="h2 rv">Designed around local-first <em>document handling.</em></h2>
-    <div class="arch-t">
-      <p class="rv">ParaIQ runs within a designated local application environment, where client cases, working documents and drafts are maintained.</p>
-      <p class="rv">For AI-assisted processing, relevant information is transmitted to the configured external AI service provider. Our implementation is designed to use providers with zero-data-retention arrangements.</p>
-      <p class="rv">This architecture allows us to integrate AI capabilities into paraplanning workflows while maintaining clear distinctions between local document handling and external AI processing.</p>
+<!-- ============ P-05 ARCHITECTURE: one diagram, three statements; scroll lights the matching part ============ -->
+<section class="pin arch-sec" id="architecture" data-pin="3" style="--steps:3;--sl:34vh" data-chapter="Architecture" data-form="none" data-glow="2" data-grid="3">
+  <div class="pin-stick">
+    <div class="wrap">
+      <span class="kick rv">Architecture and privacy <mark class="tbc note">Privacy and architecture statements come from the content board and the ParaIQ product deck. Confirm against the actual implementation, then have a lawyer review against the Privacy Act, before launch.</mark></span>
+      <h2 class="h2 pin-h2 rv">Designed around local-first <em>document handling.</em></h2>
+      <div class="arch" role="tablist" aria-label="Local-first document handling: local application, external AI service, local workflow">
+        <div class="az az-l" data-tab="0" tabindex="0"><span class="az-k">Local</span><b>Local ParaIQ application</b><ul><li>Documents</li><li>Cases</li><li>Drafts</li><li>Working data</li></ul></div>
+        <div class="al" aria-hidden="true"><i></i><span>Task-specific information transmitted</span></div>
+        <div class="az az-x" data-tab="1" tabindex="0"><span class="az-k">External</span><b>External AI processing</b><ul><li>Configured AI service provider</li><li>Zero-data-retention arrangements by design</li></ul></div>
+        <div class="al al2" aria-hidden="true"><i></i><span>Results returned</span></div>
+        <div class="az az-l" data-tab="2" tabindex="0"><span class="az-k">Local</span><b>Local workflow</b><ul><li>Returned results</li><li>Reviewed by paraplanners</li></ul></div>
+      </div>
+      <div class="arch-t">
+        <p class="ar-pn" data-panel="0">ParaIQ runs within a designated local application environment, where client cases, working documents and drafts are maintained.</p>
+        <p class="ar-pn" data-panel="1">For AI-assisted processing, relevant information is transmitted to the configured external AI service provider. Our implementation is designed to use providers with zero-data-retention arrangements.</p>
+        <p class="ar-pn" data-panel="2">This architecture allows us to integrate AI capabilities into paraplanning workflows while maintaining clear distinctions between local document handling and external AI processing.</p>
+      </div>
+      <p class="arch-n">Full details are in our <a class="link" href="/privacy">Privacy Policy</a>.</p>
     </div>
-    <div class="arch rv" role="img" aria-label="Diagram: the local ParaIQ application sends task-specific information to an external AI service provider; results return to the local workflow for paraplanner review.">
-      <div class="az az-l"><span class="az-k">Local</span><b>Local ParaIQ application</b><ul><li>Documents</li><li>Cases</li><li>Drafts</li><li>Working data</li></ul></div>
-      <div class="al" aria-hidden="true"><i></i><span>Task-specific information transmitted</span></div>
-      <div class="az az-x"><span class="az-k">External</span><b>External AI processing</b><ul><li>Configured AI service provider</li><li>Zero-data-retention arrangements by design</li></ul></div>
-      <div class="al al2" aria-hidden="true"><i></i><span>Results returned</span></div>
-      <div class="az az-l"><span class="az-k">Local</span><b>Local workflow</b><ul><li>Returned results</li><li>Reviewed by paraplanners</li></ul></div>
-    </div>
-    <p class="arch-n rv">Full details are in our <a class="link" href="/privacy">Privacy Policy</a>.</p>
   </div>
 </section>
 

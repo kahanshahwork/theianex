@@ -81,19 +81,19 @@ Each section chooses what the scene does while it is on screen, using data attri
 
 You do not have to keep the grid out of the way of text: the scene finds headings, copy and panels on its own, fades the grid behind them and dims any tile that drifts behind plain text.
 
-### The Why Theianex climb (the mountain)
+### The Why Theianex climb (Everest)
 
-`src/js/mountain.js` drives the long mountain on the Why page (section `#mtn`, styles in `src/css/55-mountain.css`). There is no animation library. The scroll position through the section is the only clock:
+`src/js/mountain.js` drives the Everest climb on the Why page (section `#mtn`, styles in `src/css/55-mountain.css`). There is no animation library. The scroll position through the section is the only clock.
 
-- The mountain is one long SVG (ridges, contour lines, the route). The SVG `viewBox` is the camera: it pans along the route, zooms in as you climb and pulls back at the summit.
-- The route and ridges are drawn with `stroke-dasharray` / `stroke-dashoffset`. The finer lines are revealed by a mask that moves up ahead of the climber.
-- Checkpoint labels, connector lines and the text are HTML or SVG in screen space, placed from the camera so they stay sharp. The copy sits in the DOM in reading order.
-- On a phone the camera zooms differently, the marker sits near the top and the words underneath. With reduced motion (or no JavaScript) the mountain is dropped and the steps stack as plain content.
-- To change the mountain shape, edit the paths inside `<svg id="mtnSvg">` in `src/pages/why-ianex.html`. The five checkpoints sit at fractions of the route length (`CPS` in `mountain.js`).
+- The mountain is one outline, generated in `mountain.js` (a long wavy left slope, a rounded summit, a shorter steeper right slope). It is drawn into `<svg id="mtnSvg">` at load, so the page HTML holds only the text.
+- The camera is one transform on the SVG group. It starts on the whole mountain (title inside it), zooms to the base, zooms in on flag 1, zooms out so the trail climbs the slope, zooms in on flag 2, and so on, then pulls back to the whole mountain for the closing title.
+- Text is HTML in screen space and always straight. At each flag the problem sits in the sky beside it and "How Theianex helps" sits inside the mountain. On a phone the problem sits above the flag and the help below it.
+- Timing: the `KEYS` list in `measure()` maps scroll position to route position, zoom and screen anchor. Checkpoints sit at fractions of the slope length (`SCP`).
+- With reduced motion (or no JavaScript) the mountain is dropped and the steps stack as plain content.
 
 ### Scroll-pinned steps
 
-Several sections are not timers any more: they are tall "pinned" sections whose stage sticks to the screen while the scroll position picks the step (`src/js/shared/15-pin.js`, styles in `src/css/45-pin.css`). Used for Trained / Equipped / Flexible, Faster / Smarter / More efficient, the four How we work checkpoints, the Why IANEX? statement and bottlenecks, and the ParaTech moment.
+Several sections are not timers any more: they are tall "pinned" sections whose stage sticks to the screen while the scroll position picks the step (`src/js/shared/15-pin.js`, styles in `src/css/45-pin.css`). Used for Trained / Equipped / Flexible, Faster / Smarter / More efficient, the four How we work checkpoints, the Why Theianex statement and bottlenecks, and the ParaTech moment.
 
 ```html
 <section class="pin" data-pin="3" style="--steps:3;--sl:72vh" data-chapter="Technology" data-scenes="t0,t1,t2" data-doc="tech">

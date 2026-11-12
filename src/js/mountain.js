@@ -1,143 +1,159 @@
-/* Why Theianex: the climb.
-   One long SVG mountain. Scroll position p (0..1 through the section) drives a camera that follows the route:
-   the SVG viewBox is the camera (pan, zoom, pull back), the ridges and route are drawn with stroke-dashoffset,
-   the finer lines are revealed by a mask that moves up ahead of the climber.
-   Text and markers are HTML in screen space, placed from the camera so they stay crisp. No library.
+/* Why Theianex: the climb of Everest.
+   One mountain drawn as a single outline. Scroll drives a camera:
+     whole mountain (title inside it) -> zoom to the base -> zoom in on flag 1 -> zoom out, the trail climbs the slope ->
+     zoom in on flag 2 -> ... -> pull back to the whole mountain for the end title.
+   The line is SVG in world units (the camera is one transform on a group). Text is HTML laid out in screen space, so it is
+   always straight and crisp: the problem in the sky beside the flag, how Theianex helps inside the mountain. No library.
    With reduced motion the mountain is dropped and the steps stack as plain content. */
 (function () {
   var TX = window.TX, root = TX.$('#mtn');
   if (!root) return;
   if (TX.reduce) { root.classList.add('mtn-static'); return; }
 
-  var stick = TX.$('#mtnStick'), svg = TX.$('#mtnSvg'), route = TX.$('#mtnRoute'), rL = TX.$('#mtnL'), rR = TX.$('#mtnR'),
-      dot = TX.$('#mtnDot'), flag = TX.$('#mtnFlag'), front = TX.$('#mtnFront'), lay = TX.$('#mtnLay'),
-      cons = TX.$$('path', TX.$('#mtnCon')), cps = TX.$$('.mt-cp'), steps = TX.$$('.mt-step[data-i]'),
-      intro = TX.$('#mtnIntro'), sum = TX.$('#mtnSum'), phs = TX.$$('.ph', sum), go = TX.$('#mtnGo');
-  var SX = 520, SY = 200;
-  var clamp = TX.clamp;
+  var stick = TX.$('#mtnStick'), svg = TX.$('#mtnSvg'), world = TX.$('#mtnWorld'), name = TX.$('#mtnName'),
+      steps = TX.$$('.mt-step[data-i]'), intro = TX.$('#mtnIntro'), sum = TX.$('#mtnSum'), phs = TX.$$('.ph', sum), go = TX.$('#mtnGo');
+  var clamp = TX.clamp, NS = 'http://www.w3.org/2000/svg';
   function lerp(a, b, t) { return a + (b - a) * t; }
   function sm(t) { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); }
-  function win(p, p0, p1, fi, fo) { return clamp((p - p0) / fi, 0, 1) * clamp((p1 - p) / fo, 0, 1); }
 
-  /* geometry tables */
-  var RL = route.getTotalLength(); route.style.strokeDasharray = RL;
-  function table(path) {
-    var L = path.getTotalLength(), n = 320, a = [];
-    for (var i = 0; i <= n; i++) a.push(path.getPointAtLength(L * i / n).y);
-    path.style.strokeDasharray = L;
-    return { L: L, a: a, n: n };
-  }
-  var tL = table(rL), tR = table(rR);
-  function lenAtY(t, y) {
-    if (y >= t.a[0]) return 0; if (y <= t.a[t.n]) return t.L;
-    var lo = 0, hi = t.n;
-    while (hi - lo > 1) { var m = (lo + hi) >> 1; if (t.a[m] >= y) lo = m; else hi = m; }
-    var f = (t.a[lo] - y) / ((t.a[lo] - t.a[hi]) || 1);
-    return t.L * (lo + f) / t.n;
-  }
-  var CPS = [.15, .31, .47, .63, .80];
-  var cpPt = CPS.map(function (f) { return route.getPointAtLength(RL * f); });
-  var phS = [.86, .93, 1];
-  var phPt = phS.map(function (f) { return route.getPointAtLength(RL * f); });
-
-  /* the climb: route progress for each stretch of scroll (travel, then hold while the words are up) */
-  var KEYS = [[0, 0], [.10, .012], [.17, CPS[0]], [.25, CPS[0]], [.32, CPS[1]], [.40, CPS[1]], [.47, CPS[2]], [.55, CPS[2]],
-              [.62, CPS[3]], [.70, CPS[3]], [.77, CPS[4]], [.83, CPS[4]], [.89, 1], [1, 1]];
-  function S(p) {
-    for (var i = 0; i < KEYS.length - 1; i++) {
-      var a = KEYS[i], b = KEYS[i + 1];
-      if (p <= b[0]) return a[1] + (b[1] - a[1]) * sm((p - a[0]) / (b[0] - a[0]));
-    }
-    return 1;
+  /* ---------- the mountain, world units (1 unit = 1 px at the flag zoom) ---------- */
+  var Y0 = 3750, PX = 2800, RW = 2900;
+  function rough(t) { return 30 * Math.sin(t * 17 + .4) + 14 * Math.sin(t * 47 + 1.3) + 6 * Math.sin(t * 120); }
+  function L(t) { return [PX * t, Y0 - 3750 * (t + .05 * Math.sin(t * Math.PI * 3)) + rough(t) * sm(t / .05) * (1 - sm((t - .9) / .08))]; }
+  function R(r) {
+    var g = Math.pow(r, 1.1) * .86 + .14 * r * r * r + .018 * Math.sin(r * 22) * sm(r / .12);
+    return [PX + RW * r, 3750 * g + (22 * Math.sin(r * 19 + .7) + 8 * Math.sin(r * 61)) * sm(r / .14)];
   }
 
-  /* screen */
-  var sw = 0, sh = 0, mob = false, P, anch = [], layLeft = 0;
+  var left = [], i, t, n, xx;
+  for (xx = -420; xx < 0; xx += 28) left.push([xx, Y0 - 1.15 * xx]);               // a little ground before the trail starts
+  n = 520; for (i = 0; i <= n; i++) left.push(L(.965 * i / n));
+  var iX0 = 0; while (left[iX0][0] < 0) iX0++;
+  var A = left[left.length - 1], A2 = left[left.length - 7], dA = Math.atan2(A[1] - A2[1], A[0] - A2[0]);
+  var B = R(.04), B2 = R(.05), dB = Math.atan2(B2[1] - B[1], B2[0] - B[0]);
+  var c1 = [A[0] + Math.cos(dA) * 120, A[1] + Math.sin(dA) * 120], c2 = [B[0] - Math.cos(dB) * 120, B[1] - Math.sin(dB) * 120];
+  var cap = [];
+  for (i = 1; i <= 50; i++) {
+    t = i / 50; var u1 = 1 - t;
+    cap.push([u1 * u1 * u1 * A[0] + 3 * u1 * u1 * t * c1[0] + 3 * u1 * t * t * c2[0] + t * t * t * B[0],
+              u1 * u1 * u1 * A[1] + 3 * u1 * u1 * t * c1[1] + 3 * u1 * t * t * c2[1] + t * t * t * B[1]]);
+  }
+  var iTop = 0; cap.forEach(function (p, j) { if (p[1] < cap[iTop][1]) iTop = j; });
+  var route = left.concat(cap.slice(0, iTop + 1)), summit = route[route.length - 1];
+  var right = cap.slice(iTop);
+  for (i = 1; i <= 280; i++) right.push(R(.04 + 1.1 * i / 280));
+
+  var cum = [0];
+  for (i = 1; i < route.length; i++) cum.push(cum[i - 1] + Math.hypot(route[i][0] - route[i - 1][0], route[i][1] - route[i - 1][1]));
+  var LT = cum[cum.length - 1], S0 = cum[iX0], LL = LT - S0;
+  function idxAt(s) { var lo = 0, hi = cum.length - 1; while (hi - lo > 1) { var m = (lo + hi) >> 1; if (cum[m] <= s) lo = m; else hi = m; } return lo; }
+  function ptAt(s) {
+    s = clamp(s, 0, LT); var k = idxAt(s), kk = Math.min(k + 1, route.length - 1), a = route[k], b = route[kk], d = cum[kk] - cum[k] || 1, f = (s - cum[k]) / d;
+    return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
+  }
+  var SCP = [.17, .34, .51, .68, .85].map(function (f) { return S0 + LL * f; });
+  var CPT = SCP.map(ptAt), SIN = S0 + LL * .02, SEND = LT;
+
+  /* ---------- draw the scene once ---------- */
+  function mk(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); (parent || world).appendChild(e); return e; }
+  function poly(pts, step) {
+    var d = ''; for (var j = 0; j < pts.length; j += step) d += (j ? 'L' : 'M') + pts[j][0].toFixed(1) + ' ' + pts[j][1].toFixed(1);
+    var last = pts[pts.length - 1]; return d + 'L' + last[0].toFixed(1) + ' ' + last[1].toFixed(1);
+  }
+  var defs = mk('defs', {}, svg);
+  var gr = mk('linearGradient', { id: 'mtnBody', x1: 0, y1: 0, x2: 0, y2: 1 }, defs);
+  mk('stop', { offset: 0, style: 'stop-color:var(--acc2);stop-opacity:.20' }, gr);
+  mk('stop', { offset: .5, style: 'stop-color:var(--acc);stop-opacity:.07' }, gr);
+  mk('stop', { offset: 1, style: 'stop-color:var(--acc);stop-opacity:.01' }, gr);
+  var BOT = Y0 + 900;
+  mk('path', { class: 'mt-fill', d: poly(route, 5) + 'L' + summit[0] + ' ' + BOT + 'L-420 ' + BOT + 'Z' });
+  mk('path', { class: 'mt-fill', d: poly(right, 5) + 'L' + right[right.length - 1][0] + ' ' + BOT + 'L' + summit[0] + ' ' + BOT + 'Z' });
+  [[140, 330, .9], [300, 700, .6], [480, 1150, .38]].forEach(function (o) {
+    var c = mk('path', { class: 'mt-cont', d: poly(left.slice(iX0), 6), transform: 'translate(' + o[0] + ' ' + o[1] + ')' }); c.style.opacity = o[2];
+  });
+  mk('path', { class: 'mt-line', d: poly(route, 3) });
+  mk('path', { class: 'mt-line', d: poly(right, 3) });
+  var prog = mk('path', { class: 'mt-route', d: '' });
+  function flagAt(pt, h) {
+    var g = mk('g', { class: 'mt-fg' });
+    mk('path', { class: 'mt-flag', d: 'M' + pt[0] + ' ' + pt[1] + 'L' + pt[0] + ' ' + (pt[1] - h) }, g);
+    mk('path', { class: 'mt-flagf', d: 'M' + pt[0] + ' ' + (pt[1] - h) + 'L' + (pt[0] + h * .56) + ' ' + (pt[1] - h * .8) + 'L' + pt[0] + ' ' + (pt[1] - h * .6) + 'Z' }, g);
+    return g;
+  }
+  var flags = CPT.map(function (pt) { return flagAt(pt, 120); });
+  var topFlag = flagAt(summit, 220);
+  var dot = mk('circle', { r: 6 });
+
+  /* ---------- the camera ---------- */
+  var sw = 0, sh = 0, mob = false, K, KEYS = [], HOLD = [];
+  function key(p, s, q, ax, ay, k) { KEYS.push({ p: p, s: s, qx: q[0], qy: q[1], ax: ax, ay: ay, k: k }); }
   function measure() {
     sw = stick.clientWidth; sh = stick.clientHeight; mob = sw <= 900;
-    P = mob ? { W0: 1000, W1: 900, W2: 1100, MY0: .9, MY1: .23, MYS: .3, lead: .16 }
-            : { W0: 2000, W1: 1250, W2: 1650, MY0: .8, MY1: .54, MYS: .42, lead: .2 };
-    var sr = stick.getBoundingClientRect(), lr = lay.getBoundingClientRect();
-    layLeft = lr.left - sr.left;
-    anch = steps.map(function (st) {
-      var tx = TX.$('.mt-tx', st), side = st.getAttribute('data-side');
-      var top = mob ? tx.offsetTop : tx.offsetTop - tx.offsetHeight / 2, left = layLeft + tx.offsetLeft;
-      if (mob) return { x: sw / 2, y: top - 10 };
-      return { x: side === 'l' ? left + tx.offsetWidth + 16 : left - 16, y: top + 24 };
-    });
+    K = mob
+      ? { kO: sh * .34 / 3750, ov: [.56, .62], kB: .4, kM: .26, cy: .47 }
+      : { kO: Math.min(sw * .000119, sh * .72 / 3750), ov: [.52, .19], kB: .5, kM: .36, cy: .52 };
+    stick.style.setProperty('--ay', (K.cy * sh).toFixed(1) + 'px');
+    KEYS = []; HOLD = [];
+    var OV = [summit[0], summit[1]];
+    key(0, SIN, OV, K.ov[0], K.ov[1], K.kO); key(.07, SIN, OV, K.ov[0], K.ov[1], K.kO);
+    key(.13, SIN, ptAt(SIN + 560), .5, K.cy + .08, K.kB);
+    key(.18, SCP[0], CPT[0], .5, K.cy, 1); key(.26, SCP[0], CPT[0], .5, K.cy, 1); HOLD.push([.18, .26]);
+    for (var j = 1; j < 5; j++) {
+      var t0 = .26 + .14 * (j - 1), sm_ = (SCP[j - 1] + SCP[j]) / 2;
+      key(t0 + .03, sm_, ptAt(sm_), .5, .55, K.kM);
+      key(t0 + .06, SCP[j], CPT[j], .5, K.cy, 1); key(t0 + .14, SCP[j], CPT[j], .5, K.cy, 1); HOLD.push([t0 + .06, t0 + .14]);
+    }
+    key(.94, SEND, OV, K.ov[0], K.ov[1], K.kO); key(1, SEND, OV, K.ov[0], K.ov[1], K.kO);
+  }
+  function cam(p) {
+    for (var j = 0; j < KEYS.length - 1; j++) {
+      var a = KEYS[j], b = KEYS[j + 1];
+      if (p <= b.p) {
+        var f = sm((p - a.p) / (b.p - a.p));
+        return { s: lerp(a.s, b.s, f), qx: lerp(a.qx, b.qx, f), qy: lerp(a.qy, b.qy, f), ax: lerp(a.ax, b.ax, f), ay: lerp(a.ay, b.ay, f), k: Math.exp(lerp(Math.log(a.k), Math.log(b.k), f)) };
+      }
+    }
+    var e = KEYS[KEYS.length - 1]; return { s: e.s, qx: e.qx, qy: e.qy, ax: e.ax, ay: e.ay, k: e.k };
   }
 
-  var last = -1, lastKey = '';
+  var lastKey = '';
   function render() {
     var r = root.getBoundingClientRect(), vh = innerHeight;
     if (r.bottom < -vh * .3 || r.top > vh * 1.3) return;
     var span = Math.max(r.height - sh, 1), p = clamp(-r.top / span, 0, 1);
-    var key = p.toFixed(5) + '|' + sw + 'x' + sh;
-    if (key === lastKey) return; lastKey = key;
+    var key_ = p.toFixed(5) + '|' + sw + 'x' + sh;
+    if (key_ === lastKey) return; lastKey = key_;
 
-    var s = S(p), u = sm((p - .89) / .07);
-    var W = lerp(lerp(P.W0, P.W1, sm(s / .55)), P.W2, u), vbH = W * sh / sw;
-    var my = lerp(lerp(P.MY0, P.MY1, sm(p / .17)), P.MYS, u);
-    var pt = route.getPointAtLength(RL * s);
-    var cx = lerp(pt.x, SX, u), cy = pt.y + (.5 - my) * vbH;
-    var vx = cx - W / 2, vy = cy - vbH / 2, k = sw / W;
-    svg.setAttribute('viewBox', vx.toFixed(1) + ' ' + vy.toFixed(1) + ' ' + W.toFixed(1) + ' ' + vbH.toFixed(1));
-    svg.style.setProperty('--sw', (1.5 / k).toFixed(3));
+    var c = cam(p), k = c.k, ox = c.ax * sw - c.qx * k, oy = c.ay * sh - c.qy * k;
+    world.setAttribute('transform', 'translate(' + ox.toFixed(1) + ' ' + oy.toFixed(1) + ') scale(' + k.toFixed(5) + ')');
 
-    /* drawing: route up to the climber; ridges and fine lines ahead of the camera */
-    var fy = lerp(vy + vbH * P.lead, -120, u);
-    route.style.strokeDashoffset = (RL * (1 - s)).toFixed(1);
-    rL.style.strokeDashoffset = (tL.L - lenAtY(tL, fy)).toFixed(1);
-    rR.style.strokeDashoffset = (tR.L - lenAtY(tR, fy)).toFixed(1);
-    front.setAttribute('y', fy.toFixed(1));
-    dot.setAttribute('cx', pt.x.toFixed(1)); dot.setAttribute('cy', pt.y.toFixed(1)); dot.setAttribute('r', (7 / Math.max(k, .45) * .9).toFixed(1));
-    flag.classList.toggle('on', p > .93);
+    /* the trail climbed so far, and the climber */
+    var q = ptAt(c.s), ci = idxAt(c.s), pts = route.slice(iX0 - 1, ci + 1); pts.push(q);
+    prog.setAttribute('d', poly(pts, 3));
+    dot.setAttribute('cx', q[0].toFixed(1)); dot.setAttribute('cy', q[1].toFixed(1)); dot.setAttribute('r', (6 / Math.max(k, .12)).toFixed(1));
+    flags.forEach(function (f, j) { f.classList.toggle('on', c.s >= SCP[j] - 12); });
+    topFlag.classList.toggle('on', c.s >= SEND - 12);
 
-    function X(x) { return (x - vx) * k; } function Y(y) { return (y - vy) * k; }
+    /* the mountain's name above the summit when the whole mountain is in view */
+    var nl = clamp((.3 - k) / .1, 0, 1);
+    name.style.opacity = nl.toFixed(2);
+    name.style.transform = 'translate(' + (ox + summit[0] * k).toFixed(1) + 'px,' + (oy + summit[1] * k - 220 * k - 8).toFixed(1) + 'px) translate(-50%,-100%)';
 
     /* introduction */
-    var oi = win(p, -1, .09, 1, .03);
-    setStep(intro, oi, 0, -(1 - clamp((.09 - p) / .03, 0, 1)) * 12);
+    setStep(intro, 1 - sm((p - .06) / .04));
 
     /* checkpoints */
-    var act = -1;
-    for (var i = 0; i < steps.length; i++) {
-      var a = .10 + .15 * i, fi = clamp((p - (a + .055)) / .03, 0, 1), fo = clamp((a + .16 - p) / .03, 0, 1), o = fi * fo;
-      setStep(steps[i], o, i, fi < 1 ? (1 - fi) * 16 : -(1 - fo) * 10);
-      if (o > .45) act = i;
-      var m = cps[i], mx = X(cpPt[i].x), mvy = Y(cpPt[i].y);
-      m.style.transform = 'translate3d(' + mx.toFixed(1) + 'px,' + mvy.toFixed(1) + 'px,0)';
-      m.style.opacity = clamp((s - (CPS[i] - .08)) / .05, 0, 1).toFixed(2);
-      m.classList.toggle('pass', s >= CPS[i] - .003);
-      m.classList.toggle('now', o > .45);
-      var c = cons[i];
-      if (o > .02 && !(mob && false)) {
-        var ax = anch[i].x, ay = anch[i].y, dx = ax - mx, dy = ay - mvy, d = Math.sqrt(dx * dx + dy * dy) || 1, sx = mx + dx / d * 14, sy = mvy + dy / d * 14;
-        var len = Math.max(d - 14, 1);
-        c.setAttribute('d', 'M' + sx.toFixed(1) + ' ' + sy.toFixed(1) + ' L' + ax.toFixed(1) + ' ' + ay.toFixed(1));
-        c.style.strokeDasharray = len.toFixed(1); c.style.strokeDashoffset = (len * (1 - fi) + len * (1 - fo) * .6).toFixed(1); c.style.opacity = o.toFixed(2);
-      } else c.style.opacity = 0;
+    for (var j = 0; j < steps.length; j++) {
+      var h = HOLD[j], fi = clamp((p - (h[0] - .01)) / .025, 0, 1), fo = clamp((h[1] + .025 - p) / .025, 0, 1);
+      setStep(steps[j], fi * fo);
     }
 
     /* summit */
-    var os = win(p, .86, 2, .04, 1);
-    setStep(sum, os, -1, (1 - clamp((p - .86) / .04, 0, 1)) * 16);
-    phs.forEach(function (ph, j) {
-      var on = p > [.915, .94, .965][j];
-      ph.classList.toggle('on', on);
-      var c = cons[5 + j];
-      if (!mob && on) {
-        var pr = ph.getBoundingClientRect(), sr = stick.getBoundingClientRect();
-        var ax = pr.left - sr.left - 8, ay = pr.top - sr.top + pr.height * .5, mx = X(phPt[j].x), my2 = Y(phPt[j].y);
-        var dx = ax - mx, dy = ay - my2, d = Math.sqrt(dx * dx + dy * dy) || 1;
-        c.setAttribute('d', 'M' + (mx + dx / d * 8).toFixed(1) + ' ' + (my2 + dy / d * 8).toFixed(1) + ' L' + ax.toFixed(1) + ' ' + ay.toFixed(1));
-        c.style.strokeDasharray = d.toFixed(1); c.style.strokeDashoffset = 0; c.style.opacity = .9;
-      } else c.style.opacity = 0;
-    });
+    setStep(sum, clamp((p - .9) / .04, 0, 1));
+    phs.forEach(function (ph, n2) { ph.classList.toggle('on', p > [.935, .95, .965][n2]); });
   }
-  function setStep(el, o, i, ty) {
+  function setStep(el, o) {
     el.style.opacity = o.toFixed(3);
-    el.style.setProperty('--ty', ty.toFixed(1) + 'px');
     el.classList.toggle('vis', o > .01);
     el.classList.toggle('on', o > .45);
   }
@@ -150,7 +166,7 @@
   if (go) go.addEventListener('click', function (e) {
     e.preventDefault();
     var r = root.getBoundingClientRect(), span = Math.max(r.height - sh, 1);
-    scrollTo({ top: scrollY + r.top + span * .205, behavior: 'smooth' });
+    scrollTo({ top: scrollY + r.top + span * .22, behavior: 'smooth' });
   });
   root.classList.add('mtn-live');
   relayout();
