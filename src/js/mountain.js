@@ -76,12 +76,23 @@
   var prog = mk('path', { class: 'mt-route', d: '' });
   function flagAt(pt, h) {
     var g = mk('g', { class: 'mt-fg' });
-    mk('path', { class: 'mt-flag', d: 'M' + pt[0] + ' ' + pt[1] + 'L' + pt[0] + ' ' + (pt[1] - h) }, g);
-    mk('path', { class: 'mt-flagf', d: 'M' + pt[0] + ' ' + (pt[1] - h) + 'L' + (pt[0] + h * .56) + ' ' + (pt[1] - h * .8) + 'L' + pt[0] + ' ' + (pt[1] - h * .6) + 'Z' }, g);
+    g._pole = mk('path', { class: 'mt-flag' }, g);
+    g._pen = mk('path', { class: 'mt-flagf' }, g);
+    g._pt = pt; g._h = h; g._hs = -1;
     return g;
+  }
+  /* a flag keeps a readable size on screen: it grows when the whole mountain is in view */
+  function sizeFlag(g, h) {
+    if (Math.abs(h - g._hs) < .5) return; g._hs = h; var pt = g._pt;
+    g._pole.setAttribute('d', 'M' + pt[0] + ' ' + pt[1] + 'L' + pt[0] + ' ' + (pt[1] - h));
+    g._pen.setAttribute('d', 'M' + pt[0] + ' ' + (pt[1] - h) + 'L' + (pt[0] + h * .56) + ' ' + (pt[1] - h * .8) + 'L' + pt[0] + ' ' + (pt[1] - h * .6) + 'Z');
   }
   var flags = CPT.map(function (pt) { return flagAt(pt, 120); });
   var topFlag = flagAt(summit, 220);
+  flags.forEach(function (f) { sizeFlag(f, 120); }); sizeFlag(topFlag, 220);
+  /* one or two words per checkpoint, shown beside the flags when the whole mountain is in view */
+  var FLAGW = ['Information', 'Initial review', 'Preparation', 'Capacity', 'Review'];
+  var flagLabels = FLAGW.map(function (w) { var e = document.createElement('span'); e.className = 'mt-fl'; e.textContent = w; e.setAttribute('aria-hidden', 'true'); stick.appendChild(e); return e; });
   var dot = mk('circle', { r: 6 });
 
   /* ---------- the camera ---------- */
@@ -93,6 +104,16 @@
       ? { kO: sh * .34 / 3750, ov: [.56, .62], kB: .4, kM: .26, cy: .47 }
       : { kO: Math.min(sw * .000119, sh * .72 / 3750), ov: [.52, .19], kB: .5, kM: .36, cy: .52 };
     stick.style.setProperty('--ay', (K.cy * sh).toFixed(1) + 'px');
+    /* the closing view: on a phone the mountain is as big as the room under the text allows, with all five flags in view */
+    K.kE = K.kO; K.eov = K.ov;
+    if (mob) {
+      var tb = 0, sr = stick.getBoundingClientRect();
+      TX.$$('.in-l,.in-r', sum).forEach(function (e) { tb = Math.max(tb, e.getBoundingClientRect().bottom - sr.top); });
+      var dx = summit[0] - CPT[0][0], dy = CPT[0][1] - summit[1];
+      var fh = 62, avail = sh - (tb + 26) - 30;            /* room below the text, minus the top flag and a bottom margin */
+      K.kE = Math.max(K.kO, Math.min((avail - fh) / dy, (sw - 36 - 104) / dx, sh * .62 / 3750));
+      K.eov = [Math.min(1 - 36 / sw, (104 + dx * K.kE) / sw), Math.min(.82, (tb + 26 + fh) / sh)];
+    }
     KEYS = []; HOLD = [];
     var OV = [summit[0], summit[1]];
     key(0, SIN, OV, K.ov[0], K.ov[1], K.kO); key(.07, SIN, OV, K.ov[0], K.ov[1], K.kO);
@@ -103,7 +124,7 @@
       key(t0 + .03, sm_, ptAt(sm_), .5, .55, K.kM);
       key(t0 + .06, SCP[j], CPT[j], .5, K.cy, 1); key(t0 + .14, SCP[j], CPT[j], .5, K.cy, 1); HOLD.push([t0 + .06, t0 + .14]);
     }
-    key(.94, SEND, OV, K.ov[0], K.ov[1], K.kO); key(1, SEND, OV, K.ov[0], K.ov[1], K.kO);
+    key(.94, SEND, OV, K.eov[0], K.eov[1], K.kE); key(1, SEND, OV, K.eov[0], K.eov[1], K.kE);
   }
   function cam(p) {
     for (var j = 0; j < KEYS.length - 1; j++) {
@@ -133,6 +154,13 @@
     dot.setAttribute('cx', q[0].toFixed(1)); dot.setAttribute('cy', q[1].toFixed(1)); dot.setAttribute('r', (6 / Math.max(k, .12)).toFixed(1));
     flags.forEach(function (f, j) { f.classList.toggle('on', c.s >= SCP[j] - 12); });
     topFlag.classList.toggle('on', c.s >= SEND - 12);
+    var fs = clamp(30 / (120 * k), 1, 5);
+    flags.forEach(function (f) { sizeFlag(f, 120 * fs); }); sizeFlag(topFlag, 220 * clamp(46 / (220 * k), 1, 5));
+    var so = clamp((p - .9) / .04, 0, 1);
+    flagLabels.forEach(function (e, j) {
+      e.style.opacity = (so * (flags[j].classList.contains('on') ? 1 : 0)).toFixed(3);
+      e.style.transform = 'translate(' + (ox + CPT[j][0] * k - 10).toFixed(1) + 'px,' + (oy + (CPT[j][1] - 120 * fs * .86) * k).toFixed(1) + 'px) translate(-100%,-50%)';
+    });
 
 
     /* introduction */
@@ -146,7 +174,7 @@
 
     /* summit */
     setStep(sum, clamp((p - .9) / .04, 0, 1));
-    phs.forEach(function (ph, n2) { ph.classList.toggle('on', p > [.935, .95, .965][n2]); });
+    phs.forEach(function (ph) { ph.classList.toggle('on', p > .93); });
   }
   function setStep(el, o) {
     el.style.opacity = o.toFixed(3);

@@ -16,16 +16,17 @@
   TX.token = function (name) { return getComputedStyle(root).getPropertyValue(name).trim(); };
 
   /* ---- theme switch ---- */
-  var toggle = TX.$('#themeToggle');
+  var toggle = TX.$('#themeToggle'), toggles = TX.$$('#themeToggle, .js-theme');
   function paintToggle() {
     if (!toggle) return;
     var light = TX.theme() === 'light';
     toggle.setAttribute('aria-label', light ? 'Switch to dark theme' : 'Switch to light theme');
+    TX.$$('.js-theme').forEach(function (b) { b.textContent = light ? 'Switch to dark theme' : 'Switch to light theme'; });
     var m = TX.$('meta[name=theme-color]');
     if (m) m.setAttribute('content', light ? '#f5f7fd' : '#03060f');
   }
   paintToggle();
-  if (toggle) toggle.addEventListener('click', function () {
+  toggles.forEach(function (tb) { tb.addEventListener('click', function () {
     var next = TX.theme() === 'light' ? 'dark' : 'light';
     root.classList.add('theme-anim');
     root.setAttribute('data-theme', next);
@@ -33,7 +34,7 @@
     paintToggle();
     window.dispatchEvent(new CustomEvent('themechange', { detail: next }));
     setTimeout(function () { root.classList.remove('theme-anim'); }, 700);
-  });
+  }); });
   /* follow the device clock (light 6am to 6pm) until the visitor picks a theme for this visit */
   function clockTheme() { var h = new Date().getHours(); return (h >= 6 && h < 18) ? 'light' : 'dark'; }
   setInterval(function () {
@@ -46,15 +47,18 @@
   }, 30000);
 
   /* ---- menu ---- */
-  var burger = TX.$('#burger'), sheet = TX.$('#sheet');
+  var burger = TX.$('#burger'), fab = TX.$('#fab'), sheet = TX.$('#sheet');
   function setMenu(o) {
     sheet.classList.toggle('open', o);
-    burger.setAttribute('aria-expanded', o ? 'true' : 'false');
-    burger.setAttribute('aria-label', o ? 'Close menu' : 'Open menu');
+    [burger, fab].forEach(function (b) {
+      if (!b) return;
+      b.setAttribute('aria-expanded', o ? 'true' : 'false');
+      b.setAttribute('aria-label', o ? 'Close menu' : 'Open menu');
+    });
     doc.body.style.overflow = o ? 'hidden' : '';
   }
   if (burger && sheet) {
-    burger.addEventListener('click', function () { setMenu(!sheet.classList.contains('open')); });
+    [burger, fab].forEach(function (b) { if (b) b.addEventListener('click', function () { setMenu(!sheet.classList.contains('open')); }); });
     TX.$$('a', sheet).forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
     addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
     matchMedia('(min-width: 901px)').addEventListener('change', function () { setMenu(false); });
@@ -75,7 +79,8 @@
     var y = scrollY, vh = innerHeight, max = root.scrollHeight - vh;
     if (prog) prog.style.transform = 'scaleX(' + (max > 0 ? TX.clamp(y / max, 0, 1) : 0) + ')';
     if (nav) {
-      nav.classList.toggle('scrolled', y > 30);
+      root.classList.toggle('fab-on', y > 140);
+    nav.classList.toggle('scrolled', y > 30);
       nav.classList.toggle('hide', y > lastY + 4 && y > vh * 0.7 && !(sheet && sheet.classList.contains('open')));
       if (y < lastY - 4) nav.classList.remove('hide');
     }

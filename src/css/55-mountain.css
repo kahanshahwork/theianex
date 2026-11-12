@@ -20,6 +20,7 @@
 .mtn-svg circle{fill:var(--acc2);filter:drop-shadow(0 0 9px var(--acc))}
 
 .mt-lay{position:absolute;inset:0;z-index:3;pointer-events:none}
+.mt-fl{position:absolute;left:0;top:0;z-index:3;pointer-events:none;opacity:0;white-space:nowrap;font-family:var(--mono);font-size:.64rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-shadow:0 0 10px var(--bg),0 0 4px var(--bg)}
 .mt-step{position:absolute;inset:0;opacity:0;visibility:hidden;will-change:opacity}
 .mt-step.vis{visibility:visible}
 .mt-step.on{pointer-events:auto}
@@ -90,8 +91,9 @@
   .in-l p,.in-r p{font-size:clamp(.8rem,min(3.5vw,1.75dvh),.92rem);line-height:1.4;margin-bottom:clamp(6px,1dvh,10px)}
   .mt-t1{font-size:clamp(1.6rem,7.4vw,2rem)}
   .mt-t2{font-size:clamp(1.35rem,6.2vw,1.7rem);margin-bottom:6px}
-  .mt-ph{left:50%;top:auto;bottom:5.5dvh;gap:6px}
-  .ph{font-size:.86rem}
+  .mt-ph{left:auto;right:var(--gutpx);transform:none;top:auto;bottom:5dvh;gap:clamp(8px,1.4dvh,14px)}
+  .mt-fl{font-size:.58rem;letter-spacing:.1em}
+  .ph{font-size:clamp(.9rem,3.9vw,1.05rem)}
 }
 
 /* reduced motion or no JS: the steps are plain stacked content, the mountain is dropped */

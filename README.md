@@ -124,3 +124,10 @@ npm run bundle:world
 ```
 
 Visitors with reduced-motion settings get a still scene that only moves with their scroll. If WebGL is unavailable the page falls back to plain sections.
+
+## Phone navigation and page ends (v5.5)
+
+- A small menu chip sits top right on every page on a phone (on Home it appears once the header has scrolled away). If it ever sits on top of content on a page, add `fab-left` to that page's `bodyClass`.
+- The footer is hidden on a phone except on Contact and the legal pages. Each of Home, Why Theianex, How we work and ParaIQ ends with a "Next page" panel (`.nxt`, markup at the end of each page file) that links to the next page in the order Home, Why Theianex, How we work, ParaIQ, Contact.
+- Headlines no longer blur by scroll position inside pinned stages or on a phone (`src/css/95-v55.css`).
+- ParaIQ page ends with seven real application screens (test data, names redacted) in a small browser window. Images are in `src/assets/paraiq/`, behaviour in `src/js/paraiq-shots.js`. To swap or add a screen, add a `<figure class="sh">` and a dot in `paraiq.html`, set `data-pin` and `--steps` to the new count, and add its name to `data-names`.

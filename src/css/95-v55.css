@@ -1,0 +1,67 @@
+/* =========================================================
+   v5.5: phone menu chip, end-of-page "next page" panel, no scroll-blur on pinned titles
+   ========================================================= */
+
+/* Headlines no longer blur or fade by scroll position inside pinned stages, or on a phone: they are always sharp. */
+.pin [data-fx="focus"]{opacity:1!important;filter:none!important;transform:none!important;will-change:auto}
+@media (max-width:900px){[data-fx="focus"]{opacity:1!important;filter:none!important;transform:none!important;will-change:auto}}
+
+/* menu chip: small, fixed, top right. Hidden on desktop (the header is there). */
+.fab{display:none}
+.sheet-theme{display:none}
+@media (max-width:900px){
+  .fab{display:block;position:fixed;z-index:110;top:calc(env(safe-area-inset-top,0px) + 10px);right:12px;width:42px;height:42px;border-radius:50%;
+    background:color-mix(in srgb,var(--bg) 66%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px var(--line2),0 4px 18px rgba(0,0,0,.18);
+    transition:opacity .35s var(--ease),transform .35s var(--ease)}
+  .fab i{position:absolute;left:12px;right:12px;height:1.5px;background:var(--ink);transition:transform .4s var(--ease)}
+  .fab i:nth-child(1){top:16px}.fab i:nth-child(2){top:25px}
+  .fab[aria-expanded=true] i:nth-child(1){transform:translateY(4.5px) rotate(45deg)}
+  .fab[aria-expanded=true] i:nth-child(2){transform:translateY(-4.5px) rotate(-45deg)}
+  /* Home already has the header: the chip only appears once the header has scrolled away */
+  body.is-home .fab{opacity:0;pointer-events:none;transform:scale(.8)}
+  html.fab-on body.is-home .fab,body.is-home .sheet.open ~ .fab{opacity:1;pointer-events:auto;transform:none}
+  /* a page where the chip would sit on something goes on the left (add the class on <body>) */
+  body.fab-left .fab{right:auto;left:12px}
+  .sheet{z-index:105}
+  .sheet-theme{display:inline-flex;align-self:flex-start;margin-top:18px;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);padding:10px 0;border-bottom:1px solid var(--line2)}
+}
+
+/* end of page on a phone: no footer, a "next page" panel instead (Contact and the legal pages keep the footer) */
+.nxt{display:none}
+@media (max-width:900px){
+  .foot{display:none}
+  body[data-page="contact"] .foot,body[data-page="legal"] .foot,body[data-page="thanks"] .foot,body[data-page="404"] .foot{display:block}
+  .nxt{display:flex;flex-direction:column;justify-content:center;gap:clamp(10px,1.8dvh,18px);min-height:62dvh;padding:clamp(40px,8dvh,80px) var(--gut) clamp(48px,10dvh,96px);border-top:1px solid var(--line);position:relative;color:var(--ink);
+    background:linear-gradient(180deg,transparent,var(--acc-soft))}
+  .nxt-k{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:.8em}
+  .nxt-k::before{content:"";width:1px;height:22px;background:linear-gradient(var(--acc),transparent);animation:nxtup 1.8s var(--ease) infinite;transform-origin:50% 100%}
+  .nxt-l{font-size:clamp(.96rem,4.2vw,1.1rem);color:var(--ink2)}
+  .nxt-t{display:flex;align-items:center;justify-content:space-between;gap:.4em;font-weight:300;font-size:clamp(2.6rem,13vw,4rem);line-height:1;letter-spacing:-.045em;border-bottom:2px solid var(--line2);padding-bottom:.16em}
+  .nxt-t i{font-style:normal;color:var(--acc)}
+  .nxt:active .nxt-t{border-color:var(--acc)}
+}
+@keyframes nxtup{0%{transform:scaleY(0);opacity:0}40%{opacity:1}100%{transform:scaleY(1);opacity:0}}
+@media (prefers-reduced-motion:reduce){.nxt-k::before{animation:none}}
+
+/* ---- ParaIQ screens: a small browser window with the real screens stacked inside ---- */
+.shots .pin-h2.h2{margin-bottom:clamp(10px,2dvh,22px)}
+.sh-win{width:min(100%,1040px,calc((100dvh - 340px) * 1.62));margin-inline:auto;border-radius:14px;overflow:hidden;background:var(--surf);box-shadow:inset 0 0 0 1px var(--line2),var(--shadow)}
+.sh-bar{display:flex;align-items:center;gap:7px;height:34px;padding:0 14px;background:var(--surf2);border-bottom:1px solid var(--line)}
+.sh-bar i{width:9px;height:9px;border-radius:50%;background:var(--line2)}
+.sh-url{margin-left:12px;flex:1;max-width:340px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--mute);background:var(--bg);border-radius:99px;padding:5px 14px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sh-view{position:relative;aspect-ratio:1600/960;background:linear-gradient(135deg,var(--surf2),var(--bg2));padding:4.4% 9% 5.6% 3.2%}
+.sh-stack{position:relative;width:100%;height:100%}
+.sh{position:absolute;inset:0;margin:0;border-radius:8px;overflow:hidden;box-shadow:0 0 0 1px var(--line2),0 14px 36px rgba(0,0,0,.28);background:#fff;will-change:transform,opacity}
+.sh img{display:block;width:100%;height:100%;object-fit:cover;object-position:top left}
+.sh-foot{display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1.6dvh,14px);margin-top:clamp(12px,2.2dvh,22px)}
+.sh-dots{display:flex;gap:8px}
+.sh-dot{width:26px;height:4px;border-radius:2px;background:var(--line2);padding:0;cursor:pointer;transition:background .3s}
+.sh-dot.on{background:var(--acc)}
+.sh-foot .ill{text-align:center;display:block}
+@media (max-width:900px){
+  .sh-win{width:100%}
+  .sh-view{aspect-ratio:1/1.04;padding:5% 11% 6.5% 4%}
+  .sh img{object-position:0 0}
+  .sh-bar{height:28px;padding:0 10px}
+  .sh-url{font-size:.58rem}
+}

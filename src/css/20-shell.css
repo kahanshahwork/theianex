@@ -40,7 +40,7 @@
   .nav.scrolled{background:none;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
   .nav.scrolled::before{opacity:1}
   .sheet{position:fixed;padding-top:84px}
-  body:not(.is-home) .nav,body:not(.is-home) .sheet{display:none}
+  body:not(.is-home) .nav{display:none}
 }
 @media (max-width:420px){.brand .wm{font-size:.88rem;letter-spacing:.12em}}
 
