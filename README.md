@@ -137,6 +137,6 @@ Visitors with reduced-motion settings get a still scene that only moves with the
 - `scripts/schema.mjs` builds the JSON-LD for every page: WebSite, Organization and Service on Home; BreadcrumbList on inner pages; Article on the two guides; FAQPage from the visible `<details class="faq-i">` blocks (so markup always matches the page).
 - Page meta: `title`, `description`, `updated` (sitemap lastmod), and for guides `ogType: article`, `schema: article`, `headline`, `published`.
 - Two guides: `/ai-statement-of-advice` and `/outsourcing-paraplanning` (legal layout, `src/css/96-v57.css`). Both carry `mark.tbc note` items for the compliance lawyer.
-- `build.mjs` writes `robots.txt` naming search and AI crawlers (edit `CRAWLERS` to opt any out) and `sitemap.xml`. Files in `src/root/` are copied to the site root: `llms.txt` and the IndexNow key.
+- `build.mjs` writes `robots.txt` with a Content-Signal line (search and AI answers yes, training no), search and answer crawlers allowed and training-only crawlers disallowed (edit `ALLOW` and `TRAINING`) and `sitemap.xml`. Files in `src/root/` are copied to the site root: `llms.txt` and the IndexNow key.
 - After each deploy, `node scripts/indexnow.mjs` pings Bing and other IndexNow engines. Update the URL list there when pages are added.
 - Social image: `src/assets/og/theianex.png` (1200x630).

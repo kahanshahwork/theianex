@@ -116,12 +116,16 @@ for (const f of ls(join(SRC, 'pages'), '.html')) {
 }
 
 /* ---- robots + sitemap ---- */
-/* Search and AI crawlers are named so the intent is on record: this site wants to be found and cited. Training crawlers are included on purpose; remove a block to opt out. */
-const CRAWLERS = ['Googlebot', 'Bingbot', 'Applebot', 'DuckDuckBot', 'OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended'];
+/* Search, answer-engine and user-triggered crawlers are welcome. Crawlers that only collect content to train models are turned away, to match the Content-Signal line (ai-train=no). Move a name between the lists to change that. */
+const SIGNAL = 'Content-Signal: search=yes, ai-input=yes, ai-train=no';
+const ALLOW = ['Googlebot', 'Bingbot', 'Applebot', 'DuckDuckBot', 'OAI-SearchBot', 'ChatGPT-User', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User'];
+const TRAINING = ['GPTBot', 'ClaudeBot', 'Google-Extended', 'Applebot-Extended', 'CCBot'];
 writeFileSync(
   join(DIST, 'robots.txt'),
-  `# Theianex: all crawlers welcome, including search and AI answer engines.\nUser-agent: *\nAllow: /\n\n` +
-    CRAWLERS.map((c) => `User-agent: ${c}\nAllow: /\n`).join('\n') +
+  `# Theianex: search engines and AI answer engines are welcome. Content may be used for search and AI answers, not for model training.\n` +
+    `User-agent: *\n${SIGNAL}\nAllow: /\n\n` +
+    ALLOW.map((c) => `User-agent: ${c}\n${SIGNAL}\nAllow: /\n`).join('\n') + '\n' +
+    TRAINING.map((c) => `User-agent: ${c}\nDisallow: /\n`).join('\n') +
     `\nSitemap: ${SITE_URL}/sitemap.xml\n`
 );
 const today = new Date().toISOString().slice(0, 10);

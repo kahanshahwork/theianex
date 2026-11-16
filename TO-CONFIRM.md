@@ -2,10 +2,6 @@
 
 Nothing on the site is highlighted. Every drafted or placeholder line is listed here by page. Lines marked "note" are instructions that were taken off the page; the rest stay on the page as plain text until they are replaced. In the source, they are the <mark class="tbc"> tags in src/pages.
 
-## 404
-
-- hello@your-domain.com.au
-
 ## ai-statement-of-advice
 
 - (note, removed from page) compliance lawyer to confirm this summary of REP 798 and the statutory references before launch
