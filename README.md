@@ -26,7 +26,7 @@ Needs Node 18 or newer. Add `?nopre` to a URL to skip the intro animation while 
 | `CONTACT_TO` | Inbox that receives enquiries |
 | `CONTACT_FROM` | Sender, e.g. `Theianex <hello@your-domain.com.au>`. The domain must be verified in Resend |
 | `BOOKING_URL` | Optional. Added to the automatic reply when set |
-| `SITE_URL` | Optional. Full site URL, e.g. `https://your-domain.com.au` |
+| `SITE_URL` | Optional. Full site URL, e.g. `https://theianex.com.au`. Defaults to `https://theianex.com.au` |
 
 Verify the sending domain in Resend and add the SPF, DKIM and DMARC records it gives you, so replies reach inboxes.
 
@@ -131,3 +131,12 @@ Visitors with reduced-motion settings get a still scene that only moves with the
 - The footer is hidden on a phone except on Contact and the legal pages. Each of Home, Why Theianex, How we work and ParaIQ ends with a "Next page" panel (`.nxt`, markup at the end of each page file) that links to the next page in the order Home, Why Theianex, How we work, ParaIQ, Contact.
 - Headlines no longer blur by scroll position inside pinned stages or on a phone (`src/css/95-v55.css`).
 - ParaIQ page ends with seven real application screens (test data, names redacted) in a small browser window. Images are in `src/assets/paraiq/`, behaviour in `src/js/paraiq-shots.js`. To swap or add a screen, add a `<figure class="sh">` and a dot in `paraiq.html`, set `data-pin` and `--steps` to the new count, and add its name to `data-names`.
+
+## Search and AI visibility (v5.7)
+
+- `scripts/schema.mjs` builds the JSON-LD for every page: WebSite, Organization and Service on Home; BreadcrumbList on inner pages; Article on the two guides; FAQPage from the visible `<details class="faq-i">` blocks (so markup always matches the page).
+- Page meta: `title`, `description`, `updated` (sitemap lastmod), and for guides `ogType: article`, `schema: article`, `headline`, `published`.
+- Two guides: `/ai-statement-of-advice` and `/outsourcing-paraplanning` (legal layout, `src/css/96-v57.css`). Both carry `mark.tbc note` items for the compliance lawyer.
+- `build.mjs` writes `robots.txt` naming search and AI crawlers (edit `CRAWLERS` to opt any out) and `sitemap.xml`. Files in `src/root/` are copied to the site root: `llms.txt` and the IndexNow key.
+- After each deploy, `node scripts/indexnow.mjs` pings Bing and other IndexNow engines. Update the URL list there when pages are added.
+- Social image: `src/assets/og/theianex.png` (1200x630).

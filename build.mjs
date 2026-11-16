@@ -4,11 +4,12 @@ import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, rmSync, existsSync, statSync } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { schemaFor } from './scripts/schema.mjs';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const SRC = join(ROOT, 'src');
 const DIST = join(ROOT, 'dist');
-const SITE_URL = (process.env.SITE_URL || 'https://www.your-domain.com.au').replace(/\/$/, '');
+const SITE_URL = (process.env.SITE_URL || 'https://theianex.com.au').replace(/\/$/, '');
 const STRICT = process.env.STRICT === '1';
 
 const read = (p) => readFileSync(p, 'utf8');
@@ -40,6 +41,9 @@ const pageScript = (name) => {
 
 /* ---- the 3D scene bundle (built from src/world-src by `npm run bundle:world`) ---- */
 if (existsSync(join(SRC, 'js/world.js'))) cpSync(join(SRC, 'js/world.js'), join(DIST, 'js/world.js'));
+
+/* ---- files served from the site root (llms.txt, the IndexNow key) ---- */
+if (existsSync(join(SRC, 'root'))) cpSync(join(SRC, 'root'), DIST, { recursive: true });
 
 /* ---- assets ---- */
 cpSync(join(SRC, 'assets'), join(DIST, 'assets'), { recursive: true });
@@ -86,6 +90,10 @@ for (const f of ls(join(SRC, 'pages'), '.html')) {
     description: meta.description || '',
     bodyClass: meta.bodyClass || '',
     robots: meta.robots === 'noindex' ? '<meta name="robots" content="noindex">' : '',
+    canonical: meta.robots === 'noindex' ? '' : `<link rel="canonical" href="${SITE_URL}${name === 'index' ? '/' : '/' + name}">`,
+    jsonld: schemaFor({ name, meta, body, site: SITE_URL }),
+    ogType: meta.ogType || 'website',
+    published: meta.published || '',
     path: name === 'index' ? '/' : '/' + name,
     siteUrl: SITE_URL,
     pageScripts: scripts.map((s) => `<script defer src="/js/${s}"></script>`).join('\n'),
@@ -104,15 +112,23 @@ for (const f of ls(join(SRC, 'pages'), '.html')) {
   out = out.replace(/<p class="[^"]*">\s*<\/p>\s*/g, '');
   const outFile = join(DIST, name + '.html');
   writeFileSync(outFile, out);
-  pages.push({ name, path: vars.path, noindex: meta.robots === 'noindex' });
+  pages.push({ name, path: vars.path, noindex: meta.robots === 'noindex', updated: meta.updated || meta.published || '' });
 }
 
 /* ---- robots + sitemap ---- */
-writeFileSync(join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+/* Search and AI crawlers are named so the intent is on record: this site wants to be found and cited. Training crawlers are included on purpose; remove a block to opt out. */
+const CRAWLERS = ['Googlebot', 'Bingbot', 'Applebot', 'DuckDuckBot', 'OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended'];
+writeFileSync(
+  join(DIST, 'robots.txt'),
+  `# Theianex: all crawlers welcome, including search and AI answer engines.\nUser-agent: *\nAllow: /\n\n` +
+    CRAWLERS.map((c) => `User-agent: ${c}\nAllow: /\n`).join('\n') +
+    `\nSitemap: ${SITE_URL}/sitemap.xml\n`
+);
+const today = new Date().toISOString().slice(0, 10);
 writeFileSync(
   join(DIST, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-    pages.filter((p) => !p.noindex && p.name !== '404').map((p) => `  <url><loc>${SITE_URL}${p.path === '/' ? '' : p.path}</loc></url>`).join('\n') +
+    pages.filter((p) => !p.noindex && p.name !== '404').map((p) => `  <url><loc>${SITE_URL}${p.path}</loc><lastmod>${p.updated || today}</lastmod></url>`).join('\n') +
     `\n</urlset>\n`
 );
 

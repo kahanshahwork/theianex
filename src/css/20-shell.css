@@ -52,7 +52,7 @@
 .foot-brand svg{--mkw:3.1;width:clamp(78px,10vw,120px);height:auto;color:var(--ink)}
 .foot-brand .wm{font-size:clamp(1.15rem,2.2vw,1.7rem)}
 .foot-line{font-weight:300;font-size:clamp(1.5rem,3.2vw,2.8rem);line-height:1.12;letter-spacing:-.025em;max-width:16em}
-.foot-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;padding-top:36px;border-top:1px solid var(--line)}
+.foot-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;padding-top:36px;border-top:1px solid var(--line)}
 .foot-cols>*{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
 .foot-h{font-size:.66rem;font-weight:550;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
 .foot-cols a{color:var(--ink2);transition:color .3s}

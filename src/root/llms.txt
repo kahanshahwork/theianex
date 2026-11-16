@@ -1,0 +1,20 @@
+# Theianex
+
+> Theianex is an Australian paraplanning company built around technology. Our paraplanners use ParaIQ, our in-house AI assistant, to prepare advice documents such as Statements of Advice (SOAs) and Records of Advice (ROAs), prepare client files and review documents for Australian financial advisers and advice firms. AI assists with drafting and checking, a paraplanner reviews every document, and the adviser remains responsible for the advice and for signing off. Theianex does not provide personal advice to clients. Legal entity: Theianex Pty Ltd, ACN 703 036 355, ABN 77 703 036 355.
+
+## About the service
+- [Home](https://theianex.com.au/): what Theianex prepares and how technology and paraplanners work together
+- [Why Theianex](https://theianex.com.au/why-ianex): where the time goes in advice preparation and how we help
+- [How we work](https://theianex.com.au/how-we-work): the four checkpoints from client file to advice document, roles and responsibilities, and common questions about outsourced paraplanning
+- [ParaIQ](https://theianex.com.au/paraiq): our AI paraplanning assistant, how it handles data, what we disclose, and common questions about AI in paraplanning
+
+## Guides
+- [Can AI write a Statement of Advice?](https://theianex.com.au/ai-statement-of-advice): what AI can do in SOA preparation, what stays with the adviser and licensee, and what ASIC has said
+- [What to ask before you outsource paraplanning](https://theianex.com.au/outsourcing-paraplanning): eight questions for Australian advisers to put to any paraplanning provider
+
+## Contact
+- [Book a discovery call](https://theianex.com.au/contact)
+
+## Legal
+- [Privacy Policy](https://theianex.com.au/privacy)
+- [Terms](https://theianex.com.au/terms)

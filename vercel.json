@@ -35,5 +35,18 @@
       ]
     }
   ],
-  "installCommand": "echo \"no install needed\""
+  "installCommand": "echo \"no install needed\"",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.theianex.com.au"
+        }
+      ],
+      "destination": "https://theianex.com.au/$1",
+      "permanent": true
+    }
+  ]
 }

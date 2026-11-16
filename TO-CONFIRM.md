@@ -6,6 +6,10 @@ Nothing on the site is highlighted. Every drafted or placeholder line is listed 
 
 - hello@your-domain.com.au
 
+## ai-statement-of-advice
+
+- (note, removed from page) compliance lawyer to confirm this summary of REP 798 and the statutory references before launch
+
 ## contact
 
 - (note, removed from page) Real business contact details go here (email, phone). None were supplied, and the sample booking calendar has been removed until a real calendar integration is configured.
@@ -20,7 +24,11 @@ Nothing on the site is highlighted. Every drafted or placeholder line is listed 
 - Paraplanning, built on technology.
 - Paraplanners review the information, carry out the assigned research and preparation, and check the work before it is returned.
 - Processes client documents, extracts the information into a structured file and flags potential gaps for review.
-- SOAs, ROAs and supporting documents, reviewed and returned to the adviser for approval.
+- Statements of Advice (SOAs), Records of Advice (ROAs) and supporting documents, reviewed and returned to the adviser for approval.
+
+## outsourcing-paraplanning
+
+- (note, removed from page) compliance lawyer to confirm the outsourcing wording before launch
 
 ## paraiq
 
